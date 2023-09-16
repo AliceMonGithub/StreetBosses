@@ -1,27 +1,39 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using DI;
+using System.Collections;
+using System;
 
-internal sealed class SceneLoader
+namespace Client.SceneLoading
 {
-    private readonly LoadCurtain _curtain;
-
-    public SceneLoader(LoadCurtain curtain)
+    internal sealed class SceneLoader
     {
-        _curtain = curtain;
-    }
+        private readonly LoadCurtain _curtain;
+        //private readonly ICoroutineRunner _coroutineRunner;
 
-    public void LoadScene(string name)
-    {
-        _curtain.Show(() => Load(name));
-    }
-
-    private void Load(string name)
-    {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(name);
-
-        while (asyncLoad.isDone == false)
+        public SceneLoader(LoadCurtain curtain)//, ICoroutineRunner coroutineRunner)
         {
-            // yield return null;
+            _curtain = curtain;
+            //_coroutineRunner = coroutineRunner;
+        }
+
+        public void LoadScene(string name, Action onComplete = null)
+        {
+            //_curtain.Show(() => _coroutineRunner.RunCoroutine(Load(name, onComplete)));
+            _curtain.Show(() => Load(name, onComplete));
+        }
+
+        private void Load(string name, Action onComplete)
+        {
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(name);
+
+            asyncLoad.completed += (_) => EndLoad(onComplete);
+        }
+
+        private void EndLoad(Action onComplete)
+        {
+            _curtain.Hide();
+            onComplete?.Invoke();
         }
     }
 }

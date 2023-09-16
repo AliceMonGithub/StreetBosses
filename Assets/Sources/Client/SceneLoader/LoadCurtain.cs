@@ -1,17 +1,43 @@
 using System;
 using UnityEngine;
+using DG.Tweening;
 
-internal sealed class LoadCurtain : MonoBehaviour
+namespace Client.SceneLoading
 {
-    public void Show(Action onShowed)
+    internal sealed class LoadCurtain : MonoBehaviour
     {
-        Debug.Log("Start showing curtain");
+        [SerializeField] private GameObject _root; 
+        [SerializeField] private CanvasGroup _canvasGroup;
 
-        onShowed?.Invoke();
-    }
+        [Space]
 
-    public void Hide()
-    {
-        Debug.Log("Curtain hiden");
+        [SerializeField] private float _fadeDuration;
+
+        private void Awake()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+
+        public void Show(Action onShowed)
+        {
+            _root.SetActive(true);
+
+            var tween = _canvasGroup.DOFade(1f, _fadeDuration);
+
+            if (onShowed != null)
+            {
+                tween.onComplete += onShowed.Invoke;
+            }
+        }
+
+        public void Hide()
+        {
+            _canvasGroup.DOFade(0f, _fadeDuration).onComplete += Deactivate; 
+        }
+
+        private void Deactivate()
+        {
+            _root.SetActive(false);
+        }
     }
 }
