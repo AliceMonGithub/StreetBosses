@@ -8,10 +8,14 @@ namespace Sources.CameraLogic
 
         [SerializeField] private Vector2 _xMoveLimit;
         [SerializeField] private float _moveSpeed;
+        [SerializeField] private float _moveSmooth;
 
         [Space]
 
         [SerializeField] private Transform _transform;
+
+        private Vector2 _smoothVector;
+        private Vector2 _velosity;
 
         private void Update()
         {
@@ -22,8 +26,11 @@ namespace Sources.CameraLogic
         {
             float horizontal = Input.GetAxisRaw(HorizontalAxis);
             float moveDirection = horizontal * _moveSpeed;
+            Vector2 moveVector = Vector2.right * moveDirection * Time.deltaTime;
 
-            _transform.Translate(Vector3.right * moveDirection);
+            _smoothVector = Vector2.SmoothDamp(_smoothVector, moveVector, ref _velosity, _moveSmooth);
+
+            _transform.Translate(_smoothVector);
 
             LimitXMovement();
         }

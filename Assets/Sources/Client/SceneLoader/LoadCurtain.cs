@@ -20,6 +20,8 @@ namespace Client.SceneLoading
 
         public void Show(Action onShowed)
         {
+            _canvasGroup.alpha = 0;
+
             _root.SetActive(true);
 
             var tween = _canvasGroup.DOFade(1f, _fadeDuration);
