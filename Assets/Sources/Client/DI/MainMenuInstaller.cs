@@ -5,7 +5,7 @@ using Zenject;
 
 namespace DI
 {
-    internal sealed class MainMenuInstaller : MonoInstaller//, ICoroutineRunner
+    internal sealed class MainMenuInstaller : MonoInstaller
     {
         [SerializeField] private LoadCurtain _curtain;
 

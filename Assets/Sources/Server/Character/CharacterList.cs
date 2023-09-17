@@ -4,7 +4,7 @@ namespace Server.CharacterLogic
 {
     internal sealed class CharacterList : IReadOnlyCharacterList
     {
-        private List<Character> _characters;
+        public List<Character> _characters;
 
         public CharacterList()
         {
