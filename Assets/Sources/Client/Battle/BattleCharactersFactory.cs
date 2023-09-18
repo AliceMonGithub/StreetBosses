@@ -7,6 +7,10 @@ namespace Client.BattleLogic
 {
     internal sealed class BattleCharactersFactory : MonoBehaviour
     {
+        [SerializeField] private Transform[] _spawnpoints;
+
+
+
         private IReadOnlyPlayer _player;
 
         [Inject]
@@ -26,8 +30,13 @@ namespace Client.BattleLogic
 
             foreach (IReadOnlyCharacter character in _player.CharacterList.Characters)
             {
-                Debug.Log("Character!");
+
             }
+        }
+
+        private void CreateCharacter(IReadOnlyCharacter character)
+        {
+            
         }
     }
 }
