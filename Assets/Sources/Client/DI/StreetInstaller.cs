@@ -10,6 +10,7 @@ namespace DI
         [SerializeField] private ShopMenu _shopMenu;
         [SerializeField] private CapoMenu _capoMenu;
         [SerializeField] private StreetMenu _streetMenu;
+        [SerializeField] private OfficeMenu _officeMenu;
 
         public override void InstallBindings()
         {
@@ -17,6 +18,7 @@ namespace DI
             Container.Bind<ShopMenu>().FromInstance(_shopMenu).AsSingle();
             Container.Bind<CapoMenu>().FromInstance(_capoMenu).AsSingle();
             Container.Bind<StreetMenu>().FromInstance(_streetMenu).AsSingle();
+            Container.Bind<OfficeMenu>().FromInstance(_officeMenu).AsSingle();
         }
     }
 }

@@ -16,13 +16,15 @@ namespace Client.MenuesLogic
         private ShopMenu _shopMenu;
         private CapoMenu _capoMenu;
         private StreetMenu _streetMenu;
+        private OfficeMenu _officeMenu;
 
         [Inject]
-        private void Constructor(ShopMenu shopMenu, CapoMenu capoMenu, StreetMenu streetMenu)
+        private void Constructor(ShopMenu shopMenu, CapoMenu capoMenu, StreetMenu streetMenu, OfficeMenu officeMenu)
         {
             _shopMenu = shopMenu;
             _capoMenu = capoMenu;
             _streetMenu = streetMenu;
+            _officeMenu = officeMenu;
         }
 
         private void Awake()
@@ -30,6 +32,7 @@ namespace Client.MenuesLogic
             _shopButton.onClick.AddListener(_shopMenu.Show);
             _capoButton.onClick.AddListener(_capoMenu.Show);
             _streetButton.onClick.AddListener(_streetMenu.Show);
+            _officeButton.onClick.AddListener(_officeMenu.Show);
         }
     }
 }
