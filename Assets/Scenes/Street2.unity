@@ -214,6 +214,7 @@ MonoBehaviour:
   _shopMenu: {fileID: 1591313014}
   _capoMenu: {fileID: 1591313013}
   _streetMenu: {fileID: 1591313012}
+  _officeMenu: {fileID: 1591313016}
 --- !u!114 &580955047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,6 +613,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b812e617342d58245a6cc4f33edb554f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1591313016 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5877352009688387304, guid: 18225e5e9c63fd643b9d58481ca335f8, type: 3}
+  m_PrefabInstance: {fileID: 1591313011}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a34e5a87f6a9e4fbacd02b90d7cc66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1631975727
