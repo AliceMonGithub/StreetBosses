@@ -1,6 +1,6 @@
 ﻿namespace Server.MoneyLogic
 {
-    internal sealed class Money : IReadOnlyMoney
+    public sealed class Money : IReadOnlyMoney
     {
         private int _value;
 

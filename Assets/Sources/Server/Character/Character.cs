@@ -1,6 +1,6 @@
 ﻿namespace Server.CharacterLogic
 {
-    internal sealed class Character : IReadOnlyCharacter
+    public sealed class Character : IReadOnlyCharacter
     {
 
     }
