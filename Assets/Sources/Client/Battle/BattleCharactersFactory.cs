@@ -26,9 +26,9 @@ namespace Client.BattleLogic
 
         private void CreatePlayerCharacters()
         {
-            Debug.Log("Characters count: " + _player.CharacterList.Characters.Count);
+            Debug.Log("Characters count: " + _player.CharactersList.Characters.Count);
 
-            foreach (IReadOnlyCharacter character in _player.CharacterList.Characters)
+            foreach (IReadOnlyCharacter character in _player.CharactersList.Characters)
             {
 
             }

@@ -1,21 +1,27 @@
+using Server.BusinessLogic;
 using Server.CharacterLogic;
 using Server.MoneyLogic;
 
 namespace Server.PlayerLogic
 {
-    internal sealed class Player : IReadOnlyPlayer
+    public sealed class Player : IReadOnlyPlayer
     {
-        private readonly Money _money;
+        public readonly Money Money;
 
-        private readonly CharacterList _characterList;
+        public readonly BusinessesList BusinessesList;
+        public readonly CharactersList CharactersList;
 
         public Player()
         {
-            _money = new(5000);
-            _characterList = new CharacterList();
+            Money = new(5000);
+
+            BusinessesList = new();
+            CharactersList = new();
         }
 
-        public IReadOnlyMoney Money => _money;
-        public IReadOnlyCharacterList CharacterList => _characterList;
+        IReadOnlyMoney IReadOnlyPlayer.Money => Money;
+
+        IReadOnlyBusinessesList IReadOnlyPlayer.BusinessesList => BusinessesList;
+        IReadOnlyCharactersList IReadOnlyPlayer.CharactersList => CharactersList;
     }
 }

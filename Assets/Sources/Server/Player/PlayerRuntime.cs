@@ -2,7 +2,7 @@
 
 namespace Server.PlayerLogic
 {
-    internal sealed class PlayerRuntime
+    public sealed class PlayerRuntime
     {
         private BusinessBlank _attackBusiness;
 

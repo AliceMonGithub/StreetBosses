@@ -14,6 +14,8 @@ namespace DI
         private SceneLoader _sceneLoader;
 
         private Player _player;
+        private PlayerBusinessesGate _businessesGate;
+
         private PlayerRuntime _playerRuntime;
 
         public override void InstallBindings()
@@ -23,6 +25,8 @@ namespace DI
             _sceneLoader = new(_loadCurtain);
 
             _player = new();
+            _businessesGate = new(_player);
+
             _playerRuntime = new();
 
             Container.Bind<IReadOnlyPlayer>().FromInstance(_player).AsSingle();

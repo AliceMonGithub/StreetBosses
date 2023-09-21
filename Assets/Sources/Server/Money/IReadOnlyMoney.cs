@@ -1,6 +1,6 @@
 ﻿namespace Server.MoneyLogic
 {
-    internal interface IReadOnlyMoney
+    public interface IReadOnlyMoney
     {
         int Value { get; }
     }

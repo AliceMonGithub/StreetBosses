@@ -1,11 +1,14 @@
-﻿using Server.CharacterLogic;
+﻿using Server.BusinessLogic;
+using Server.CharacterLogic;
 using Server.MoneyLogic;
 
 namespace Server.PlayerLogic
 {
-    internal interface IReadOnlyPlayer
+    public interface IReadOnlyPlayer
     {
         IReadOnlyMoney Money { get; }
-        IReadOnlyCharacterList CharacterList { get; }
+
+        IReadOnlyBusinessesList BusinessesList { get; }
+        IReadOnlyCharactersList CharactersList { get; }
     }
 }

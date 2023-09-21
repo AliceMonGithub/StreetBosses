@@ -1,6 +1,6 @@
 ﻿namespace Server.CharacterLogic
 {
-    internal interface IReadOnlyCharacter
+    public interface IReadOnlyCharacter
     {
 
     }

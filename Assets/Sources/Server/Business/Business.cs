@@ -1,6 +1,6 @@
 ﻿namespace Server.BusinessLogic
 {
-    internal sealed class Business
+    public sealed class Business : IReadOnlyBusiness
     {
         private readonly string _name;
 
