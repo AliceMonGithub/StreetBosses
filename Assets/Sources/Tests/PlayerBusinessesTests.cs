@@ -26,6 +26,14 @@ public class PlayerBusinessesTests
         _gate.AddBusiness(new("Test"));
 
         Assert.AreEqual(1, _player.BusinessesList.Businesses.Count);
-        Assert.AreEqual("Test", _player.BusinessesList.Businesses[0].Name);
+    }
+
+    [Test]
+    public void BlankToBusinessTest()
+    {
+        _gate.AddBusiness(new("Test"));
+
+        Assert.IsTrue(_player.BusinessesList.ContainsBusiness("Test"));
+        Assert.IsFalse(_player.BusinessesList.ContainsBusiness("False"));
     }
 }
