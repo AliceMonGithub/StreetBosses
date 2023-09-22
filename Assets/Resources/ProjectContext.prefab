@@ -75,5 +75,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startBusinesses:
-  - {fileID: 11400000, guid: b3f2a61020c2a5a48a17ce486fd8e81d, type: 2}
+  - {fileID: 11400000, guid: 25c168a1acc4d2847b5fc7380f455a99, type: 2}
+  _startCharacters:
+  - {fileID: 11400000, guid: 26546f392e2b41840819416f9ebfb84f, type: 2}
+  - {fileID: 11400000, guid: 48763ba71da3a24448018aa17d593cdc, type: 2}
   _prefab: {fileID: 3654379183253661000, guid: d62fae1e7858a554b9848fe4bbd4cd12, type: 3}

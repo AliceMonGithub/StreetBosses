@@ -22,5 +22,19 @@ namespace Server.BusinessLogic
         {
             return _businesses.ContainsKey(name);
         }
+
+        public bool ContainsBusiness(string name, out Business business)
+        {
+            if(_businesses.ContainsKey(name))
+            {
+                business = _businesses[name];
+
+                return true;
+            }
+
+            business = null;
+
+            return false;
+        }
     }
 }

@@ -7,5 +7,6 @@ namespace Server.BusinessLogic
         IReadOnlyDictionary<string, Business> Businesses { get; }
 
         bool ContainsBusiness(string name);
+        bool ContainsBusiness(string name, out Business business);
     }
 }

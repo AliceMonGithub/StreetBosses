@@ -8,20 +8,25 @@ namespace Client.MenuesLogic
 {
     internal sealed class TakeBusinessButton : MonoBehaviour
     {
+        [SerializeField] private Transform _canvasRoot;
+        [SerializeField] private Transform _root;
         [SerializeField] private Button _button;
+        [SerializeField] private BusinessButton _businessButtonPrefab;
 
         [Space]
 
         [SerializeField] private BusinessBlank _blank;
 
-        private TakeBusinessMenu _menu;
+        private TakeBusinessMenu _takeBusinessMenu;
+        private BusinessMenu _businessMenu;
         private IReadOnlyPlayer _player;
         private PlayerRuntime _playerRuntime;
 
         [Inject]
-        private void Constructor(TakeBusinessMenu menu, IReadOnlyPlayer player, PlayerRuntime playerRuntime)
+        private void Constructor(TakeBusinessMenu takeBusinessMenu, BusinessMenu businessMenu, IReadOnlyPlayer player, PlayerRuntime playerRuntime)
         {
-            _menu = menu;
+            _takeBusinessMenu = takeBusinessMenu;
+            _businessMenu = businessMenu;
             _player = player;
             _playerRuntime = playerRuntime;
         }
@@ -35,9 +40,13 @@ namespace Client.MenuesLogic
 
         private void TryFindOwner()
         {
-            if (_player.BusinessesList.ContainsBusiness(_blank.Name))
+            if (_player.BusinessesList.ContainsBusiness(_blank.Name, out Business business))
             {
-                print("Player have this business");
+                BusinessButton button = Instantiate(_businessButtonPrefab, _root.position, Quaternion.identity, _canvasRoot);
+
+                button.Initialize(business, _businessMenu);
+
+                Destroy(gameObject);
             }
         }
 
@@ -45,7 +54,7 @@ namespace Client.MenuesLogic
         {
             _playerRuntime.SetAttackTarget(_blank);
 
-            _menu.Show();
+            _takeBusinessMenu.Show();
         }
     }
 }

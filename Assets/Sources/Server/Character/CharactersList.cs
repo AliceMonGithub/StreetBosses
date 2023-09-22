@@ -4,18 +4,18 @@ namespace Server.CharacterLogic
 {
     public sealed class CharactersList : IReadOnlyCharactersList
     {
-        private List<Character> _characters;
+        private Dictionary<string, Character> _characters;
 
         public CharactersList()
         {
             _characters = new();
         }
 
-        public IReadOnlyList<IReadOnlyCharacter> Characters => _characters;
+        public IReadOnlyDictionary<string, Character> Characters => _characters;
 
         public void AddCharacter(Character character)
         {
-            _characters.Add(character);
+            _characters.Add(character.Name, character);
         }
     }
 }
