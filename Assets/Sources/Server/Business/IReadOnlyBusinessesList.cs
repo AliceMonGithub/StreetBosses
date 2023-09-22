@@ -4,6 +4,8 @@ namespace Server.BusinessLogic
 {
     public interface IReadOnlyBusinessesList
     {
-        IReadOnlyList<IReadOnlyBusiness> Businesses { get; }
+        IReadOnlyDictionary<string, Business> Businesses { get; }
+
+        bool ContainsBusiness(string name);
     }
 }

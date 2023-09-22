@@ -4,18 +4,23 @@ namespace Server.BusinessLogic
 {
     public sealed class BusinessesList : IReadOnlyBusinessesList
     {
-        private List<Business> _businesses;
+        private Dictionary<string, Business> _businesses;
 
         public BusinessesList()
         {
             _businesses = new();
         }
 
-        public IReadOnlyList<IReadOnlyBusiness> Businesses => _businesses;
+        public IReadOnlyDictionary<string, Business> Businesses => _businesses;
 
         public void AddBusiness(Business business)
         {
-            _businesses.Add(business);
+            _businesses.Add(business.Name, business);
+        }
+
+        public bool ContainsBusiness(string name)
+        {
+            return _businesses.ContainsKey(name);
         }
     }
 }

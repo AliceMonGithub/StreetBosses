@@ -1,4 +1,5 @@
 using Client.SceneLoading;
+using Server.BusinessLogic;
 using Server.PlayerLogic;
 using System.Collections;
 using UnityEngine;
@@ -8,6 +9,10 @@ namespace DI
 {
     internal sealed class GlobalInstaller : MonoInstaller, ICoroutineRunner
     {
+        [SerializeField] private BusinessBlank[] _startBusinesses;
+
+        [Space]
+
         [SerializeField] private LoadCurtain _prefab;
 
         private LoadCurtain _loadCurtain;
@@ -26,6 +31,11 @@ namespace DI
 
             _player = new();
             _businessesGate = new(_player);
+
+            foreach (BusinessBlank blank in _startBusinesses)
+            {
+                _businessesGate.AddBusiness(new(blank));
+            }
 
             _playerRuntime = new();
 
