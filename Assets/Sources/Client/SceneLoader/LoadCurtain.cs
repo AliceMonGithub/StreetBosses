@@ -24,23 +24,17 @@ namespace Client.SceneLoading
 
             _root.SetActive(true);
 
-            //var tween = _canvasGroup.DoFade(1f, _fadeDuration);
+            var tween = _canvasGroup.DOFade(1f, _fadeDuration);
 
-            //if (onShowed != null)
-            //{
-            //    tween.onComplete += onShowed.Invoke;
-            //}
-
-            _canvasGroup.alpha = 1f;
-
-            onShowed?.Invoke();
+            if (onShowed != null)
+            {
+                tween.onComplete += onShowed.Invoke;
+            }
         }
 
         public void Hide()
         {
-            _canvasGroup.alpha = 0f;
-            Deactivate();
-            //_canvasGroup.DOFade(0f, _fadeDuration).onComplete += Deactivate; 
+            _canvasGroup.DOFade(0f, _fadeDuration).onComplete += Deactivate; 
         }
 
         private void Deactivate()

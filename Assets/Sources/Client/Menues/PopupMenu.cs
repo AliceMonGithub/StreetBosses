@@ -21,15 +21,13 @@ namespace Client.MenuesLogic
             _root.SetActive(true);
 
             _transform.DOScale(Vector3.one, _showDuration);
-            _canvasGroup.alpha = 1;
-            //_canvasGroup.DOFade(1, _showDuration);
+            _canvasGroup.DOFade(1, _showDuration);
         }
 
         protected void Hide()
         {
             _transform.DOScale(Vector3.zero, _showDuration);
-            _canvasGroup.alpha = 0;
-            //_canvasGroup.DOFade(0, _showDuration).onComplete += Deactivate;
+            _canvasGroup.DOFade(0, _showDuration).onComplete += Deactivate;
         }
 
         private void Deactivate()

@@ -4,6 +4,6 @@ namespace Server.CharacterLogic
 {
     public interface IReadOnlyCharactersList
     {
-        IReadOnlyList<IReadOnlyCharacter> Characters { get; }
+        IReadOnlyDictionary<string, Character> Characters { get; }
     }
 }
