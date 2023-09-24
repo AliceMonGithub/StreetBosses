@@ -26,7 +26,7 @@ namespace Server.MoneyLogic
 
             _value -= value;
 
-            OnValueChanged?.Invoke(value);
+            OnValueChanged?.Invoke(_value);
         }
 
         public int Value => _value;

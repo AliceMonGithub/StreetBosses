@@ -9,8 +9,8 @@ namespace DI
 {
     internal sealed class GlobalInstaller : MonoInstaller, ICoroutineRunner
     {
-        [SerializeField] private BusinessBlank[] _startBusinesses;
-        [SerializeField] private CharacterBlank[] _startCharacters;
+        [SerializeField] private BusinessData[] _startBusinesses;
+        [SerializeField] private CharacterData[] _startCharacters;
 
         [Space]
 
@@ -31,14 +31,14 @@ namespace DI
 
             _player = new();
 
-            foreach (BusinessBlank businessBlank in _startBusinesses)
+            foreach (BusinessData businessData in _startBusinesses)
             {
-                _player.BusinessesList.AddBusiness(new(businessBlank));
+                _player.BusinessesList.AddBusiness(new(businessData, _player));
             }
 
-            foreach (CharacterBlank characterBlank in _startCharacters)
+            foreach (CharacterData characterData in _startCharacters)
             {
-                _player.CharactersList.AddCharacter(new(characterBlank));
+                _player.CharactersList.AddCharacter(new(characterData));
             }
 
             _playerRuntime = new();

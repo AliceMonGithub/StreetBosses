@@ -10,12 +10,12 @@ namespace Server.CharacterLogic
 
         private readonly CharacterInstance _characterInstance;
 
-        public Character(CharacterBlank blank)
+        public Character(CharacterData data)
         {
-            _avatar = blank.Avatar;
-            _name = blank.Name;
+            _avatar = data.Avatar;
+            _name = data.Name;
 
-            _characterInstance = blank.CharacterInstance;
+            _characterInstance = data.CharacterInstance;
         }
 
         public Sprite Avatar => _avatar;

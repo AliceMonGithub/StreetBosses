@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edf7e87006171ad4da8def7f6d26a7d4, type: 3}
+  m_Script: {fileID: 11500000, guid: d812c42fee21e5a4fa913d4713e5c294, type: 3}
   m_Name: Business
   m_EditorClassIdentifier: 
-  _name: CoffeeShop
-  _earn: 300
-  _getEarnTime: 3
+  _name: First
+  _earn: 200
+  _getEarnTime: 4
+  _upgrade:
+  - _cost: 200
+    _earn: 250

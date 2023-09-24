@@ -1,34 +1,82 @@
-﻿namespace Server.BusinessLogic
+﻿using Server.PlayerLogic;
+using System;
+
+namespace Server.BusinessLogic
 {
     public sealed class Business
     {
-        private readonly string _name;
+        public const float UpgradeProgressMultiplier = 0.25f;
 
-        private readonly int _earn;
+        public event Action OnUpgrade;
+
+        private readonly string _name;
+        private readonly Player _owner;
+
+        private BusinessUpgradeData[] _upgradeData;
+        private int _level;
+        private float _upgradeProgress;
+
+        private int _earn;
         private readonly float _getEarnTime;
 
         public bool CanGetEarn;
 
-        public Business(string name)
+        public Business(string name, int earn, float getEarnTime, BusinessUpgradeData[] upgradeData, Player owner)
         {
             _name = name;
+            _owner = owner;
+
+            _upgradeData = upgradeData;
+            _level = 1;
+            _upgradeProgress = 0f;
+
+            _earn = earn;
+            _getEarnTime = getEarnTime;
 
             CanGetEarn = true;
         }
 
-        public Business(BusinessBlank blank)
+        public Business(string name) : this(name, 0, 0f, new BusinessUpgradeData[] { null }, null)
         {
-            _name = blank.Name;
 
-            _earn = blank.Earn;
-            _getEarnTime = blank.GetEarnTime;
+        }
 
-            CanGetEarn = true;
+        public Business(BusinessData data, Player player) : this(data.Name, data.Earn, data.GetEarnTime, data.UpgradeData, player)
+        {
+
         }
 
         public string Name => _name;
        
+        public int Level => _level;
+        public float UpgradeProgress => _upgradeProgress;
+
         public int Earn => _earn;
+        public int NextEarn => _upgradeData[_level - 1].Earn;
         public float GetEarnTime => _getEarnTime;
+
+        public int MoneyForUpgrade => (int)(_upgradeData[_level - 1].Cost * UpgradeProgressMultiplier);
+
+        public void TryUpgrade()
+        {
+            if ((_level - 1) == 1) return;
+            if (_owner.Money.Value < MoneyForUpgrade) return;
+
+            _owner.Money.Spend(MoneyForUpgrade);
+
+            _upgradeProgress += UpgradeProgressMultiplier;
+
+            if(_upgradeProgress >= 1f)
+            {
+                BusinessUpgradeData newData = _upgradeData[_level - 1];
+
+                _earn = newData.Earn;
+
+                _level++;
+                _upgradeProgress = 0f;
+            }
+
+            OnUpgrade?.Invoke();
+        }
     }
 }
