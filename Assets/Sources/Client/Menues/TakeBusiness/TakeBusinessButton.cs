@@ -16,7 +16,7 @@ namespace Client.MenuesLogic
 
         [Space]
 
-        [SerializeField] private BusinessBlank _blank;
+        [SerializeField] private BusinessData _blank;
 
         private TakeBusinessMenu _takeBusinessMenu;
         private BusinessMenu _businessMenu;

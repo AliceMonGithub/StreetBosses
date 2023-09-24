@@ -4,13 +4,13 @@ namespace Server.PlayerLogic
 {
     public sealed class PlayerRuntime
     {
-        private BusinessBlank _attackBusiness;
+        private BusinessData _attackBusiness;
 
-        public void SetAttackTarget(BusinessBlank attackBusiness)
+        public void SetAttackTarget(BusinessData attackBusiness)
         {
             _attackBusiness = attackBusiness;
         }
 
-        public BusinessBlank AttackBusiness => _attackBusiness;
+        public BusinessData AttackBusiness => _attackBusiness;
     }
 }

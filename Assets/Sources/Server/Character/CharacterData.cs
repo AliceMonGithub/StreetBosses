@@ -3,7 +3,7 @@
 namespace Server.BusinessLogic
 {
     [CreateAssetMenu(fileName = "Character")]
-    public sealed class CharacterBlank : ScriptableObject
+    public sealed class CharacterData : ScriptableObject
     {
         [SerializeField] private Sprite _avatar;
         [SerializeField] private string _name;

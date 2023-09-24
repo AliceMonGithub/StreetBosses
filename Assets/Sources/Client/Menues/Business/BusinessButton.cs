@@ -24,8 +24,15 @@ namespace Client.MenuesLogic
             _business = business;
             _player = player;
 
-            _button.onClick.AddListener(_businessMenu.Show);
+            _button.onClick.AddListener(ShowBusinessMenu);
             _getEarnButton.onClick.AddListener(GetEarn);
+
+            _earnText.text = _business.Earn.ToString();
+        }
+
+        private void ShowBusinessMenu()
+        {
+            _businessMenu.Init(_business);
         }
 
         private void GetEarn()
