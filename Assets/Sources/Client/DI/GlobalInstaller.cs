@@ -43,7 +43,7 @@ namespace DI
 
             _playerRuntime = new();
 
-            Container.Bind<IReadOnlyPlayer>().FromInstance(_player).AsSingle();
+            Container.Bind<Player>().FromInstance(_player).AsSingle();
             Container.Bind<PlayerRuntime>().FromInstance(_playerRuntime).AsSingle();
             Container.Bind<SceneLoader>().FromInstance(_sceneLoader).AsSingle();
         }

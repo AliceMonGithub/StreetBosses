@@ -9,17 +9,24 @@ namespace Client.MenuesLogic
     {
         [SerializeField] private TMP_Text _counter;
 
-        private IReadOnlyPlayer _player;
+        private Player _player;
 
         [Inject]
-        private void Constructor(IReadOnlyPlayer player)
+        private void Constructor(Player player)
         {
             _player = player;
         }
 
         private void Awake()
         {
-            _counter.text = _player.Money.Value.ToString();
+            UpdateCounter(_player.Money.Value);
+
+            _player.Money.OnValueChanged += UpdateCounter;
+        }
+
+        private void UpdateCounter(int value)
+        {
+            _counter.text = value.ToString();
         }
     }
 }
