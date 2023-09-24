@@ -3,6 +3,7 @@ using Server.PlayerLogic;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace Client.MenuesLogic
 {
@@ -19,11 +20,11 @@ namespace Client.MenuesLogic
 
         private TakeBusinessMenu _takeBusinessMenu;
         private BusinessMenu _businessMenu;
-        private IReadOnlyPlayer _player;
+        private Player _player;
         private PlayerRuntime _playerRuntime;
 
         [Inject]
-        private void Constructor(TakeBusinessMenu takeBusinessMenu, BusinessMenu businessMenu, IReadOnlyPlayer player, PlayerRuntime playerRuntime)
+        private void Constructor(TakeBusinessMenu takeBusinessMenu, BusinessMenu businessMenu, Player player, PlayerRuntime playerRuntime)
         {
             _takeBusinessMenu = takeBusinessMenu;
             _businessMenu = businessMenu;
@@ -44,7 +45,7 @@ namespace Client.MenuesLogic
             {
                 BusinessButton button = Instantiate(_businessButtonPrefab, _root.position, Quaternion.identity, _canvasRoot);
 
-                button.Initialize(business, _businessMenu);
+                button.Initialize(business, _businessMenu, _player);
 
                 Destroy(gameObject);
             }

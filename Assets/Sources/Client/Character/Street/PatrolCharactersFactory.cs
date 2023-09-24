@@ -16,10 +16,10 @@ namespace Client.CharacterLogic
         [SerializeField] private float _maxSpeed;
         [SerializeField] private float _waitTime;
 
-        private IReadOnlyPlayer _player;
+        private Player _player;
 
         [Inject]
-        private void Constructor(IReadOnlyPlayer player)
+        private void Constructor(Player player)
         {
             _player = player;
         }

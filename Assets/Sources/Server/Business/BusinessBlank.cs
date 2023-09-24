@@ -7,6 +7,14 @@ namespace Server.BusinessLogic
     {
         [SerializeField] private string _name;
 
+        [Space]
+
+        [SerializeField] private int _earn;
+        [SerializeField] private float _getEarnTime;
+
         public string Name => _name;
+
+        public int Earn => _earn;
+        public float GetEarnTime => _getEarnTime;
     }
 }
