@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d812c42fee21e5a4fa913d4713e5c294, type: 3}
-  m_Name: Business
+  m_Name: Business 1
   m_EditorClassIdentifier: 
-  _name: Coffee Shop
-  _earn: 100
-  _getEarnTime: 4
+  _name: Hotel
+  _earn: 200
+  _getEarnTime: 5
   _upgrade:
-  - _cost: 800
-    _earn: 150
+  - _cost: 1000
+    _earn: 250

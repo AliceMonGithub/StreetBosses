@@ -11,7 +11,7 @@ namespace Server.CharacterLogic
             _characters = new();
         }
 
-        public IReadOnlyDictionary<string, Character> Characters => _characters;
+        public Dictionary<string, Character> Characters => _characters;
 
         public void AddCharacter(Character character)
         {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Server.BusinessLogic
+namespace Server.CharacterLogic
 {
     [CreateAssetMenu(fileName = "Character")]
     public sealed class CharacterData : ScriptableObject

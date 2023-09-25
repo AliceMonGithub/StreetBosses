@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Server.BusinessLogic
+namespace Server.CharacterLogic
 {
     public sealed class CharacterInstance : MonoBehaviour
     {
