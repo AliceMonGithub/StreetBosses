@@ -42,7 +42,7 @@ namespace Server.CharacterLogic
                 CharacterInstance instance = Instantiate(character.CharacterInstance, GetSpawnPoint(), Quaternion.identity);
                 BattleCharacter battleCharacter = instance.gameObject.AddComponent<BattleCharacter>();
 
-                battleCharacter.Init(instance, _movementSmooth, _maxSpeed);
+                //battleCharacter.Init(instance, _movementSmooth, _maxSpeed);
                 battleCharacter.Boot(); //—юда помещаем List или Dictionary с Enemy
             }
         }

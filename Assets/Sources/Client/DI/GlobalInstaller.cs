@@ -1,5 +1,6 @@
 using Client.SceneLoading;
 using Server.BusinessLogic;
+using Server.CharacterLogic;
 using Server.PlayerLogic;
 using System.Collections;
 using UnityEngine;
