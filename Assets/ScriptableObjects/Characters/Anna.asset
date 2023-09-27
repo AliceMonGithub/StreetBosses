@@ -14,4 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _avatar: {fileID: 6666742383653689006, guid: 7592fad3b3fac484a8493817976660a6, type: 3}
   _name: Anna
+  _attackCooldown: 1
+  _attackDistance: 1
+  _smoothTime: 1
+  _maxSpeed: 1
   _instance: {fileID: 8165168058095280366, guid: db5361b3fca0d434e870c59ef8608919, type: 3}

@@ -7,6 +7,11 @@ namespace Server.CharacterLogic
     {
         [SerializeField] private Sprite _avatar;
         [SerializeField] private string _name;
+        [SerializeField] private float _attackCooldown;
+        [SerializeField] private float _attackDistance;
+
+        [SerializeField] private float _smoothTime;
+        [SerializeField] private float _maxSpeed;
 
         [Space]
 
