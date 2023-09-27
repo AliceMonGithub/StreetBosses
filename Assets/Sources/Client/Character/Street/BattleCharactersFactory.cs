@@ -1,6 +1,4 @@
-using Server.BusinessLogic;
 using Server.PlayerLogic;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -9,8 +7,8 @@ namespace Server.CharacterLogic
 {
     public class BattleCharactersFactory : MonoBehaviour
     {
-        [SerializeField] private Vector2 _spawnZoneX;
-        [SerializeField] private Vector2 _spawnZoneY;
+        [SerializeField] private List<Vector2> _firstTeamSpawnPosition;
+        [SerializeField] private List<Vector2> _secondTeamSpawnPosition;
 
         [SerializeField] private float _movementSmooth;
         [SerializeField] private float _maxSpeed;
@@ -18,6 +16,9 @@ namespace Server.CharacterLogic
 
         private Player _player;
         private Dictionary<string, Character> _characters;
+
+        private int _indexFirstTeamSpawnPoint = 0;
+        private int _indexSecondTeamSpawnPoint = 0;
 
         [Inject]
         private void Constructor(Player player)
@@ -29,27 +30,69 @@ namespace Server.CharacterLogic
 
         private void Awake()
         {
-            //“ут помещаем Dictionary всех чариков(_characters) в интерфейс
+            
         }
-
-        private void Create()
-        {   
-            //вместо _player.CharactersList.Characters помещаем список выбранных из интерфейса
-            foreach (var pair in _player.CharactersList.Characters)
-            {
-                Character character = pair.Value;
-
-                CharacterInstance instance = Instantiate(character.CharacterInstance, GetSpawnPoint(), Quaternion.identity);
-                BattleCharacter battleCharacter = instance.gameObject.AddComponent<BattleCharacter>();
-
-                //battleCharacter.Init(instance, _movementSmooth, _maxSpeed);
-                battleCharacter.Boot(); //—юда помещаем List или Dictionary с Enemy
-            }
-        }
-
-        private Vector2 GetSpawnPoint()
+        public BattleCharacter Create(Character character, BattleData battleData, bool isFirstTeam)
         {
-            return new(UnityEngine.Random.Range(_spawnZoneX.x, _spawnZoneX.y), UnityEngine.Random.Range(_spawnZoneY.x, _spawnZoneY.y));
+            CharacterInstance instance = Instantiate(character.CharacterInstance, GetSpawnPoint(isFirstTeam), Quaternion.identity);
+            BattleCharacter battleCharacter = instance.gameObject.AddComponent<BattleCharacter>();
+
+            int indexInTeam;
+
+            if (isFirstTeam)
+            {
+               indexInTeam = _indexFirstTeamSpawnPoint;
+            }
+            else
+            {
+               indexInTeam = _indexSecondTeamSpawnPoint;
+            }
+
+            battleCharacter.Init(character, battleData, isFirstTeam, indexInTeam);
+
+            if (isFirstTeam)
+            {
+                _indexFirstTeamSpawnPoint++;
+            }
+            else
+            {
+                _indexSecondTeamSpawnPoint++;
+            }
+            return battleCharacter;
+
+        }
+        public void DestroyCharacter(BattleCharacter character)
+        {
+            Destroy(character.gameObject);
+        }
+
+        private Vector2 GetSpawnPoint(bool isFirstTeam)
+        {
+            if (isFirstTeam)
+            {
+                if(_indexFirstTeamSpawnPoint >= 3)
+                {
+                    _indexFirstTeamSpawnPoint = 0;
+                    return _firstTeamSpawnPosition[_indexFirstTeamSpawnPoint];
+                }
+                else
+                {
+                    return _firstTeamSpawnPosition[_indexFirstTeamSpawnPoint];
+                }                
+            }
+            else
+            {
+                if (_indexSecondTeamSpawnPoint >= 3)
+                {
+                    _indexSecondTeamSpawnPoint = 0;
+                    return _secondTeamSpawnPosition[_indexSecondTeamSpawnPoint];
+                }
+                else
+                {
+                    return _secondTeamSpawnPosition[_indexSecondTeamSpawnPoint];
+                }
+            }
+
         }
     }
 }
