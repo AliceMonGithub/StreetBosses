@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbc00cb451e43284d8613a3b27f6a171, type: 3}
   m_Name: Alice
   m_EditorClassIdentifier: 
-  _avatar: {fileID: 6666742383653689006, guid: 7592fad3b3fac484a8493817976660a6, type: 3}
+  _avatar: {fileID: -4440571659341237062, guid: 7592fad3b3fac484a8493817976660a6, type: 3}
   _name: Alice
+  _cost: 1000
   _instance: {fileID: 8165168058095280366, guid: db5361b3fca0d434e870c59ef8608919, type: 3}

@@ -78,7 +78,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ec18a67db43fda94ab7bf0def4201a05, type: 2}
   - {fileID: 11400000, guid: 72a7b35d46c3be54b9ff8c6c78f58213, type: 2}
   - {fileID: 11400000, guid: 989930fb132f4524db2b36f9478d0fe3, type: 2}
-  _startCharacters:
-  - {fileID: 11400000, guid: 26546f392e2b41840819416f9ebfb84f, type: 2}
-  - {fileID: 11400000, guid: 48763ba71da3a24448018aa17d593cdc, type: 2}
+  _startCharacters: []
   _prefab: {fileID: 3654379183253661000, guid: d62fae1e7858a554b9848fe4bbd4cd12, type: 3}

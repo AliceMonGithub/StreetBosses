@@ -10,10 +10,16 @@ namespace Server.CharacterLogic
 
         [Space]
 
+        [SerializeField] private int _cost;
+
+        [Space]
+
         [SerializeField] private CharacterInstance _instance;
 
         public Sprite Avatar => _avatar;
         public string Name => _name;
+
+        public int Cost => _cost;
 
         public CharacterInstance CharacterInstance => _instance;
     }
