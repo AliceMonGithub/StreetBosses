@@ -1,14 +1,5 @@
-using Server.BusinessLogic;
 using Server.CharacterLogic;
-using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Schema;
 using UnityEngine;
-
-public class Enemy : MonoBehaviour //Просто что бы скомпелировалось
-{
-    public bool enemyAlive;  //Условная переменная пока нет механики енеми(Вопрос: при смерти они дестроятся, или просто лежат на сцене?)
-}
 
 public sealed class BattleCharacter : MonoBehaviour
 {
@@ -22,17 +13,11 @@ public sealed class BattleCharacter : MonoBehaviour
     private BattleData _battleData;
     private BattleCharacter _target;
     private bool _inFirstTeam;
+    private int _indexInTeam;
 
     private Vector3 _velosity;
 
-    // private CharacterInstance _instance;
-
-    //public void Init(CharacterInstance instance, float _movementSmooth, float maxSpeed)
-    //{
-
-    //}
-
-    public void Init(Character character, BattleData battleData, bool isFirstTeam)
+    public void Init(Character character, BattleData battleData, bool isFirstTeam, int indexItTeam)
     {
         _attackDistance = character.AttackDistance;
         _smoothTime = character.SmoothTime;
@@ -40,20 +25,20 @@ public sealed class BattleCharacter : MonoBehaviour
 
         _battleData = battleData;
         _inFirstTeam = isFirstTeam;
-
-        GoToNearTarget();
+        _indexInTeam = indexItTeam;
+        Debug.Log(_inFirstTeam + " INDEX:  " + _indexInTeam);
     }
 
     public Vector3 WorldPosition => transform.position;
 
-    public void Boot()//(List<Enemy> enemies)
+    public void Boot()
     {
-        GoToNearTarget();
-
-        //_enemies = enemies;
-        //SearchingEnemy();
+        GoToFirstTarger();
     }
-
+    private void GoToFirstTarger()
+    {
+        _target = GetFirstTarger();
+    }
     private void GoToNearTarget()
     {
         _target = GetNearTarget();
@@ -68,15 +53,20 @@ public sealed class BattleCharacter : MonoBehaviour
 
         return _battleData.GetNearCharacterInFirstTeam(WorldPosition);
     }
+    private BattleCharacter GetFirstTarger()
+    {
+        if (_inFirstTeam)
+        {
+            return _battleData.GetLineCharacterInSecondTeam(_indexInTeam, WorldPosition);
+        }
+
+        return _battleData.GetLineCharacterInFirstTeam(_indexInTeam, WorldPosition);
+    }
 
     private void Update()
     {
-        Debug.Log("Puk");
-
-        if(_target != null)
+        if (_target != null)
         {
-            Debug.Log("asss");
-
             transform.position = Vector3.SmoothDamp(transform.position, _target.WorldPosition, ref _velosity, _smoothTime, _maxSpeed);
             float distance = Vector3.Distance(transform.position, _target.WorldPosition);
 
@@ -84,37 +74,6 @@ public sealed class BattleCharacter : MonoBehaviour
             {
                 _target = null;
             }
-
-            //_instance.Transform.position = Vector3.SmoothDamp(_instance.Transform.position, target, ref _velosity, _movementSmooth, _maxSpeed);
         }
     }
-
-    //private IEnumerator Attack(Enemy enemy)
-    //{
-    //    // Тут логика атаки
-
-    //    if (enemy.enemyAlive)
-    //    {
-    //        yield return new WaitForSeconds(_attackCooldown);
-    //        StartCoroutine(Attack(enemy));
-    //    }
-    //    else
-    //    {
-    //        SearchingEnemy();
-    //    }
-    //}
-    //private void Move(Vector3 targetPoint)
-    //{
-    //    //transform.position = Vector3.SmoothDamp(transform.position, 
-    //    //    (transform.position.x - (targetPoint.x + _attackRange), targetPoint.y, transform.position.z), r, _movementSmooth);
-    //    SearchingEnemy();
-    //}
-    //public void TakeDamage()
-    //{
-
-    //}
-    //private void Idle()
-    //{
-
-    //}
 }

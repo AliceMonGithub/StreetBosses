@@ -22,9 +22,9 @@ namespace Sources.CameraLogic
 
             BattleData battleData = new(new(1) { firstBattleCharacter }, new(2) { secondBattleCharacter, thirdBattleCharacter });
 
-            firstBattleCharacter.Init(firstTeamCharacter, battleData, true);
-            secondBattleCharacter.Init(secondTeamCharacter, battleData, false);
-            thirdBattleCharacter.Init(secondButFirstTeamCharacter, battleData, false);
+            //firstBattleCharacter.Init(firstTeamCharacter, battleData, true);
+           // secondBattleCharacter.Init(secondTeamCharacter, battleData, false);
+           // thirdBattleCharacter.Init(secondButFirstTeamCharacter, battleData, false);
 
            
         }
