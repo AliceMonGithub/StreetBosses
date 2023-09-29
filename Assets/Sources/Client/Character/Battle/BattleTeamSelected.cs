@@ -1,33 +1,46 @@
-using System.Collections;
+using Server.PlayerLogic;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Server.CharacterLogic
 {
   public sealed class BattleTeamSelected : MonoBehaviour
     {
         [SerializeField] BattleCharactersFactory _factory;
+        [SerializeField] BattleMenu _battleMenu;
         [SerializeField] List<CharacterData> characterData; //реяр
 
         private BattleData _battleData;
+        private Player _player;
 
+        public Dictionary<string, Character> _characters { get; private set; }
         private List<Character> _firstTeamChoise = new List<Character>(3);
         private List<Character> _secondTeamChoise = new List<Character>(3);
 
         private List<BattleCharacter> _firstTeam = new List<BattleCharacter>(3);
         private List<BattleCharacter> _secondTeam = new List<BattleCharacter>(3);
 
+        [Inject]
+        private void Constructor(Player player)
+        {
+            _player = player;
+            _characters = _player.CharactersList.Characters;
+        }
         private void Awake()
         {
             _battleData = new BattleData(_firstTeam, _secondTeam);
+            _battleMenu.Init(_characters, this);
+            _battleMenu.Boot();
         }
         public void OnClick() //реяр
         {
+
             Character character = new Character(characterData[Random.Range(0, characterData.Count)]);
             AddCharacterFirstTeam(character);
             AddCharacterSecondTeam(character);
         }
-        public void BootAll() //реяр
+        public void BootAll()
         {
             foreach(BattleCharacter battleCharacterFirst in _firstTeam)
             {
