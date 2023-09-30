@@ -1,4 +1,6 @@
 using Client.SceneLoading;
+using Server.BusinessLogic;
+using Server.PlayerLogic;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -12,11 +14,15 @@ namespace Client.MenuesLogic
         [SerializeField] private Button _buyButton;
 
         private SceneLoader _sceneLoader;
+        private PlayerRuntime _playerRuntime;
+
+        private BusinessData _businessData;
 
         [Inject]
-        private void Constructor(SceneLoader sceneLoader)
+        private void Constructor(SceneLoader sceneLoader, PlayerRuntime playerRuntime)
         {
             _sceneLoader = sceneLoader;
+            _playerRuntime = playerRuntime;
         }
 
         private void Awake()
@@ -26,8 +32,16 @@ namespace Client.MenuesLogic
             _exitButton.onClick.AddListener(Hide);
         }
 
+        public void Init(BusinessData businessData)
+        {
+            _businessData = businessData;
+        }
+
         private void LoadBattle()
         {
+            // Set attacking business
+            _playerRuntime.SetAttackTarget(_businessData);
+
             _sceneLoader.LoadScene(ScenesNames.BattleSceneName);
         }
     }

@@ -29,14 +29,6 @@ namespace Server.CharacterLogic
 
         public Character(CharacterData data) : this(data.Avatar, data.Name, 1, 0.3f, 4, data.CharacterInstance)
         {
-            //_avatar = data.Avatar;
-            //_name = data.Name;
-
-            //_attackDistance = 1;
-            //_smoothTime = 0.3f;
-            //_maxSpeed = 4;
-
-            //_characterInstance = data.CharacterInstance;
         }
 
         public Sprite Avatar => _avatar;
