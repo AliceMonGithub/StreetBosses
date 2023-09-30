@@ -18,3 +18,5 @@ MonoBehaviour:
   _upgrade:
   - _cost: 1200
     _earn: 170
+  - _cost: 1500
+    _earn: 190
