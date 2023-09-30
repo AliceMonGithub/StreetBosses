@@ -31,7 +31,7 @@ public sealed class BattleData
         {
             float distance = Vector3.Distance(character.WorldPosition, target);
 
-            if (distance < nearestDistance)
+            if (distance < nearestDistance & character.AliveCheck())
             {
                 nearestCharacter = character;
                 nearestDistance = distance;
