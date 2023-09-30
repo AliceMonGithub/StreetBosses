@@ -41,25 +41,27 @@ public sealed class BattleData
         return nearestCharacter;
     }
 
-    public BattleCharacter GetLineCharacterInFirstTeam(int target, Vector3 worldPosition)
+    public BattleCharacter GetLineCharacterInFirstTeam(BattleCharacter character, Vector3 worldPosition)
     {
-        return GetLineCharacter(target, _firstTeam, worldPosition);
+        int index = _secondTeam.IndexOf(character);
+
+        return GetLineCharacter(index, _firstTeam, worldPosition);
     }
 
-    public BattleCharacter GetLineCharacterInSecondTeam(int target, Vector3 worldPosition)
+    public BattleCharacter GetLineCharacterInSecondTeam(BattleCharacter character, Vector3 worldPosition)
     {
-        return GetLineCharacter(target, _secondTeam, worldPosition);
+        int index = _firstTeam.IndexOf(character);
+
+        return GetLineCharacter(index, _secondTeam, worldPosition);
     }
 
     private BattleCharacter GetLineCharacter(int target, List<BattleCharacter> team, Vector3 worldPosition)
     {
-        BattleCharacter lineCharacter = null;
         if (team.Count >= target + 1)
         {
-           lineCharacter = team[target];
-           return lineCharacter;
-        }        
-        lineCharacter = GetNearCharacter(worldPosition, team);
-        return lineCharacter;
+           return team[target];
+        }
+
+        return GetNearCharacter(worldPosition, team);
     }
 }

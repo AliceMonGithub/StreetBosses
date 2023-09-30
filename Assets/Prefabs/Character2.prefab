@@ -120,4 +120,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transform: {fileID: 6084056669842304955}
+  _spriteRenderer: {fileID: 4953846902881665146}
   _animator: {fileID: 6262786418972031041}

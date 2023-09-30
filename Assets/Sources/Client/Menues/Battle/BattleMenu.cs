@@ -1,43 +1,57 @@
-using System.Collections.Generic;
 using UnityEngine;
 using Server.CharacterLogic;
+using Server.PlayerLogic;
+using UnityEngine.UI;
 
 public sealed class BattleMenu : MonoBehaviour
 {
-    [SerializeField] GameObject _slotPrefab;
 
-    private Dictionary<string, Character> _characters;
-    private BattleTeamSelected _battleData;
+    [SerializeField] private Button _startFightButton;
 
-    public void Init(Dictionary<string, Character> characters, BattleTeamSelected battleData)
+    [Space]
+
+    [SerializeField] private CharacterData[] _secondTeam;
+    [SerializeField] private FightCharacterBox _boxPrefab;
+
+    [SerializeField] private Transform _root;
+
+    private Player _player;
+    private BattleTeamSelector _battleData;
+
+    public void Init(Player player, BattleTeamSelector battleData)
     {
-        _characters = characters;
+        _player = player;
         _battleData = battleData;
+
+        _startFightButton.onClick.AddListener(StartFightEvent);
     }
 
     public void Boot()
     {
-        AddsCharactersSlotOnMenu();
+        CreateBoxes();
+        CreateSecondTeam();
     }
 
-    private void AddsCharactersSlotOnMenu()    // Для первой команды
+    private void CreateBoxes()    // Для первой команды
     {
-        BattleSlotMenu slotMenu;
-        foreach (var character in _characters)
+        foreach (var characterPair in _player.CharactersList.Characters)
         {
-            RectTransform transform = UITransform();
-            Instantiate(_slotPrefab, transform);
-            slotMenu = _slotPrefab.GetComponent<BattleSlotMenu>();
-            slotMenu.Init(character.Value, _battleData);
+            Character character = characterPair.Value;
+
+            FightCharacterBox instance = Instantiate(_boxPrefab, _root);
+            instance.Init(character, _battleData);
         }
     }
 
-    private RectTransform UITransform() // Допилить метод, расставляющий слоты меню в правильном положении
+    private void CreateSecondTeam()
     {
-        return new RectTransform();
+        foreach (CharacterData characterData in _secondTeam)
+        {
+            _battleData.AddCharacterSecondTeam(new(characterData));
+        }
     }
 
-    public void StartBattleButton()
+    public void StartFightEvent()
     {
         _battleData.BootAll();
     }
