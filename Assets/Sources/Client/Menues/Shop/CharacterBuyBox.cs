@@ -43,6 +43,7 @@ namespace Client.MenuesLogic
         private void TryBuyCharacter()
         {
             if (_player.Money.Value < _characterData.Cost) return;
+            if (_player.CharactersList.Characters.ContainsKey(_characterData.Name)) return;
 
             _player.Money.Spend(_characterData.Cost);
 

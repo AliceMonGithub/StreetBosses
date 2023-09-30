@@ -59,7 +59,7 @@ namespace Server.BusinessLogic
 
         public void TryUpgrade()
         {
-            if ((_level - 1) == 1) return;
+            if ((_level - 1) == 2) return;
             if (_owner.Money.Value < MoneyForUpgrade) return;
 
             _owner.Money.Spend(MoneyForUpgrade);

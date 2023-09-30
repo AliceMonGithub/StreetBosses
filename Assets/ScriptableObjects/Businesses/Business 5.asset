@@ -16,5 +16,5 @@ MonoBehaviour:
   _earn: 175
   _getEarnTime: 4.6
   _upgrade:
-  - _cost: 1200
-    _earn: 200
+  - _cost: 1700
+    _earn: 230

@@ -51,7 +51,7 @@ namespace Client.MenuesLogic
             _levelText.text = _business.Level.ToString();
             _earnText.text = _business.Earn.ToString();
 
-            if ((_business.Level - 1) == 1) return;
+            if ((_business.Level - 1) == 2) return;
 
             _nextEarnText.text = _business.NextEarn.ToString();
             _costText.text = _business.MoneyForUpgrade.ToString();
