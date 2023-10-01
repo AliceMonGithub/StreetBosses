@@ -1,3 +1,4 @@
+using Server.BusinessLogic;
 using Server.PlayerLogic;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,10 +10,12 @@ namespace Server.CharacterLogic
     {
         [SerializeField] BattleCharactersFactory _factory;
         [SerializeField] BattleMenu _battleMenu;
-        [SerializeField] List<CharacterData> characterData; //реяр
+        [SerializeField] GameObject _victory;
+        [SerializeField] GameObject _lose;
 
         private BattleData _battleData;
         private Player _player;
+        private PlayerRuntime _playerRuntime;
 
         private List<Character> _firstTeamChoise = new List<Character>(3);
         private List<Character> _secondTeamChoise = new List<Character>(3);
@@ -20,9 +23,12 @@ namespace Server.CharacterLogic
         private List<BattleCharacter> _firstTeam = new List<BattleCharacter>(3);
         private List<BattleCharacter> _secondTeam = new List<BattleCharacter>(3);
 
+        private bool _isFighting = true;
+
         [Inject]
-        private void Constructor(Player player)
+        private void Constructor(Player player, PlayerRuntime playerRuntime)
         {
+            _playerRuntime = playerRuntime;
             _player = player;
         }
         private void Awake()
@@ -31,12 +37,19 @@ namespace Server.CharacterLogic
             _battleMenu.Init(_player, this);
             _battleMenu.Boot();
         }
-        public void OnClick() //реяр
+        private void Update()
         {
-
-            Character character = new Character(characterData[Random.Range(0, characterData.Count)]);
-            AddCharacterFirstTeam(character);
-            AddCharacterSecondTeam(character);
+            if (_battleData._firstTeamLose & _isFighting)
+            {
+                _lose.SetActive(true);
+                _isFighting = false;
+            }
+            else if(_battleData._secondTeamLose & _isFighting)
+            {
+                _player.BusinessesList.AddBusiness(new Business(_playerRuntime.AttackBusiness, _player));
+                _victory.SetActive(true);
+                _isFighting = false;
+            }
         }
         public void BootAll()
         {
@@ -94,6 +107,8 @@ namespace Server.CharacterLogic
         //        //_secondTeam.Add(_factory.Create(character, _battleData, false));
         //    }
         //}
+
+
 
     }
 }

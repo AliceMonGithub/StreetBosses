@@ -7,10 +7,6 @@ public sealed class BattleCharacter : MonoBehaviour
     private float _attackCooldown;
     private float _attackDistance;
 
-    private float _smoothTime;
-    private float _maxSpeed;
-    private float _waitTime;
-
     private float _health;
     private float _damage;
 
@@ -27,14 +23,12 @@ public sealed class BattleCharacter : MonoBehaviour
     public void Init(Character character, BattleData battleData, bool isFirstTeam, CharacterInstance instance)
     {
         _characterInstance = instance;
-        _attackDistance = 2;
-        _smoothTime = character.SmoothTime;
-        _maxSpeed = character.MaxSpeed;
+        _attackDistance = character.AttackDistance;
         _alive = true;
         _attacking = false;
-        _health = 100;
-        _damage = 5;
-        _attackCooldown = 0.3f;
+        _health = character.Health;
+        _damage = character.Damage;
+        _attackCooldown = character.AttackCooldown;
 
         _battleData = battleData;
         _inFirstTeam = isFirstTeam;
@@ -104,14 +98,25 @@ public sealed class BattleCharacter : MonoBehaviour
     {
         return _alive;
     }
+    private void Death()
+    {
+        _characterInstance.Animator.SetTrigger("Death");
+        _alive = false;
+        if (_inFirstTeam)
+        {
+            _battleData.FirstTeamLoseCheck();
+        }
+        else if(!_inFirstTeam)
+        {
+            _battleData.SecondTeamLoseCheck();
+        }
+    }
 
     private void Update()
     {
         if (_health <= 0 && _alive)
         {
-            Debug.Log(this + "   Death");
-            _characterInstance.Animator.SetTrigger("Death");
-            _alive = false;
+            Death();
         }
 
         if(_target != null)
@@ -123,7 +128,7 @@ public sealed class BattleCharacter : MonoBehaviour
         {
             _characterInstance.Animator.SetBool("Moving", true);
             transform.position = Vector3.SmoothDamp(transform.position, _target.WorldPosition,
-                ref _velosity, _smoothTime, _maxSpeed);
+                ref _velosity, CharacterData.SmoothTime, CharacterData.MaxSpeed);
 
         }
         else if (_target != null & _distance <= _attackDistance & _alive)

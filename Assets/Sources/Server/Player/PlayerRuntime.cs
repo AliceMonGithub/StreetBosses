@@ -1,4 +1,5 @@
 ﻿using Server.BusinessLogic;
+using UnityEngine;
 
 namespace Server.PlayerLogic
 {
@@ -9,6 +10,7 @@ namespace Server.PlayerLogic
         public void SetAttackTarget(BusinessData attackBusiness)
         {
             _attackBusiness = attackBusiness;
+            Debug.Log(_attackBusiness);
         }
 
         public BusinessData AttackBusiness => _attackBusiness;
