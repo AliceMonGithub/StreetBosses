@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _avatar: {fileID: -4440571659341237062, guid: c42a3edf64674ed469aa1e53568249b8, type: 3}
   _name: Alan
-  _attackCooldown: 0
-  _attackDistance: 0
   _smoothTime: 0
   _maxSpeed: 0
+  _damage: 6
+  _health: 80
+  _attackCooldown: 0.3
+  _attackDistance: 3
   _cost: 500
   _instance: {fileID: 8165168058095280366, guid: ceffdb36fdfdadb479559a1162d7155c, type: 3}

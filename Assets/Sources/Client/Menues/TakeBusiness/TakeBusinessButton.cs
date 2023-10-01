@@ -53,6 +53,10 @@ namespace Client.MenuesLogic
 
         private void SelectTarget()
         {
+            if(_blank == null)
+            {
+                throw new System.NullReferenceException();
+            }
             _playerRuntime.SetAttackTarget(_blank);
 
             _takeBusinessMenu.Show();

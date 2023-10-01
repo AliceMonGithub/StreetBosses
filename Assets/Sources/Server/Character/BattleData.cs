@@ -5,6 +5,8 @@ public sealed class BattleData
 {
     private List<BattleCharacter> _firstTeam;
     private List<BattleCharacter> _secondTeam;
+    public bool _firstTeamLose;
+    public bool _secondTeamLose;
 
     public BattleData(List<BattleCharacter> firstTeam, List<BattleCharacter> secondTeam)
     {
@@ -63,5 +65,36 @@ public sealed class BattleData
         }
 
         return GetNearCharacter(worldPosition, team);
+    }
+    public void FirstTeamLoseCheck()
+    {
+        bool firstTeamLose = true;
+        foreach (BattleCharacter character in _firstTeam)
+        {
+            if (character.AliveCheck())
+            {
+                firstTeamLose = false;
+            }
+        }
+        if (firstTeamLose)
+        {
+            _firstTeamLose = true;
+        }
+    }
+
+    public void SecondTeamLoseCheck()
+    {
+        bool secondTeamLose = true;
+        foreach (BattleCharacter character in _secondTeam)
+        {
+            if (character.AliveCheck())
+            {
+                secondTeamLose = false;
+            }
+        }
+        if (secondTeamLose)
+        {
+            _secondTeamLose = true;
+        }
     }
 }

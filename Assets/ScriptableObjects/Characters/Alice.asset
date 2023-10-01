@@ -14,5 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _avatar: {fileID: -4440571659341237062, guid: 7592fad3b3fac484a8493817976660a6, type: 3}
   _name: Alice
+  _smoothTime: 0
+  _maxSpeed: 0
+  _damage: 2
+  _health: 100
+  _attackCooldown: 0.3
+  _attackDistance: 4
   _cost: 1000
   _instance: {fileID: 8165168058095280366, guid: db5361b3fca0d434e870c59ef8608919, type: 3}
