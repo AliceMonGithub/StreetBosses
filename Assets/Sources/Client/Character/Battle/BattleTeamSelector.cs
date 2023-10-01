@@ -49,12 +49,15 @@ namespace Server.CharacterLogic
                 battleCharacterSecond.Boot();
             }
         }
-        public void AddCharacterFirstTeam(Character character)
+
+        public bool AddCharacterFirstTeam(Character character)
         {
-            if (_firstTeamChoise.Count >= 3) return;
+            if (_firstTeamChoise.Count >= 3) return false;
 
             _firstTeamChoise.Add(character);
             _firstTeam.Add(_factory.CreateCharacterInFirstTeam(character, _battleData));
+
+            return true;
         }
 
         public void RemoveCharacterFirstTeam(Character character)

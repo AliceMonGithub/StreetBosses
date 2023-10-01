@@ -42,7 +42,7 @@ public sealed class FightCharacterBox : MonoBehaviour
         {
             print("Add character");
 
-            AddCharacterToFirstTeam();
+            if (AddCharacterToFirstTeam() == false) return;
 
             _removeCharacter = true;
         }
@@ -53,9 +53,9 @@ public sealed class FightCharacterBox : MonoBehaviour
         _battleData.RemoveCharacterFirstTeam(_character);
     }
 
-    private void AddCharacterToFirstTeam()
+    private bool AddCharacterToFirstTeam()
     {
-        _battleData.AddCharacterFirstTeam(_character);
+        return _battleData.AddCharacterFirstTeam(_character);
     }
 
     //public void SwitchButton(Button button)
