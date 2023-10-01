@@ -38,6 +38,11 @@ public sealed class BattleData
                 nearestCharacter = character;
                 nearestDistance = distance;
             }
+            else if (team.Count >= 1 & character.AliveCheck())
+            {
+                nearestCharacter = character;
+                nearestDistance = distance;
+            }
         }
 
         return nearestCharacter;
