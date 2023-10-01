@@ -81,4 +81,6 @@ MonoBehaviour:
   _startCharacters:
   - {fileID: 11400000, guid: 26546f392e2b41840819416f9ebfb84f, type: 2}
   - {fileID: 11400000, guid: 48763ba71da3a24448018aa17d593cdc, type: 2}
+  - {fileID: 11400000, guid: 7e5261536667070499418e31857f212f, type: 2}
+  - {fileID: 11400000, guid: c978fc56598e70a42842fd9779b4324d, type: 2}
   _prefab: {fileID: 3654379183253661000, guid: d62fae1e7858a554b9848fe4bbd4cd12, type: 3}

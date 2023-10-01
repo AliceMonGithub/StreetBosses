@@ -1652,6 +1652,7 @@ MonoBehaviour:
   _secondTeam:
   - {fileID: 11400000, guid: 26546f392e2b41840819416f9ebfb84f, type: 2}
   - {fileID: 11400000, guid: 48763ba71da3a24448018aa17d593cdc, type: 2}
+  - {fileID: 11400000, guid: 7e5261536667070499418e31857f212f, type: 2}
   _boxPrefab: {fileID: 706965265454182303, guid: 75c1d48fc4659994db6b286f5670e075, type: 3}
   _root: {fileID: 2085915725}
 --- !u!1 &1363775980
