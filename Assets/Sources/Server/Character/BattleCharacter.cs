@@ -58,6 +58,7 @@ public sealed class BattleCharacter : MonoBehaviour
     private void GoToNearTarget()
     {
         _target = GetNearTarget();
+        //Debug.Log(this.gameObject + "   Выбрала целью:  " + _target);
     }
     
     private BattleCharacter GetNearTarget()
@@ -78,6 +79,7 @@ public sealed class BattleCharacter : MonoBehaviour
             _characterInstance.Animator.SetBool("Attacking", true);
             _attacking = true;
             target.TakeDamage(_damage);
+           // Debug.Log(this.gameObject + "   Атакует:  " + _target);
             yield return new WaitForSeconds(_attackCooldown);
             _attacking = false;
        }
@@ -104,10 +106,12 @@ public sealed class BattleCharacter : MonoBehaviour
         _alive = false;
         if (_inFirstTeam)
         {
+            //Debug.Log(this.gameObject + "  Из первой команды МЕРТВА");
             _battleData.FirstTeamLoseCheck();
         }
         else if(!_inFirstTeam)
         {
+            //Debug.Log(this.gameObject + "  Из второй команды МЕРТВА");
             _battleData.SecondTeamLoseCheck();
         }
     }
