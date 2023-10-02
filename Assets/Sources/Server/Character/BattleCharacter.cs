@@ -18,10 +18,16 @@ public sealed class BattleCharacter : MonoBehaviour
     private bool _attacking;
     private float _distance;
 
+    private Ability _ability;
+
     private Vector3 _velosity;
 
-    public void Init(Character character, BattleData battleData, bool isFirstTeam, CharacterInstance instance)
+    public Ability Ability => _ability;
+
+    public void Init(Character character, BattleData battleData, bool isFirstTeam, CharacterInstance instance, Ability ability)
     {
+        _ability = ability;
+        _ability._inFirstTeam = isFirstTeam;
         _characterInstance = instance;
         _attackDistance = character.AttackDistance;
         _alive = true;
@@ -58,7 +64,6 @@ public sealed class BattleCharacter : MonoBehaviour
     private void GoToNearTarget()
     {
         _target = GetNearTarget();
-        //Debug.Log(this.gameObject + "   Выбрала целью:  " + _target);
     }
     
     private BattleCharacter GetNearTarget()
@@ -74,16 +79,15 @@ public sealed class BattleCharacter : MonoBehaviour
     private IEnumerator Attack(BattleCharacter target)
     {
 
-       if (!_attacking & target.AliveCheck() & _alive)
+       if (!_attacking & target.AliveCheck() & _alive & !_ability.Active)
        {
             _characterInstance.Animator.SetBool("Attacking", true);
             _attacking = true;
             target.TakeDamage(_damage);
-           // Debug.Log(this.gameObject + "   Атакует:  " + _target);
             yield return new WaitForSeconds(_attackCooldown);
             _attacking = false;
        }
-       else if(!_attacking & !target.AliveCheck() & _alive)
+       else if(!_attacking & !target.AliveCheck() & _alive & !_ability.Active)
        {
             _characterInstance.Animator.SetBool("Attacking", false);
             GoToNearTarget();
@@ -91,7 +95,7 @@ public sealed class BattleCharacter : MonoBehaviour
 
     }
 
-    private void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         _health -= damage;
     }

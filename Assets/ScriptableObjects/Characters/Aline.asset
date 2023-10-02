@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _avatar: {fileID: -4440571659341237062, guid: 648bbb3a25897fa438ef28c4554f4771, type: 3}
   _name: Aline
-  _smoothTime: 0
-  _maxSpeed: 0
   _damage: 10
   _health: 70
   _attackCooldown: 0.3
   _attackDistance: 4
   _cost: 500
+  _ability: {fileID: 1820549012163135519, guid: e78f7b90c07766847902464984890c73, type: 3}
   _instance: {fileID: 8165168058095280366, guid: e78f7b90c07766847902464984890c73, type: 3}

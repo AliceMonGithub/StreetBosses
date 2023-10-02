@@ -43,7 +43,7 @@ namespace Server.CharacterLogic
             instance.SpriteRenderer.flipX = true;
 
             BattleCharacter battleInstance = instance.gameObject.AddComponent<BattleCharacter>();
-            battleInstance.Init(character, battleData, true, instance);
+            battleInstance.Init(character, battleData, true, instance, character.Ability);
 
             _firstTeamSpawns[spawnPoint] = battleInstance;
 
@@ -57,7 +57,7 @@ namespace Server.CharacterLogic
             CharacterInstance instance = Instantiate(character.CharacterInstance, spawnPoint.position, Quaternion.identity);
 
             BattleCharacter battleInstance = instance.gameObject.AddComponent<BattleCharacter>();
-            battleInstance.Init(character, battleData, false, instance);
+            battleInstance.Init(character, battleData, false, instance, character.Ability);
 
             _secondTeamSpawns[spawnPoint] = battleInstance;
 

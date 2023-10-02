@@ -1,17 +1,17 @@
 using Server.BusinessLogic;
 using Server.PlayerLogic;
 using System.Collections.Generic;
+using UnityEditor.Playables;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Server.CharacterLogic
 {
   public sealed class BattleTeamSelector : MonoBehaviour
-    {
+  {
         [SerializeField] BattleCharactersFactory _factory;
         [SerializeField] BattleMenu _battleMenu;
-        [SerializeField] GameObject _victory;
-        [SerializeField] GameObject _lose;
 
         private BattleData _battleData;
         private Player _player;
@@ -42,14 +42,12 @@ namespace Server.CharacterLogic
             if (_battleData._firstTeamLose & _isFighting)
             {
                 _battleMenu.EndFightEvent(false);
-                //_lose.SetActive(true);
                 _isFighting = false;
             }
             else if(_battleData._secondTeamLose & _isFighting)
             {
                 _player.BusinessesList.AddBusiness(new Business(_playerRuntime.AttackBusiness, _player));
                 _battleMenu.EndFightEvent(true);
-               // _victory.SetActive(true);
                 _isFighting = false;
             }
         }
@@ -70,7 +68,9 @@ namespace Server.CharacterLogic
             if (_firstTeamChoise.Count >= 3) return false;
 
             _firstTeamChoise.Add(character);
-            _firstTeam.Add(_factory.CreateCharacterInFirstTeam(character, _battleData));
+            BattleCharacter battleCharacter = _factory.CreateCharacterInFirstTeam(character, _battleData);
+            _firstTeam.Add(battleCharacter);
+            _battleMenu.AddAbility(character.Ability);
 
             return true;
         }
@@ -92,6 +92,7 @@ namespace Server.CharacterLogic
             _secondTeam.Add(_factory.CreateCharacterInSecondTeam(character, _battleData));
         }
 
+        
         //public void AddCharacterSecondTeam(Character character)
         //{
         //    if (_secondTeamChoise.Count < 3)

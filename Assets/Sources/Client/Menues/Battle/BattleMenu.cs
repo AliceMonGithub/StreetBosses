@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Server.CharacterLogic;
 using Server.PlayerLogic;
@@ -8,6 +9,7 @@ using DG.Tweening;
 public sealed class BattleMenu : MonoBehaviour
 {
     [Header("Start Fight Button")]
+    [SerializeField] private Button _startFightButton;
     [SerializeField] private RectTransform _startFightButtonTransform;
     [SerializeField] private CanvasGroup _startFightButtonCanvasGroup;
     [SerializeField, Range(0, 10f)] private float _startButtonHideDuration;
@@ -18,9 +20,11 @@ public sealed class BattleMenu : MonoBehaviour
     [SerializeField] private CanvasGroup _characterSelectorCanvasGroup;
     [SerializeField, Range(0, 10f)] private float _characterSelectorHideDuration;
 
-    [Space]
+    [Header("Ability")]
+    [SerializeField] private List<Button> _firstTeamAbilityButton = new List<Button>(3);
 
-    [SerializeField] private Button _startFightButton;
+    [Header("Victory and Lose page")]
+
     [SerializeField] private VictoryMenu _victoryPage;
     [SerializeField] private LoseMenu _losePage;
 
@@ -33,6 +37,7 @@ public sealed class BattleMenu : MonoBehaviour
 
     private Player _player;
     private BattleTeamSelector _battleData;
+    public List<Ability> _firstTeamAbilities = new List<Ability>(3);
 
     public void Init(Player player, BattleTeamSelector battleData)
     {
@@ -100,5 +105,16 @@ public sealed class BattleMenu : MonoBehaviour
 
         _startFightButtonCanvasGroup.DOFade(0, _startButtonHideDuration);
         _startFightButtonTransform.DOScale(Vector3.zero, _startButtonHideDuration);
+    }
+
+    public void AddAbility(Ability ability)
+    {
+        _firstTeamAbilities.Add(ability);
+
+        for(int i = 0; i < _firstTeamAbilities.Count; i++)
+        {
+            _firstTeamAbilityButton[i].onClick.RemoveAllListeners();
+            _firstTeamAbilityButton[i].onClick.AddListener(_firstTeamAbilities[i].UseAbility);
+        }
     }
 }
