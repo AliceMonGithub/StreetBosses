@@ -2,6 +2,7 @@ using Client.SceneLoading;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using DG.Tweening;
 
 namespace Client.MenuesLogic
 {
@@ -9,6 +10,13 @@ namespace Client.MenuesLogic
     {
         [SerializeField] private Button _tryAgainButton;
         [SerializeField] private Button _backToStreetButton;
+        [SerializeField] private RectTransform _transform;
+        [SerializeField] CanvasGroup _canvasGroup;
+
+        [Space]
+
+        [SerializeField, Range(0, 10f)] float _showDuration;
+        [SerializeField, Range(0, 10f)] float _hideDuration;
 
         private SceneLoader _sceneLoader;
 
@@ -33,7 +41,21 @@ namespace Client.MenuesLogic
         {
             _sceneLoader.LoadScene("Street");
         }
+        public void Hide()
+        {
+            _canvasGroup.DOFade(0, _hideDuration);
+            _transform.DOScale(Vector3.zero, _hideDuration);
+        }
+        public void Show()
+        {
+            gameObject.SetActive(true);
 
+            _canvasGroup.alpha = 0;
+            _transform.localScale = Vector3.zero;
+
+            _canvasGroup.DOFade(1, _showDuration);
+            _transform.DOScale(Vector3.one, _showDuration);
+        }
 
     }
 }
