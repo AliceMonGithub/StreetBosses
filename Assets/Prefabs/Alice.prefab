@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4953846902881665146}
   - component: {fileID: 6262786418972031041}
   - component: {fileID: 8165168058095280366}
+  - component: {fileID: 2681625243316283799}
+  - component: {fileID: -2972103990918078484}
   m_Layer: 0
   m_Name: Alice
   m_TagString: Untagged
@@ -122,3 +124,64 @@ MonoBehaviour:
   _transform: {fileID: 6084056669842304955}
   _spriteRenderer: {fileID: 4953846902881665146}
   _animator: {fileID: 6262786418972031041}
+--- !u!114 &2681625243316283799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8176364216520724942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505facb21223a6a4c85c56a22fbaefd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cooldown: 0
+  _inFirstTeam: 0
+  _name: 
+  _icon: {fileID: 0}
+--- !u!61 &-2972103990918078484
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8176364216520724942}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.023000002, y: 0.814}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5178849, y: 0}
+    oldSize: {x: 1.286, y: 1.628}
+    newSize: {x: 1.286, y: 1.628}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.286, y: 1.628}
+  m_EdgeRadius: 0
