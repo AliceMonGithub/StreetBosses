@@ -2,11 +2,27 @@ using UnityEngine;
 using Server.CharacterLogic;
 using Server.PlayerLogic;
 using UnityEngine.UI;
+using Client.MenuesLogic;
+using DG.Tweening;
 
 public sealed class BattleMenu : MonoBehaviour
 {
+    [Header("Start Fight Button")]
+    [SerializeField] private RectTransform _startFightButtonTransform;
+    [SerializeField] private CanvasGroup _startFightButtonCanvasGroup;
+    [SerializeField, Range(0, 10f)] private float _startButtonHideDuration;
+
+    [Header("Character Selector")]
+
+    [SerializeField] private RectTransform _characterSelector;
+    [SerializeField] private CanvasGroup _characterSelectorCanvasGroup;
+    [SerializeField, Range(0, 10f)] private float _characterSelectorHideDuration;
+
+    [Space]
 
     [SerializeField] private Button _startFightButton;
+    [SerializeField] private VictoryMenu _victoryPage;
+    [SerializeField] private LoseMenu _losePage;
 
     [Space]
 
@@ -53,6 +69,36 @@ public sealed class BattleMenu : MonoBehaviour
 
     public void StartFightEvent()
     {
+        HideCharacterSelector();
+        HideFightBattleButton();
         _battleData.BootAll();
+    }
+
+    public void EndFightEvent(bool victory)
+    {
+        if (victory)
+        {
+            _victoryPage.Show();
+        }
+        else
+        {
+            _losePage.Show();
+        }
+    }
+
+    private void HideCharacterSelector()
+    {
+        _characterSelectorCanvasGroup.alpha = 1;
+
+        _characterSelectorCanvasGroup.DOFade(0, _characterSelectorHideDuration);
+        _characterSelector.DOScale(Vector3.zero, _characterSelectorHideDuration);
+    }
+
+    private void HideFightBattleButton()
+    {
+        _startFightButtonCanvasGroup.alpha = 1;
+
+        _startFightButtonCanvasGroup.DOFade(0, _startButtonHideDuration);
+        _startFightButtonTransform.DOScale(Vector3.zero, _startButtonHideDuration);
     }
 }

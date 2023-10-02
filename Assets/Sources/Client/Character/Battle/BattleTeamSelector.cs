@@ -41,13 +41,15 @@ namespace Server.CharacterLogic
         {
             if (_battleData._firstTeamLose & _isFighting)
             {
-                _lose.SetActive(true);
+                _battleMenu.EndFightEvent(false);
+                //_lose.SetActive(true);
                 _isFighting = false;
             }
             else if(_battleData._secondTeamLose & _isFighting)
             {
                 _player.BusinessesList.AddBusiness(new Business(_playerRuntime.AttackBusiness, _player));
-                _victory.SetActive(true);
+                _battleMenu.EndFightEvent(true);
+               // _victory.SetActive(true);
                 _isFighting = false;
             }
         }
