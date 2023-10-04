@@ -1,4 +1,5 @@
-﻿using Server.PlayerLogic;
+﻿using Server.CharacterLogic;
+using Server.PlayerLogic;
 using System;
 
 namespace Server.BusinessLogic
@@ -16,6 +17,8 @@ namespace Server.BusinessLogic
         private int _level;
         private float _upgradeProgress;
 
+        private Character[] _security;
+
         private int _earn;
         private readonly float _getEarnTime;
 
@@ -29,6 +32,8 @@ namespace Server.BusinessLogic
             _upgradeData = upgradeData;
             _level = 1;
             _upgradeProgress = 0f;
+
+            _security = new Character[3];
 
             _earn = earn;
             _getEarnTime = getEarnTime;
@@ -50,6 +55,8 @@ namespace Server.BusinessLogic
        
         public int Level => _level;
         public float UpgradeProgress => _upgradeProgress;
+
+        public Character[] Security => _security;
 
         public int Earn => _earn;
         public int NextEarn => _upgradeData[_level - 1].Earn;
@@ -77,6 +84,12 @@ namespace Server.BusinessLogic
             }
 
             OnUpgrade?.Invoke();
+        }
+
+        public void SetSecurity(int index, Character character)
+        {
+            _security[index] = character;
+            character.SetSecurity(this);
         }
     }
 }
