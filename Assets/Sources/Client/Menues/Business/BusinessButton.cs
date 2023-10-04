@@ -14,6 +14,11 @@ namespace Client.MenuesLogic
         [SerializeField] private Image _getEarnButtonImage;
         [SerializeField] private TMP_Text _earnText;
 
+        [Space]
+
+        [SerializeField] private Transform _particleRoot;
+        [SerializeField] private ParticleSystem _coinsParticle;
+
         private BusinessMenu _businessMenu;
         private Business _business;
         private Player _player;
@@ -40,8 +45,14 @@ namespace Client.MenuesLogic
             if (_business.CanGetEarn == false) return;
 
             _player.Money.Add(_business.Earn);
+            InstantiateCoinParticle();
 
             StartCoroutine(UpdateGetEarn());
+        }
+
+        private ParticleSystem InstantiateCoinParticle()
+        {
+            return Instantiate(_coinsParticle, _particleRoot.position, Quaternion.identity);
         }
 
         private IEnumerator UpdateGetEarn()

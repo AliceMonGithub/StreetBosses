@@ -141,6 +141,8 @@ MonoBehaviour:
   _getEarnButton: {fileID: 4455990184719651640}
   _getEarnButtonImage: {fileID: 6361153858864902073}
   _earnText: {fileID: 4100757327012645033}
+  _particleRoot: {fileID: 2634871064329632665}
+  _coinsParticle: {fileID: 3653777082071630064, guid: 664d17cc323f7d84dac00b9fb41313c7, type: 3}
 --- !u!1 &1062406866451640152
 GameObject:
   m_ObjectHideFlags: 0
