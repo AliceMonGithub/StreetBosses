@@ -52,7 +52,7 @@ namespace Client.MenuesLogic
         {
             _securityIndex = index;
 
-            _selectCharacterMenu.Show();
+            _selectCharacterMenu.Init(new SecuritySelectFilter());
             _selectCharacterMenu.OnCharacterSelected += SelectSecurity;
         }
 

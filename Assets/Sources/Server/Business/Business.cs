@@ -88,8 +88,19 @@ namespace Server.BusinessLogic
 
         public void SetSecurity(int index, Character character)
         {
+            if (_security[index] != null)
+            {
+                _security[index].SetSecurity(null);
+            }
+
             _security[index] = character;
             character.SetSecurity(this);
+        }
+
+        public void RemoveSecurity(int index)
+        {
+            _security[index].SetSecurity(null);
+            _security[index] = null;
         }
     }
 }

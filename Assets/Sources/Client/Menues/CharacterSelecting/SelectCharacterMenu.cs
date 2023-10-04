@@ -20,6 +20,7 @@ namespace Client.MenuesLogic
         [SerializeField] private Button _exitButton;
 
         private List<SelectCharacterBox> _instanties;
+        private SelectCharacterFilter _filter;
 
         private Player _player;
 
@@ -27,6 +28,13 @@ namespace Client.MenuesLogic
         private void Constructor(Player player)
         {
             _player = player;
+        }
+
+        public void Init(SelectCharacterFilter filter)
+        {
+            _filter = filter;
+
+            Show();
         }
 
         public void SelectCharacter(Character character)
@@ -65,10 +73,8 @@ namespace Client.MenuesLogic
 
         private void CreateUIElements()
         {
-            foreach (var keyPair in _player.CharactersList.Characters)
+            foreach (Character character in _filter.GetFiltered(_player))
             {
-                Character character = keyPair.Value;
-
                 SelectCharacterBox instance = Instantiate(_prefab, _instantiesRoot);
                 instance.Init(this, character);
 
