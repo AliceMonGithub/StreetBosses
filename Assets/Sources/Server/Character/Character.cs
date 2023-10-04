@@ -44,18 +44,14 @@ namespace Server.CharacterLogic
         public string Name => _name;
 
         public float AttackDistance => _attackDistance;
-        //public float SmoothTime => _smoothTime;
-        //public float MaxSpeed => _maxSpeed;
         public float Health => _health;
         public float Damage => _damage;
         public float AttackCooldown => _attackCooldown;
 
-<<<<<<< Updated upstream
         public Ability Ability => _ability;
-=======
+      
         public Business Security => _security;
-
->>>>>>> Stashed changes
+      
         public CharacterInstance CharacterInstance => _characterInstance;
 
         public void SetSecurity(Business security)
