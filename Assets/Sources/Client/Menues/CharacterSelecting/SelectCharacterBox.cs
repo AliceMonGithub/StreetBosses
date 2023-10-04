@@ -27,6 +27,8 @@ namespace Client.MenuesLogic
 
         private void UpdateUI()
         {
+            if (_character == null) return;
+
             _nameText.text = _character.Name;
             _avatar.sprite = _character.Avatar;
         }

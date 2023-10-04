@@ -99,6 +99,8 @@ namespace Server.BusinessLogic
 
         public void RemoveSecurity(int index)
         {
+            if (_security[index] == null) return;
+
             _security[index].SetSecurity(null);
             _security[index] = null;
         }

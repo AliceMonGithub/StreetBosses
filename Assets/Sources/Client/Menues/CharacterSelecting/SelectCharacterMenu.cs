@@ -13,6 +13,7 @@ namespace Client.MenuesLogic
         public event Action<Character> OnCharacterSelected;
 
         [SerializeField] private SelectCharacterBox _prefab;
+        [SerializeField] private SelectCharacterBox _removePrefab;
         [SerializeField] private Transform _instantiesRoot;
 
         [Space]
@@ -73,6 +74,11 @@ namespace Client.MenuesLogic
 
         private void CreateUIElements()
         {
+            SelectCharacterBox removeInstance = Instantiate(_removePrefab, _instantiesRoot);
+            removeInstance.Init(this, null);
+
+            _instanties.Add(removeInstance);
+
             foreach (Character character in _filter.GetFiltered(_player))
             {
                 SelectCharacterBox instance = Instantiate(_prefab, _instantiesRoot);

@@ -23,6 +23,8 @@ namespace Client.MenuesLogic
 
         [SerializeField] private Button[] _securityButtons;
         [SerializeField] private Image[] _securityImages;
+        [SerializeField] private Sprite _nonSecuritySprite;
+
         [SerializeField] private SelectCharacterMenu _selectCharacterMenu;
 
         [Space]
@@ -58,7 +60,14 @@ namespace Client.MenuesLogic
 
         private void SelectSecurity(Character character)
         {
-            _business.SetSecurity(_securityIndex, character);
+            if(character == null)
+            {
+                _business.RemoveSecurity(_securityIndex);
+            }
+            else
+            {
+                _business.SetSecurity(_securityIndex, character);
+            }
 
             _selectCharacterMenu.OnCharacterSelected -= SelectSecurity;
 
@@ -69,7 +78,12 @@ namespace Client.MenuesLogic
         {
             for (int i = 0; i < _business.Security.Length; i++)
             {
-                if (_business.Security[i] == null) continue;
+                if (_business.Security[i] == null)
+                {
+                    _securityImages[i].sprite = _nonSecuritySprite;
+
+                    continue;
+                }
 
                 _securityImages[i].sprite = _business.Security[i].Avatar;
             }
