@@ -15,6 +15,7 @@ namespace Server.CharacterLogic
         private readonly float _attackCooldown;
 
         private Business _security;
+        private Business _manager;
 
         private readonly CharacterInstance _characterInstance;
         private readonly Ability _ability;
@@ -51,12 +52,18 @@ namespace Server.CharacterLogic
         public Ability Ability => _ability;
       
         public Business Security => _security;
+        public Business Manager => _manager;
       
         public CharacterInstance CharacterInstance => _characterInstance;
 
         public void SetSecurity(Business security)
         {
             _security = security;
+        }
+
+        public void SetManager(Business manager)
+        {
+            _manager = manager;
         }
     }
 }

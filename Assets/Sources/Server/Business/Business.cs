@@ -18,6 +18,7 @@ namespace Server.BusinessLogic
         private float _upgradeProgress;
 
         private Character[] _security;
+        private Character _manager;
 
         private int _earn;
         private readonly float _getEarnTime;
@@ -34,6 +35,7 @@ namespace Server.BusinessLogic
             _upgradeProgress = 0f;
 
             _security = new Character[3];
+            _manager = null;
 
             _earn = earn;
             _getEarnTime = getEarnTime;
@@ -57,6 +59,7 @@ namespace Server.BusinessLogic
         public float UpgradeProgress => _upgradeProgress;
 
         public Character[] Security => _security;
+        public Character Manager => _manager;
 
         public int Earn => _earn;
         public int NextEarn => _upgradeData[_level - 1].Earn;
@@ -103,6 +106,25 @@ namespace Server.BusinessLogic
 
             _security[index].SetSecurity(null);
             _security[index] = null;
+        }
+
+        public void SetManager(Character character)
+        {
+            if(_manager != null)
+            {
+                _manager.SetManager(null);
+            }
+
+            _manager = character;
+            character.SetManager(this);
+        }
+
+        public void RemoveManager()
+        {
+            if (_manager == null) return;
+
+            _manager.SetManager(null);
+            _manager = null;
         }
     }
 }

@@ -25,6 +25,14 @@ namespace Client.MenuesLogic
         [SerializeField] private Image[] _securityImages;
         [SerializeField] private Sprite _nonSecuritySprite;
 
+        [Space]
+
+        [SerializeField] private Button _managerButton;
+        [SerializeField] private Image _managerImage;
+        [SerializeField] private Sprite _nonManagerSprite;
+
+        [Space]
+
         [SerializeField] private SelectCharacterMenu _selectCharacterMenu;
 
         [Space]
@@ -48,6 +56,8 @@ namespace Client.MenuesLogic
 
                 _securityButtons[i].onClick.AddListener(() => InvokeSecuritySelecting(buttonIndex));
             }
+
+            _managerButton.onClick.AddListener(InvokeManagerSelecting);
         }
 
         private void InvokeSecuritySelecting(int index)
@@ -60,7 +70,7 @@ namespace Client.MenuesLogic
 
         private void SelectSecurity(Character character)
         {
-            if(character == null)
+            if (character == null)
             {
                 _business.RemoveSecurity(_securityIndex);
             }
@@ -89,11 +99,44 @@ namespace Client.MenuesLogic
             }
         }
 
+        private void InvokeManagerSelecting()
+        {
+            _selectCharacterMenu.Init(new ManagerSelectFilter());
+            _selectCharacterMenu.OnCharacterSelected += SelectManager;
+        }
+
+        private void SelectManager(Character character)
+        {
+            if (character == null)
+            {
+                _business.RemoveManager();
+            }
+            else
+            {
+                _business.SetManager(character);
+            }
+
+            _selectCharacterMenu.OnCharacterSelected -= SelectManager;
+            UpdateManagerUI();
+        }
+
+        private void UpdateManagerUI()
+        {
+            if(_business.Manager == null)
+            {
+                _managerImage.sprite = _nonManagerSprite;
+
+                return;
+            }
+
+            _managerImage.sprite = _business.Manager.Avatar;
+        }
+
         public void Init(Business business)
         {
             _upgradeButton.onClick.RemoveListener(UpgradeAction);
 
-            if(_business != null )
+            if(_business != null)
             {
                 _business.OnUpgrade -= UpgradeAllUI;
             }
