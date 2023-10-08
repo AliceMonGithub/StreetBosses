@@ -12,6 +12,8 @@ namespace DI
     {
         [SerializeField] private BusinessData[] _startBusinesses;
         [SerializeField] private CharacterData[] _startCharacters;
+        [SerializeField] private BuyCharactersQuestData _buyStartQuest;
+        [SerializeField] private EarnMoneyQuestData _earnStartQuest;
 
         [Space]
 
@@ -41,6 +43,9 @@ namespace DI
             {
                 _player.CharactersList.AddCharacter(new(characterData));
             }
+
+            _player.QuestsList.AddQuest(new BuyCharactersQuest(_buyStartQuest, _player));
+            _player.QuestsList.AddQuest(new EarnMoneyQuest(_earnStartQuest, _player));
 
             _playerRuntime = new();
 

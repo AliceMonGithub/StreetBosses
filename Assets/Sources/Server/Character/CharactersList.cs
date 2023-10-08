@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Server.CharacterLogic
 {
     public sealed class CharactersList : IReadOnlyCharactersList
     {
+        public event Action<Character> OnCharacterAdded;
+
         private Dictionary<string, Character> _characters;
 
         public CharactersList()
@@ -16,6 +19,8 @@ namespace Server.CharacterLogic
         public void AddCharacter(Character character)
         {
             _characters.Add(character.Name, character);
+
+            OnCharacterAdded?.Invoke(character);
         }
     }
 }

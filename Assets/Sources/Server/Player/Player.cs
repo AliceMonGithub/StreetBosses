@@ -4,12 +4,14 @@ using Server.MoneyLogic;
 
 namespace Server.PlayerLogic
 {
-    public sealed class Player : IReadOnlyPlayer
+    public sealed class Player
     {
         public readonly Money Money;
 
         public readonly BusinessesList BusinessesList;
         public readonly CharactersList CharactersList;
+
+        public readonly QuestsList QuestsList;
 
         public Player()
         {
@@ -17,11 +19,8 @@ namespace Server.PlayerLogic
 
             BusinessesList = new();
             CharactersList = new();
+
+            QuestsList = new();
         }
-
-        IReadOnlyMoney IReadOnlyPlayer.Money => Money;
-
-        IReadOnlyBusinessesList IReadOnlyPlayer.BusinessesList => BusinessesList;
-        IReadOnlyCharactersList IReadOnlyPlayer.CharactersList => CharactersList;
     }
 }
