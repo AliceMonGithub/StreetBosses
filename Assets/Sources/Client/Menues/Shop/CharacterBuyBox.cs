@@ -1,5 +1,6 @@
 ﻿using Server.CharacterLogic;
 using Server.PlayerLogic;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,8 @@ namespace Client.MenuesLogic
 {
     internal sealed class CharacterBuyBox : MonoBehaviour
     {
+        public event Action<CharacterBuyBox> OnSell;
+
         [SerializeField] private Image _avatar;
 
         [SerializeField] private TMP_Text _nameText;
@@ -49,7 +52,12 @@ namespace Client.MenuesLogic
 
             _player.CharactersList.AddCharacter(new(_characterData));
 
-            print(_player.CharactersList.Characters.Count);
+            OnSell?.Invoke(this);
+        }
+
+        public void Destroy()
+        {
+            Destroy(gameObject);
         }
     }
 }
