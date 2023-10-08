@@ -10,8 +10,8 @@ namespace Server.PlayerLogic
 
         public readonly BusinessesList BusinessesList;
         public readonly CharactersList CharactersList;
-
         public readonly QuestsList QuestsList;
+        public readonly NotificationsList NotificationList;
 
         public Player()
         {
@@ -19,8 +19,8 @@ namespace Server.PlayerLogic
 
             BusinessesList = new();
             CharactersList = new();
-
             QuestsList = new();
+            NotificationList = new();
         }
     }
 }

@@ -169,6 +169,7 @@ MonoBehaviour:
   _capoMenu: {fileID: 1591313013}
   _streetMenu: {fileID: 1591313012}
   _officeMenu: {fileID: 1591313016}
+  _notificationMenu: {fileID: 2117836144}
   _businessMenu: {fileID: 686544010}
   _questsMenu: {fileID: 252671509}
 --- !u!114 &580955047
@@ -783,6 +784,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad05d87823976ae49b387f59eebd54f9, type: 3}
+--- !u!114 &2117836144 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7002969804490581235, guid: 18225e5e9c63fd643b9d58481ca335f8, type: 3}
+  m_PrefabInstance: {fileID: 1591313011}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f07ac1db3a16dd4bbe8149b365969d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

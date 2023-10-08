@@ -11,6 +11,7 @@ namespace DI
         [SerializeField] private CapoMenu _capoMenu;
         [SerializeField] private StreetMenu _streetMenu;
         [SerializeField] private OfficeMenu _officeMenu;
+        [SerializeField] private NotificationsMenu _notificationMenu;
         [SerializeField] private BusinessMenu _businessMenu;
         [SerializeField] private QuestsMenu _questsMenu;
 
@@ -21,6 +22,7 @@ namespace DI
             Container.Bind<CapoMenu>().FromInstance(_capoMenu).AsSingle();
             Container.Bind<StreetMenu>().FromInstance(_streetMenu).AsSingle();
             Container.Bind<OfficeMenu>().FromInstance(_officeMenu).AsSingle();
+            Container.Bind<NotificationsMenu>().FromInstance(_notificationMenu).AsSingle();
             Container.Bind<BusinessMenu>().FromInstance(_businessMenu).AsSingle();
             Container.Bind<QuestsMenu>().FromInstance(_questsMenu).AsSingle();
         }

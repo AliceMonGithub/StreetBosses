@@ -47,6 +47,9 @@ namespace DI
             _player.QuestsList.AddQuest(new BuyCharactersQuest(_buyStartQuest, _player));
             _player.QuestsList.AddQuest(new EarnMoneyQuest(_earnStartQuest, _player));
 
+            _player.NotificationList.AddNotification(new Notification("Your business is under attack"));
+            _player.NotificationList.AddNotification(new Notification("The quest is completed"));
+
             _playerRuntime = new();
 
             Container.Bind<Player>().FromInstance(_player).AsSingle();
