@@ -1,5 +1,6 @@
 using Server.BusinessLogic;
 using Server.PlayerLogic;
+using Server.QuestsLogic;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;

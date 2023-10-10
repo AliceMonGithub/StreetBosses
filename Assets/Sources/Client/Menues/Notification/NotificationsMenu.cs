@@ -1,4 +1,4 @@
-﻿using Server.BusinessLogic;
+﻿using Server.NotificationLogic;
 using Server.PlayerLogic;
 using System.Collections.Generic;
 using UnityEngine;

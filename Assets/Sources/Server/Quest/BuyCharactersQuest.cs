@@ -3,7 +3,7 @@ using Server.PlayerLogic;
 using System;
 using UnityEngine;
 
-namespace Server.BusinessLogic
+namespace Server.QuestsLogic
 {
     public sealed class BuyCharactersQuest : Quest
     {

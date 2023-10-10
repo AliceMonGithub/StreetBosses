@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Server.BusinessLogic
+namespace Server.NotificationLogic
 {
     public sealed class NotificationsList
     {

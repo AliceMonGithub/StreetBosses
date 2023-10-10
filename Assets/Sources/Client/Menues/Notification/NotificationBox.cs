@@ -1,4 +1,4 @@
-﻿using Server.BusinessLogic;
+﻿using Server.NotificationLogic;
 using TMPro;
 using UnityEngine;
 

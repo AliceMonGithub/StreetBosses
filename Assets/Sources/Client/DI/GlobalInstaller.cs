@@ -1,10 +1,12 @@
 using Client.SceneLoading;
-using Server.BusinessLogic;
+using Server.NotificationLogic;
 using Server.CharacterLogic;
 using Server.PlayerLogic;
 using System.Collections;
 using UnityEngine;
 using Zenject;
+using Server.QuestsLogic;
+using Server.BusinessLogic;
 
 namespace DI
 {

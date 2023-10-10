@@ -1,4 +1,4 @@
-﻿namespace Server.BusinessLogic
+﻿namespace Server.NotificationLogic
 {
     public sealed class Notification
     {

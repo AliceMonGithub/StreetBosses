@@ -1,10 +1,12 @@
-using Server.BusinessLogic;
+using Server.NotificationLogic;
 using Server.CharacterLogic;
 using Server.MoneyLogic;
+using Server.QuestsLogic;
+using Server.BusinessLogic;
 
 namespace Server.PlayerLogic
 {
-    public sealed class Player
+    public class Player
     {
         public readonly Money Money;
 

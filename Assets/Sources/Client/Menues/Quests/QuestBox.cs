@@ -1,4 +1,4 @@
-﻿using Server.BusinessLogic;
+﻿using Server.QuestsLogic;
 using TMPro;
 using UnityEngine;
 

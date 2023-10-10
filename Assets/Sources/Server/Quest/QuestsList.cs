@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Server.BusinessLogic
+namespace Server.QuestsLogic
 {
     public sealed class QuestsList
     {

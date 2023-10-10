@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Server.BusinessLogic
+namespace Server.QuestsLogic
 {
     [CreateAssetMenu(fileName = "Earn Money Quest")]
     public sealed class EarnMoneyQuestData : ScriptableObject

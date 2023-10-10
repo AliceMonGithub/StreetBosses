@@ -2,7 +2,7 @@
 
 namespace Server.MoneyLogic
 {
-    public sealed class Money : IReadOnlyMoney
+    public sealed class Money
     {
         public event Action<int> OnValueChanged;
 

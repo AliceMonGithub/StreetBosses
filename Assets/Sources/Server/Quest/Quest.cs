@@ -1,7 +1,7 @@
 ﻿using Server.PlayerLogic;
 using System;
 
-namespace Server.BusinessLogic
+namespace Server.QuestsLogic
 {
     public abstract class Quest
     {
