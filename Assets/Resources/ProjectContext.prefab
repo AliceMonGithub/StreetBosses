@@ -82,4 +82,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 26546f392e2b41840819416f9ebfb84f, type: 2}
   _buyStartQuest: {fileID: 11400000, guid: 8ec19d2dcb10c474cb60052bcb4ddac8, type: 2}
   _earnStartQuest: {fileID: 11400000, guid: 2a4372d2f0cc6da4e95c09f0bb7f8618, type: 2}
-  _prefab: {fileID: 3654379183253661000, guid: d62fae1e7858a554b9848fe4bbd4cd12, type: 3}
+  _loadCurtainPrefab: {fileID: 3654379183253661000, guid: d62fae1e7858a554b9848fe4bbd4cd12, type: 3}
+  _botRuntimePrefab: {fileID: 8314547974343491209, guid: 7a70d7d1a7d11dc42b8f315bdd89fa4b, type: 3}

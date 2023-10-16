@@ -53,7 +53,7 @@ public sealed class BattleMenu : MonoBehaviour
         CreateSecondTeam();
     }
 
-    private void CreateBoxes()    // Для первой команды
+    private void CreateBoxes()
     {
         foreach (var characterPair in _player.CharactersList.Characters)
         {
@@ -68,7 +68,7 @@ public sealed class BattleMenu : MonoBehaviour
     {
         foreach (CharacterData characterData in _secondTeam)
         {
-            _battleData.AddCharacterSecondTeam(new(characterData));
+            _battleData.AddCharacterSecondTeam(new(characterData, _player));
         }
     }
 

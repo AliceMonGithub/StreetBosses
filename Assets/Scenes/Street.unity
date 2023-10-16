@@ -2298,6 +2298,7 @@ MonoBehaviour:
   _notificationMenu: {fileID: 7043984456474502433}
   _businessMenu: {fileID: 7043984456474502431}
   _questsMenu: {fileID: 7043984456474502432}
+  _characterUpgradeMenu: {fileID: 7043984456474502434}
 --- !u!114 &1629831029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2815,6 +2816,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -57.849365
       objectReference: {fileID: 0}
+    - target: {fileID: 4106493638597295923, guid: 18225e5e9c63fd643b9d58481ca335f8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4657345204850172072, guid: 18225e5e9c63fd643b9d58481ca335f8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2837,6 +2842,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4657345204850172072, guid: 18225e5e9c63fd643b9d58481ca335f8, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5412598027760661813, guid: 18225e5e9c63fd643b9d58481ca335f8, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5475149179455462780, guid: 18225e5e9c63fd643b9d58481ca335f8, type: 3}
@@ -3126,6 +3135,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f07ac1db3a16dd4bbe8149b365969d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7043984456474502434 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6059141790185366867, guid: 18225e5e9c63fd643b9d58481ca335f8, type: 3}
+  m_PrefabInstance: {fileID: 7043984456474502429}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13bb4de7df3da9248ab85f15b6df2a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
