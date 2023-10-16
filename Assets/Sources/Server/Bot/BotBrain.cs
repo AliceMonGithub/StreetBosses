@@ -1,7 +1,7 @@
 ﻿namespace Server.BotLogic
 {
-    public sealed class BotBrain
+    public abstract class BotBrain
     {
-
+        public abstract BotAction CalculateStep();
     }
 }

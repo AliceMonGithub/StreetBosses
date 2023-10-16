@@ -50,7 +50,7 @@ namespace Client.MenuesLogic
 
             _player.Money.Spend(_characterData.Cost);
 
-            _player.CharactersList.AddCharacter(new(_characterData));
+            _player.CharactersList.AddCharacter(new(_characterData, _player));
 
             OnSell?.Invoke(this);
         }

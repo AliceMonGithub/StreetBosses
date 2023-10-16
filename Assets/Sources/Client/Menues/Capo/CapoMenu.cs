@@ -18,11 +18,13 @@ namespace Client.MenuesLogic
 
         private List<CapoCharacterBox> _instancies;
 
+        private CharacterUpgradeMenu _menu;
         private Player _player;
 
         [Inject]
-        private void Constructor(Player player)
+        private void Constructor(CharacterUpgradeMenu menu, Player player)
         {
+            _menu = menu;
             _player = player;
         }
 
@@ -45,7 +47,7 @@ namespace Client.MenuesLogic
                 Character character = keyPair.Value;
 
                 CapoCharacterBox instance = Instantiate(_boxPrefab, _instancingRoot);
-                instance.Init(character);
+                instance.Init(_menu, character);
 
                 _instancies.Add(instance);
             }

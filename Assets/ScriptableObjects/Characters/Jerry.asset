@@ -14,10 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _avatar: {fileID: -4440571659341237062, guid: bd6d8a437ef5a4649b9dff65e143e051, type: 3}
   _name: Jerry
-  _damage: 20
+  _damage: 18
   _health: 90
   _attackCooldown: 0.5
   _attackDistance: 2
+  _upgradeData:
+  - _cost: 2600
+    _health: 100
+    _damage: 19
+  - _cost: 3700
+    _health: 115
+    _damage: 20
   _cost: 500
   _ability: {fileID: -2015917095406565068, guid: ebd0a1528da9617418b0375a5d708ec2, type: 3}
   _instance: {fileID: 8165168058095280366, guid: ebd0a1528da9617418b0375a5d708ec2, type: 3}

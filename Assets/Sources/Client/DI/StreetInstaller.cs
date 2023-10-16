@@ -14,6 +14,7 @@ namespace DI
         [SerializeField] private NotificationsMenu _notificationMenu;
         [SerializeField] private BusinessMenu _businessMenu;
         [SerializeField] private QuestsMenu _questsMenu;
+        [SerializeField] private CharacterUpgradeMenu _characterUpgradeMenu;
 
         public override void InstallBindings()
         {
@@ -25,6 +26,7 @@ namespace DI
             Container.Bind<NotificationsMenu>().FromInstance(_notificationMenu).AsSingle();
             Container.Bind<BusinessMenu>().FromInstance(_businessMenu).AsSingle();
             Container.Bind<QuestsMenu>().FromInstance(_questsMenu).AsSingle();
+            Container.Bind<CharacterUpgradeMenu>().FromInstance(_characterUpgradeMenu).AsSingle();
         }
     }
 }

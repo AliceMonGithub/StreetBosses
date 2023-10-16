@@ -10,9 +10,6 @@ namespace Server.CharacterLogic
 
         [SerializeField] private Sprite _avatar;
         [SerializeField] private string _name;
-        
-        //[SerializeField] private float _smoothTime;
-        //[SerializeField] private float _maxSpeed;
 
         [Space]
 
@@ -20,6 +17,10 @@ namespace Server.CharacterLogic
         [SerializeField, Range(50f, 100f)] private float _health;
         [SerializeField, Range(0.3f, 1f)] private float _attackCooldown;
         [SerializeField, Range(1, 4)] private float _attackDistance;
+
+        [Space]
+
+        [SerializeField] private CharacterUpgradeData[] _upgradeData;
 
         [Space]
 
@@ -39,6 +40,9 @@ namespace Server.CharacterLogic
         public float Health => _health;
         public float AttackCooldown => _attackCooldown;
         public float AttackDistance => _attackDistance;
+
+        public CharacterUpgradeData[] UpgradeData => _upgradeData;
+
         public CharacterInstance CharacterInstance => _instance;
         public Ability Ability => _ability;
     }

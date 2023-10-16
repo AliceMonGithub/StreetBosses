@@ -25,7 +25,12 @@ namespace Server.BusinessLogic
 
         public bool CanGetEarn;
 
-        public Business(string name, int earn, float getEarnTime, BusinessUpgradeData[] upgradeData, Player owner)
+        public Business(
+            string name,
+            int earn,
+            float getEarnTime,
+            BusinessUpgradeData[] upgradeData,
+            Player owner)
         {
             _name = name;
             _owner = owner;

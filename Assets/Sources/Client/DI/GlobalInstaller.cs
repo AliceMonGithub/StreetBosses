@@ -7,6 +7,7 @@ using UnityEngine;
 using Zenject;
 using Server.QuestsLogic;
 using Server.BusinessLogic;
+using Server.BotLogic;
 
 namespace DI
 {
@@ -19,10 +20,13 @@ namespace DI
 
         [Space]
 
-        [SerializeField] private LoadCurtain _prefab;
+        [SerializeField] private LoadCurtain _loadCurtainPrefab;
+        [SerializeField] private BotRuntime _botRuntimePrefab;
 
         private LoadCurtain _loadCurtain;
         private SceneLoader _sceneLoader;
+
+        private BotRuntime _botRuntime;
 
         private Player _player;
 
@@ -30,9 +34,10 @@ namespace DI
 
         public override void InstallBindings()
         {
-            _loadCurtain = Instantiate(_prefab);
-
+            _loadCurtain = Instantiate(_loadCurtainPrefab);
             _sceneLoader = new(_loadCurtain);
+
+            _botRuntime = Instantiate(_botRuntimePrefab);
 
             _player = new();
 
@@ -43,7 +48,7 @@ namespace DI
 
             foreach (CharacterData characterData in _startCharacters)
             {
-                _player.CharactersList.AddCharacter(new(characterData));
+                _player.CharactersList.AddCharacter(new(characterData, _player));
             }
 
             _player.QuestsList.AddQuest(new BuyCharactersQuest(_buyStartQuest, _player));
@@ -57,6 +62,7 @@ namespace DI
             Container.Bind<Player>().FromInstance(_player).AsSingle();
             Container.Bind<PlayerRuntime>().FromInstance(_playerRuntime).AsSingle();
             Container.Bind<SceneLoader>().FromInstance(_sceneLoader).AsSingle();
+            Container.Bind<BotRuntime>().FromInstance(_botRuntime).AsSingle();
         }
 
         public Coroutine RunCoroutine(IEnumerator coroutine)

@@ -39,9 +39,6 @@ namespace Client.MenuesLogic
 
         private void LoadBattle()
         {
-            // Set attacking business
-            //_playerRuntime.SetAttackTarget(_businessData);
-
             _sceneLoader.LoadScene(ScenesNames.BattleSceneName);
         }
     }

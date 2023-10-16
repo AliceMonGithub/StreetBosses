@@ -18,6 +18,13 @@ MonoBehaviour:
   _health: 70
   _attackCooldown: 0.3
   _attackDistance: 4
+  _upgradeData:
+  - _cost: 1500
+    _health: 85
+    _damage: 11
+  - _cost: 2000
+    _health: 100
+    _damage: 13
   _cost: 500
   _ability: {fileID: 1820549012163135519, guid: e78f7b90c07766847902464984890c73, type: 3}
   _instance: {fileID: 8165168058095280366, guid: e78f7b90c07766847902464984890c73, type: 3}
