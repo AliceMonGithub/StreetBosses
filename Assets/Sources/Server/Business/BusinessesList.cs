@@ -18,6 +18,11 @@ namespace Server.BusinessLogic
             _businesses.Add(business.Name, business);
         }
 
+        public void RemoveBusiness(Business business)
+        {
+            _businesses.Remove(business.Name);
+        }
+
         public bool ContainsBusiness(string name)
         {
             return _businesses.ContainsKey(name);

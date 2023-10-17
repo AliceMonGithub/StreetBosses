@@ -3,6 +3,7 @@ using Server.CharacterLogic;
 using Server.MoneyLogic;
 using Server.QuestsLogic;
 using Server.BusinessLogic;
+using Server.PlayerLogicTest;
 
 namespace Server.PlayerLogic
 {
@@ -23,6 +24,22 @@ namespace Server.PlayerLogic
             CharactersList = new();
             QuestsList = new();
             NotificationList = new();
+        }
+
+        public bool TryBuyBusiness(BusinessData data)
+        {
+            Business business = new(data, null);
+
+            if (Money.Value < business.Cost) return false;
+            if (business.Owner == this) return false; 
+
+            Money.Spend(business.Cost);
+            BusinessesList.AddBusiness(business);
+            business.SetOwner(this);
+
+            data.Create();
+
+            return true;
         }
     }
 }

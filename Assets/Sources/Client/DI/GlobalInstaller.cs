@@ -8,6 +8,7 @@ using Zenject;
 using Server.QuestsLogic;
 using Server.BusinessLogic;
 using Server.BotLogic;
+using System.Collections.Generic;
 
 namespace DI
 {
@@ -60,6 +61,7 @@ namespace DI
             _playerRuntime = new();
 
             Container.Bind<Player>().FromInstance(_player).AsSingle();
+            Container.Bind<List<Player>>().FromInstance(new(1) { _player }).AsSingle();
             Container.Bind<PlayerRuntime>().FromInstance(_playerRuntime).AsSingle();
             Container.Bind<SceneLoader>().FromInstance(_sceneLoader).AsSingle();
             Container.Bind<BotRuntime>().FromInstance(_botRuntime).AsSingle();

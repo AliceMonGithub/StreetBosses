@@ -44,4 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95b172c1e6ee5ae4dbd8323f2b58da0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _allBusinesses:
+  - {fileID: 11400000, guid: 25c168a1acc4d2847b5fc7380f455a99, type: 2}
+  - {fileID: 11400000, guid: b0075514c2aa27a499c34a9e74eff60e, type: 2}
+  - {fileID: 11400000, guid: ec18a67db43fda94ab7bf0def4201a05, type: 2}
+  - {fileID: 11400000, guid: 72a7b35d46c3be54b9ff8c6c78f58213, type: 2}
+  - {fileID: 11400000, guid: 1e01bd4dbe9d1c540998f27c733271e7, type: 2}
+  - {fileID: 11400000, guid: 989930fb132f4524db2b36f9478d0fe3, type: 2}
   _timeToNextStep: 3

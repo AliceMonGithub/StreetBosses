@@ -1,4 +1,6 @@
-﻿using Server.PlayerLogic;
+﻿using Server.BusinessLogic;
+using Server.PlayerLogic;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -6,20 +8,23 @@ namespace Server.BotLogic
 {
     public sealed class BotRuntime : MonoBehaviour
     {
+        [SerializeField] private BusinessData[] _allBusinesses;
+
         [SerializeField] private float _timeToNextStep;
 
         private Bot _bot;
-        private Player _player;
+
+        private List<Player> _players;
 
         [Inject]
-        private void Constructor(Player player)
+        private void Constructor(List<Player> players)
         {
-            _player = player;
+            _players = players;
         }
 
         private void Awake()
         {
-            _bot = new(new DefaultBotBrain(), _player, _timeToNextStep);
+            _bot = new(new DefaultBotBrain(_allBusinesses, _players), _timeToNextStep);
         }
 
         private void Update()

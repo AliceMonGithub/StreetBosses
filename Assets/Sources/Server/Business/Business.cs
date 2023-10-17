@@ -11,7 +11,7 @@ namespace Server.BusinessLogic
         public event Action OnUpgrade;
 
         private readonly string _name;
-        private readonly Player _owner;
+        private Player _owner;
 
         private BusinessUpgradeData[] _upgradeData;
         private int _level;
@@ -20,6 +20,7 @@ namespace Server.BusinessLogic
         private Character[] _security;
         private Character _manager;
 
+        private int _cost;
         private int _earn;
         private readonly float _getEarnTime;
 
@@ -27,6 +28,7 @@ namespace Server.BusinessLogic
 
         public Business(
             string name,
+            int cost,
             int earn,
             float getEarnTime,
             BusinessUpgradeData[] upgradeData,
@@ -42,29 +44,33 @@ namespace Server.BusinessLogic
             _security = new Character[3];
             _manager = null;
 
+            _cost = cost;
+
             _earn = earn;
             _getEarnTime = getEarnTime;
 
             CanGetEarn = true;
         }
 
-        public Business(string name) : this(name, 0, 0f, new BusinessUpgradeData[] { null }, null)
+        public Business(string name) : this(name, 0, 0, 0f, new BusinessUpgradeData[] { null }, null)
         {
 
         }
 
-        public Business(BusinessData data, Player player) : this(data.Name, data.Earn, data.GetEarnTime, data.UpgradeData, player)
+        public Business(BusinessData data, Player player) : this(data.Name, data.Cost, data.Earn, data.GetEarnTime, data.UpgradeData, player)
         {
-
         }
 
         public string Name => _name;
-       
+        public Player Owner => _owner;
+
         public int Level => _level;
         public float UpgradeProgress => _upgradeProgress;
 
         public Character[] Security => _security;
         public Character Manager => _manager;
+
+        public int Cost => _cost;
 
         public int Earn => _earn;
         public int NextEarn => _upgradeData[_level - 1].Earn;
@@ -92,6 +98,16 @@ namespace Server.BusinessLogic
             }
 
             OnUpgrade?.Invoke();
+        }
+
+        public void SetOwner(Player player)
+        {
+            if(_owner != null)
+            {
+                _owner.BusinessesList.RemoveBusiness(this);
+            }
+
+            _owner = player;
         }
 
         public void SetSecurity(int index, Character character)
