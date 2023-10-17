@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Business 1
   m_EditorClassIdentifier: 
   _name: Hotel
+  _cost: 3500
   _earn: 200
   _getEarnTime: 5
   _upgrade:

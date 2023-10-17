@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Business 3
   m_EditorClassIdentifier: 
   _name: Casino
+  _cost: 3500
   _earn: 300
   _getEarnTime: 5.5
   _upgrade:

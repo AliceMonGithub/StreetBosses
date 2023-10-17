@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Business 5
   m_EditorClassIdentifier: 
   _name: Amazon
+  _cost: 3500
   _earn: 175
   _getEarnTime: 4.6
   _upgrade:

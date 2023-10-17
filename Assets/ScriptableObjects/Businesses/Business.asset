@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Business
   m_EditorClassIdentifier: 
   _name: Coffee Shop
+  _cost: 3500
   _earn: 100
   _getEarnTime: 4
   _upgrade:

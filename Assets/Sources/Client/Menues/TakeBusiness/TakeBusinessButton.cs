@@ -37,18 +37,30 @@ namespace Client.MenuesLogic
             TryFindOwner();
 
             _button.onClick.AddListener(SelectTarget);
+
+            SubscribeToTaking();
+        }
+
+        private void SubscribeToTaking()
+        {
+            _blank.OnCreated += TryFindOwner;
         }
 
         private void TryFindOwner()
         {
             if (_player.BusinessesList.ContainsBusiness(_blank.Name, out Business business))
             {
-                BusinessButton button = Instantiate(_businessButtonPrefab, _root.position, Quaternion.identity, _canvasRoot);
-
-                button.Initialize(business, _businessMenu, _player);
-
-                Destroy(gameObject);
+                CreateBusinessButton(business);
             }
+        }
+
+        private void CreateBusinessButton(Business business)
+        {
+            BusinessButton button = Instantiate(_businessButtonPrefab, _root.position, Quaternion.identity, _canvasRoot);
+
+            button.Initialize(business, _businessMenu, _player);
+
+            Destroy(gameObject);
         }
 
         private void SelectTarget()

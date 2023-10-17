@@ -1,20 +1,20 @@
-﻿using Server.PlayerLogic;
+﻿using Server.BusinessLogic;
+using Server.PlayerLogic;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Server.BotLogic
 {
-    public sealed class Bot
+    public sealed class Bot : Player
     {
         private readonly BotBrain _brain;
-        private readonly Player _player;
 
         private readonly float _timeToNextStep;
         private float _stepTimer;
 
-        public Bot(BotBrain brain, Player player, float timeToNextStep)
+        public Bot(BotBrain brain, float timeToNextStep)
         {
             _brain = brain;
-            _player = player;
             
             _timeToNextStep = timeToNextStep;
             _stepTimer = 0;
@@ -26,7 +26,7 @@ namespace Server.BotLogic
 
             if (_stepTimer >= _timeToNextStep)
             {
-                _brain.CalculateStep();
+                _brain.CalculateStep().Do();
 
                 _stepTimer = 0;
             }

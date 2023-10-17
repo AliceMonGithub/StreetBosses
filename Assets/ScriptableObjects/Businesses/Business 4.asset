@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Business 4
   m_EditorClassIdentifier: 
   _name: Bar
+  _cost: 3500
   _earn: 135
   _getEarnTime: 6.3
   _upgrade:

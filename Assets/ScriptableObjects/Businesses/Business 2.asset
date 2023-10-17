@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Business 2
   m_EditorClassIdentifier: 
   _name: Supermarket
+  _cost: 3500
   _earn: 100
   _getEarnTime: 6
   _upgrade:

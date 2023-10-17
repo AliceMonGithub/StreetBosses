@@ -5805,6 +5805,7 @@ MonoBehaviour:
   _exitButton: {fileID: 1325515744408946727}
   _attackButton: {fileID: 329815444461367925}
   _buyButton: {fileID: 8966425637457211756}
+  _costText: {fileID: 230960534064089765}
 --- !u!1 &3609882424265280157
 GameObject:
   m_ObjectHideFlags: 0
