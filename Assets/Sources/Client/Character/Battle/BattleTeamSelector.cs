@@ -46,7 +46,7 @@ namespace Server.CharacterLogic
             }
             else if(_battleData._secondTeamLose & _isFighting)
             {
-                _player.BusinessesList.AddBusiness(new Business(_playerRuntime.AttackBusiness, _player));
+                _player.BusinessesList.AddBusiness(_playerRuntime.AttackBusiness);
                 _battleMenu.EndFightEvent(true);
                 _isFighting = false;
             }

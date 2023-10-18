@@ -13,6 +13,7 @@ namespace Server.BusinessLogic
         private readonly string _name;
         private Player _owner;
 
+        private BusinessData _businessData;
         private BusinessUpgradeData[] _upgradeData;
         private int _level;
         private float _upgradeProgress;
@@ -59,6 +60,7 @@ namespace Server.BusinessLogic
 
         public Business(BusinessData data, Player player) : this(data.Name, data.Cost, data.Earn, data.GetEarnTime, data.UpgradeData, player)
         {
+            _businessData = data;
         }
 
         public string Name => _name;
@@ -77,6 +79,24 @@ namespace Server.BusinessLogic
         public float GetEarnTime => _getEarnTime;
 
         public int MoneyForUpgrade => (int)(_upgradeData[_level - 1].Cost * UpgradeProgressMultiplier);
+
+        public void Reset()
+        {
+            _level = 1;
+            _upgradeProgress = 0f;
+
+            foreach (Character character in _security)
+            {
+                character.SetSecurity(null);
+            }
+
+            _security = new Character[3];
+
+            _manager.SetManager(null);
+            _manager = null;
+
+            _earn = _businessData.Earn;
+        }
 
         public void TryUpgrade()
         {

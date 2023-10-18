@@ -18,17 +18,13 @@ namespace Server.BotLogic
             if (_target.Cost > bot.Money.Value) return;
             if (bot.CheckBusinessForOwning(_target.Name)) return;
 
-            Debug.Log(bot.Money.Value);
-
             Business business = new(_target, null);
 
-            bot.Money.Spend(0);//(business.Cost);
+            bot.Money.Spend(business.Cost);
             bot.BusinessesList.AddBusiness(business);
             business.SetOwner(bot);
 
             _target.Create();
-
-            Debug.Log("Looking for business");
         }
     }
 }

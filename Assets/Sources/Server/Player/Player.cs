@@ -18,7 +18,7 @@ namespace Server.PlayerLogic
 
         public Player()
         {
-            Money = new(100000);
+            Money = new(4000);
 
             BusinessesList = new();
             CharactersList = new();
@@ -26,18 +26,15 @@ namespace Server.PlayerLogic
             NotificationList = new();
         }
 
-        public bool TryBuyBusiness(BusinessData data)
+        public bool TryBuyBusiness(Business business)
         {
-            Business business = new(data, null);
-
             if (Money.Value < business.Cost) return false;
             if (business.Owner == this) return false; 
 
             Money.Spend(business.Cost);
             BusinessesList.AddBusiness(business);
+            business.Reset();
             business.SetOwner(this);
-
-            data.Create();
 
             return true;
         }

@@ -88,7 +88,8 @@ namespace Client.MenuesLogic
             {
                 throw new System.NullReferenceException();
             }
-            _playerRuntime.SetAttackTarget(_blank);
+
+            _playerRuntime.SetAttackTarget(new(_blank, _player));
 
             _takeBusinessMenu.Show();
         }
