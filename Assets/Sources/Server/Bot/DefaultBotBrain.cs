@@ -7,18 +7,13 @@ namespace Server.BotLogic
 {
     public sealed class DefaultBotBrain : BotBrain
     {
-        private BusinessData[] _allBusinesses;
-        private List<Player> _players;
-
-        public DefaultBotBrain(BusinessData[] allBusinesses, List<Player> players)
+        public DefaultBotBrain(Bot bot, BusinessData[] allBusinesses, List<Player> players) : base(bot, allBusinesses, players)
         {
-            _allBusinesses = allBusinesses;
-            _players = players;
         }
 
         public override BotAction CalculateStep()
         {
-            return new LookForBusinessBotAction(_allBusinesses[Random.Range(0, _allBusinesses.Length)]);
+            return new LookForBusinessBotAction(AllBusinesses[Random.Range(0, AllBusinesses.Length)]);
         }
     }
 }

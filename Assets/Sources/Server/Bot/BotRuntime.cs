@@ -14,17 +14,18 @@ namespace Server.BotLogic
 
         private Bot _bot;
 
-        private List<Player> _players;
+        public Bot Bot => _bot;
 
-        [Inject]
-        private void Constructor(List<Player> players)
+        public void Init(Player player)
         {
-            _players = players;
-        }
+            List<Player> players = new(1);
 
-        private void Awake()
-        {
-            _bot = new(new DefaultBotBrain(_allBusinesses, _players), _timeToNextStep);
+            _bot = new("RussianCartel", _timeToNextStep);
+
+            players.Add(player);
+            players.Add(_bot);
+
+            _bot.SetBrain(new DefaultBotBrain(_bot, _allBusinesses, players));
         }
 
         private void Update()

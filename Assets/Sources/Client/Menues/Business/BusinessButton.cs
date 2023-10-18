@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 namespace Client.MenuesLogic
 {
+
     internal sealed class BusinessButton : MonoBehaviour
     {
         [SerializeField] private Button _button;

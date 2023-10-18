@@ -42,6 +42,8 @@ namespace DI
 
             _player = new();
 
+            _botRuntime.Init(_player);
+
             foreach (BusinessData businessData in _startBusinesses)
             {
                 _player.BusinessesList.AddBusiness(new(businessData, _player));
@@ -61,7 +63,7 @@ namespace DI
             _playerRuntime = new();
 
             Container.Bind<Player>().FromInstance(_player).AsSingle();
-            Container.Bind<List<Player>>().FromInstance(new(1) { _player }).AsSingle();
+            Container.Bind<Bot>().FromInstance(_botRuntime.Bot).AsSingle();
             Container.Bind<PlayerRuntime>().FromInstance(_playerRuntime).AsSingle();
             Container.Bind<SceneLoader>().FromInstance(_sceneLoader).AsSingle();
             Container.Bind<BotRuntime>().FromInstance(_botRuntime).AsSingle();

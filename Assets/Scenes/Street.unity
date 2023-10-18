@@ -367,6 +367,7 @@ MonoBehaviour:
   _root: {fileID: 253276752}
   _button: {fileID: 253276754}
   _businessButtonPrefab: {fileID: 7232986229670084132, guid: ea20bf53dab996249a6fd6fc69d0cd47, type: 3}
+  _anotherPlayerBusinessButtonPrefab: {fileID: 3195247548456737510, guid: 6cfe6bace21009b498ef7055627af6e2, type: 3}
   _blank: {fileID: 11400000, guid: b0075514c2aa27a499c34a9e74eff60e, type: 2}
 --- !u!114 &253276754
 MonoBehaviour:
@@ -892,6 +893,7 @@ MonoBehaviour:
   _root: {fileID: 597301226}
   _button: {fileID: 597301228}
   _businessButtonPrefab: {fileID: 7232986229670084132, guid: ea20bf53dab996249a6fd6fc69d0cd47, type: 3}
+  _anotherPlayerBusinessButtonPrefab: {fileID: 3195247548456737510, guid: 6cfe6bace21009b498ef7055627af6e2, type: 3}
   _blank: {fileID: 11400000, guid: 989930fb132f4524db2b36f9478d0fe3, type: 2}
 --- !u!114 &597301228
 MonoBehaviour:
@@ -1336,6 +1338,7 @@ MonoBehaviour:
   _root: {fileID: 930590780}
   _button: {fileID: 930590782}
   _businessButtonPrefab: {fileID: 7232986229670084132, guid: ea20bf53dab996249a6fd6fc69d0cd47, type: 3}
+  _anotherPlayerBusinessButtonPrefab: {fileID: 3195247548456737510, guid: 6cfe6bace21009b498ef7055627af6e2, type: 3}
   _blank: {fileID: 11400000, guid: 72a7b35d46c3be54b9ff8c6c78f58213, type: 2}
 --- !u!114 &930590782
 MonoBehaviour:
@@ -1852,6 +1855,7 @@ MonoBehaviour:
   _root: {fileID: 1335828161}
   _button: {fileID: 1335828163}
   _businessButtonPrefab: {fileID: 7232986229670084132, guid: ea20bf53dab996249a6fd6fc69d0cd47, type: 3}
+  _anotherPlayerBusinessButtonPrefab: {fileID: 3195247548456737510, guid: 6cfe6bace21009b498ef7055627af6e2, type: 3}
   _blank: {fileID: 11400000, guid: ec18a67db43fda94ab7bf0def4201a05, type: 2}
 --- !u!114 &1335828163
 MonoBehaviour:
@@ -2002,6 +2006,7 @@ MonoBehaviour:
   _root: {fileID: 1423261359}
   _button: {fileID: 1423261361}
   _businessButtonPrefab: {fileID: 7232986229670084132, guid: ea20bf53dab996249a6fd6fc69d0cd47, type: 3}
+  _anotherPlayerBusinessButtonPrefab: {fileID: 3195247548456737510, guid: 6cfe6bace21009b498ef7055627af6e2, type: 3}
   _blank: {fileID: 11400000, guid: 1e01bd4dbe9d1c540998f27c733271e7, type: 2}
 --- !u!114 &1423261361
 MonoBehaviour:
@@ -2582,6 +2587,7 @@ MonoBehaviour:
   _root: {fileID: 1821634154}
   _button: {fileID: 1821634155}
   _businessButtonPrefab: {fileID: 7232986229670084132, guid: ea20bf53dab996249a6fd6fc69d0cd47, type: 3}
+  _anotherPlayerBusinessButtonPrefab: {fileID: 3195247548456737510, guid: 6cfe6bace21009b498ef7055627af6e2, type: 3}
   _blank: {fileID: 11400000, guid: 25c168a1acc4d2847b5fc7380f455a99, type: 2}
 --- !u!114 &2024377019 stripped
 MonoBehaviour:
@@ -2742,7 +2748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2066131848800602166, guid: ad05d87823976ae49b387f59eebd54f9, type: 3}
       propertyPath: _moveSpeed
-      value: 0.02
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6632029910612800640, guid: ad05d87823976ae49b387f59eebd54f9, type: 3}
       propertyPath: m_Name

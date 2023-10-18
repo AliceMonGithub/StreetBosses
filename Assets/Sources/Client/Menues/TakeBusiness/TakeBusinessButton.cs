@@ -1,9 +1,9 @@
-﻿using Server.BusinessLogic;
+﻿using Server.BotLogic;
+using Server.BusinessLogic;
 using Server.PlayerLogic;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace Client.MenuesLogic
 {
@@ -13,6 +13,7 @@ namespace Client.MenuesLogic
         [SerializeField] private Transform _root;
         [SerializeField] private Button _button;
         [SerializeField] private BusinessButton _businessButtonPrefab;
+        [SerializeField] private AnotherPlayerBusinessButton _anotherPlayerBusinessButtonPrefab; 
 
         [Space]
 
@@ -21,14 +22,16 @@ namespace Client.MenuesLogic
         private TakeBusinessMenu _takeBusinessMenu;
         private BusinessMenu _businessMenu;
         private Player _player;
+        private Bot _bot;
         private PlayerRuntime _playerRuntime;
 
         [Inject]
-        private void Constructor(TakeBusinessMenu takeBusinessMenu, BusinessMenu businessMenu, Player player, PlayerRuntime playerRuntime)
+        private void Constructor(TakeBusinessMenu takeBusinessMenu, BusinessMenu businessMenu, Player player, Bot bot, PlayerRuntime playerRuntime)
         {
             _takeBusinessMenu = takeBusinessMenu;
             _businessMenu = businessMenu;
             _player = player;
+            _bot = bot;
             _playerRuntime = playerRuntime;
         }
 
@@ -48,9 +51,16 @@ namespace Client.MenuesLogic
 
         private void TryFindOwner()
         {
-            if (_player.BusinessesList.ContainsBusiness(_blank.Name, out Business business))
+            if (_player.BusinessesList.ContainsBusiness(_blank.Name, out Business playerBusiness))
             {
-                CreateBusinessButton(business);
+                CreateBusinessButton(playerBusiness);
+
+                return;
+            }
+
+            if(_bot.BusinessesList.ContainsBusiness(_blank.Name))
+            {
+                CreateAnotherPlayerBusinessButton();
             }
         }
 
@@ -59,6 +69,15 @@ namespace Client.MenuesLogic
             BusinessButton button = Instantiate(_businessButtonPrefab, _root.position, Quaternion.identity, _canvasRoot);
 
             button.Initialize(business, _businessMenu, _player);
+
+            Destroy(gameObject);
+        }
+
+        private void CreateAnotherPlayerBusinessButton()
+        {
+            AnotherPlayerBusinessButton button = Instantiate(_anotherPlayerBusinessButtonPrefab, _root.position, Quaternion.identity, _canvasRoot);
+
+            button.Init(_bot);
 
             Destroy(gameObject);
         }
