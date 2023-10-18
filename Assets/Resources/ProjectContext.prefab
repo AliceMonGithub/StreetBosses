@@ -74,10 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c0e0c82ee2d5a49a70e3c2b0c82cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startBusinesses:
-  - {fileID: 11400000, guid: ec18a67db43fda94ab7bf0def4201a05, type: 2}
-  - {fileID: 11400000, guid: 72a7b35d46c3be54b9ff8c6c78f58213, type: 2}
-  - {fileID: 11400000, guid: 989930fb132f4524db2b36f9478d0fe3, type: 2}
+  _startBusinesses: []
   _startCharacters:
   - {fileID: 11400000, guid: 26546f392e2b41840819416f9ebfb84f, type: 2}
   _buyStartQuest: {fileID: 11400000, guid: 8ec19d2dcb10c474cb60052bcb4ddac8, type: 2}

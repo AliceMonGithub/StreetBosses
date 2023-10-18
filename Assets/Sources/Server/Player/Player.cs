@@ -18,7 +18,7 @@ namespace Server.PlayerLogic
 
         public Player()
         {
-            Money = new(5000);
+            Money = new(100000);
 
             BusinessesList = new();
             CharactersList = new();

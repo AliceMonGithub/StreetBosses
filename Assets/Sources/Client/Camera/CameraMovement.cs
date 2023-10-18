@@ -26,7 +26,7 @@ namespace Sources.CameraLogic
         {
             float horizontal = Input.GetAxisRaw(HorizontalAxis);
             float moveDirection = horizontal * _moveSpeed;
-            Vector2 moveVector = Vector2.right * moveDirection;
+            Vector2 moveVector = Vector2.right * moveDirection * Time.deltaTime;
 
             _smoothVector = Vector2.SmoothDamp(_smoothVector, moveVector, ref _velosity, _moveSmooth);
 
