@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using Client.MenuesLogic;
 using DG.Tweening;
 using Zenject;
+using Client.SceneLoading;
 
 public sealed class BattleMenu : MonoBehaviour
 {
@@ -14,6 +15,13 @@ public sealed class BattleMenu : MonoBehaviour
     [SerializeField] private RectTransform _startFightButtonTransform;
     [SerializeField] private CanvasGroup _startFightButtonCanvasGroup;
     [SerializeField, Range(0, 10f)] private float _startButtonHideDuration;
+
+    [Space]
+
+    [SerializeField] private Button _exitBattleButton;
+    [SerializeField] private RectTransform _exitBattleButtonTransform;
+    [SerializeField] private CanvasGroup _exitBattleButtonCanvasGroup;
+    [SerializeField, Range(0, 10f)] private float _exitBattleButtonHideDuration;
 
     [Header("Character Selector")]
 
@@ -38,13 +46,16 @@ public sealed class BattleMenu : MonoBehaviour
     private Player _player;
     private PlayerRuntime _playerRuntime;
 
+    private SceneLoader _sceneLoader;
+
     private BattleTeamSelector _battleData;
     public List<Ability> _firstTeamAbilities = new List<Ability>(3);
 
     [Inject]
-    private void Constructor(PlayerRuntime playerRuntime)
+    private void Constructor(PlayerRuntime playerRuntime, SceneLoader sceneLoader)
     {
         _playerRuntime = playerRuntime;
+        _sceneLoader = sceneLoader;
     }
 
     public void Init(Player player, BattleTeamSelector battleData)
@@ -52,7 +63,8 @@ public sealed class BattleMenu : MonoBehaviour
         _player = player;
         _battleData = battleData;
 
-        _startFightButton.onClick.AddListener(StartFightEvent);
+        _startFightButton.onClick.AddListener(StartFight);
+        _exitBattleButton.onClick.AddListener(ExitBattle);
     }
 
     public void Boot()
@@ -82,10 +94,12 @@ public sealed class BattleMenu : MonoBehaviour
         }
     }
 
-    public void StartFightEvent()
+    public void StartFight()
     {
         HideCharacterSelector();
         HideFightBattleButton();
+        HideExitBattleButton();
+
         _battleData.BootAll();
     }
 
@@ -115,6 +129,19 @@ public sealed class BattleMenu : MonoBehaviour
 
         _startFightButtonCanvasGroup.DOFade(0, _startButtonHideDuration);
         _startFightButtonTransform.DOScale(Vector3.zero, _startButtonHideDuration);
+    }
+
+    private void HideExitBattleButton()
+    {
+        _exitBattleButtonCanvasGroup.alpha = 1;
+
+        _exitBattleButtonCanvasGroup.DOFade(0, _exitBattleButtonHideDuration);
+        _exitBattleButtonTransform.DOScale(Vector3.zero, _exitBattleButtonHideDuration);
+    }
+
+    private void ExitBattle()
+    {
+        _sceneLoader.LoadScene(ScenesNames.StreetSceneName);
     }
 
     public void AddAbility(Ability ability)

@@ -39,14 +39,18 @@ namespace Server.CharacterLogic
         }
         private void Update()
         {
-            if (_battleData._firstTeamLose & _isFighting)
+            if (_battleData.FirstTeamLose & _isFighting)
             {
                 _battleMenu.EndFightEvent(false);
                 _isFighting = false;
             }
             else if(_battleData._secondTeamLose & _isFighting)
             {
+                //_playerRuntime.AttackBusiness.Reset();
                 _player.BusinessesList.AddBusiness(_playerRuntime.AttackBusiness);
+                _playerRuntime.AttackBusiness.SetOwner(_player);
+
+                //_player.BusinessesList.AddBusiness(_playerRuntime.AttackBusiness);
                 _battleMenu.EndFightEvent(true);
                 _isFighting = false;
             }

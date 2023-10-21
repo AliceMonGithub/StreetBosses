@@ -27,6 +27,7 @@ namespace Server.BusinessLogic
         private readonly float _getEarnTime;
 
         public bool CanGetEarn;
+        public int Earned;
 
         public Business(
             string name,
