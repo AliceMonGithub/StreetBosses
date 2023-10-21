@@ -5,6 +5,7 @@ using Server.PlayerLogic;
 using UnityEngine.UI;
 using Client.MenuesLogic;
 using DG.Tweening;
+using Zenject;
 
 public sealed class BattleMenu : MonoBehaviour
 {
@@ -30,14 +31,21 @@ public sealed class BattleMenu : MonoBehaviour
 
     [Space]
 
-    [SerializeField] private CharacterData[] _secondTeam;
     [SerializeField] private FightCharacterBox _boxPrefab;
 
     [SerializeField] private Transform _root;
 
     private Player _player;
+    private PlayerRuntime _playerRuntime;
+
     private BattleTeamSelector _battleData;
     public List<Ability> _firstTeamAbilities = new List<Ability>(3);
+
+    [Inject]
+    private void Constructor(PlayerRuntime playerRuntime)
+    {
+        _playerRuntime = playerRuntime;
+    }
 
     public void Init(Player player, BattleTeamSelector battleData)
     {
@@ -66,9 +74,11 @@ public sealed class BattleMenu : MonoBehaviour
 
     private void CreateSecondTeam()
     {
-        foreach (CharacterData characterData in _secondTeam)
+        foreach (Character character in _playerRuntime.AttackBusiness.Security)
         {
-            _battleData.AddCharacterSecondTeam(new(characterData, _player));
+            if (character == null) continue;
+
+            _battleData.AddCharacterSecondTeam(character);
         }
     }
 

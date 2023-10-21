@@ -25,6 +25,8 @@ namespace Client.MenuesLogic
         private Bot _bot;
         private PlayerRuntime _playerRuntime;
 
+        private Business _businessInstance;
+
         [Inject]
         private void Constructor(TakeBusinessMenu takeBusinessMenu, BusinessMenu businessMenu, Player player, Bot bot, PlayerRuntime playerRuntime)
         {
@@ -35,22 +37,52 @@ namespace Client.MenuesLogic
             _playerRuntime = playerRuntime;
         }
 
+        public void Init(TakeBusinessMenu takeBusinessMenu, BusinessMenu businessMenu, Player player, Bot bot, PlayerRuntime playerRuntime)
+        {
+            _takeBusinessMenu = takeBusinessMenu;
+            _businessMenu = businessMenu;
+            _player = player;
+            _bot = bot;
+            _playerRuntime = playerRuntime;
+
+            TryFindOwner();
+        }
+
         private void Awake()
         {
             TryFindOwner();
 
             _button.onClick.AddListener(SelectTarget);
 
-            SubscribeToTaking();
+            _blank.OnCreated += TryFindOwner;
         }
 
-        private void SubscribeToTaking()
+        private void SelectTarget()
         {
-            _blank.OnCreated += TryFindOwner;
+            if (_blank == null)
+            {
+                throw new System.NullReferenceException();
+            }
+
+            Business businessInstance = new(_blank, null);
+
+            _playerRuntime.SetAttackTarget(businessInstance);
+
+            if (_businessInstance != null)
+            {
+                _businessInstance.OnSetOwner -= TryFindOwner;
+            }
+
+            _businessInstance = businessInstance;
+            _businessInstance.OnSetOwner += TryFindOwner;
+
+            _takeBusinessMenu.Show();
         }
 
         private void TryFindOwner()
         {
+            if (_player == null) return;
+
             if (_player.BusinessesList.ContainsBusiness(_blank.Name, out Business playerBusiness))
             {
                 CreateBusinessButton(playerBusiness);
@@ -58,9 +90,9 @@ namespace Client.MenuesLogic
                 return;
             }
 
-            if(_bot.BusinessesList.ContainsBusiness(_blank.Name))
+            if (_bot.BusinessesList.ContainsBusiness(_blank.Name, out Business botBusiness))
             {
-                CreateAnotherPlayerBusinessButton();
+                CreateAnotherPlayerBusinessButton(botBusiness);
             }
         }
 
@@ -73,25 +105,12 @@ namespace Client.MenuesLogic
             Destroy(gameObject);
         }
 
-        private void CreateAnotherPlayerBusinessButton()
+        private void CreateAnotherPlayerBusinessButton(Business business)
         {
             AnotherPlayerBusinessButton button = Instantiate(_anotherPlayerBusinessButtonPrefab, _root.position, Quaternion.identity, _canvasRoot);
-
-            button.Init(_bot);
+            button.Init(_bot, _player, business, _takeBusinessMenu, _businessMenu, _playerRuntime, _canvasRoot);
 
             Destroy(gameObject);
-        }
-
-        private void SelectTarget()
-        {
-            if(_blank == null)
-            {
-                throw new System.NullReferenceException();
-            }
-
-            _playerRuntime.SetAttackTarget(new(_blank, _player));
-
-            _takeBusinessMenu.Show();
         }
     }
 }

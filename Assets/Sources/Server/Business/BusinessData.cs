@@ -30,7 +30,7 @@ namespace Server.BusinessLogic
 
         public BusinessUpgradeData[] UpgradeData => _upgrade;
 
-        public void Create()
+        public void Create(Business business)
         {
             OnCreated?.Invoke();
         }

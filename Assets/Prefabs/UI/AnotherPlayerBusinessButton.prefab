@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 4536827640865497453}
   - component: {fileID: 3195247548456737510}
   m_Layer: 5
-  m_Name: OtherPlayerBusinessButton
+  m_Name: AnotherPlayerBusinessButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -269,7 +269,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 540255e3ab48b8646b6c97f8b7fe72e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _root: {fileID: 7202657787119717402}
   _nicknameText: {fileID: 2554566327479619504}
+  _button: {fileID: 4536827640865497453}
+  _businessButton: {fileID: 7232986229670084132, guid: ea20bf53dab996249a6fd6fc69d0cd47, type: 3}
 --- !u!1 &4196139530935215263
 GameObject:
   m_ObjectHideFlags: 0
