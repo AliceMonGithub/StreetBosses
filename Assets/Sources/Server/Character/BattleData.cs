@@ -5,7 +5,7 @@ public sealed class BattleData
 {
     private List<BattleCharacter> _firstTeam;
     private List<BattleCharacter> _secondTeam;
-    public bool _firstTeamLose;
+    public bool FirstTeamLose;
     public bool _secondTeamLose;
 
     public BattleData(List<BattleCharacter> firstTeam, List<BattleCharacter> secondTeam)
@@ -83,7 +83,7 @@ public sealed class BattleData
         }
         if (firstTeamLose)
         {
-            _firstTeamLose = true;
+            FirstTeamLose = true;
         }
     }
 

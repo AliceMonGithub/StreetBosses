@@ -33,7 +33,7 @@ namespace Client.MenuesLogic
             _button.onClick.AddListener(ShowBusinessMenu);
             _getEarnButton.onClick.AddListener(GetEarn);
 
-            _earnText.text = _business.Earn.ToString();
+            StartCoroutine(UpdateGetEarn());
         }
 
         private void ShowBusinessMenu()
@@ -45,9 +45,15 @@ namespace Client.MenuesLogic
         {
             if (_business.CanGetEarn == false) return;
 
-            _player.Money.Add(_business.Earn);
+            _player.Money.Add(_business.Earned);
             InstantiateCoinParticle();
 
+            _business.CanGetEarn = false;
+            _business.Earned = 0;
+
+            _earnText.text = string.Empty;
+
+            StopAllCoroutines();
             StartCoroutine(UpdateGetEarn());
         }
 
@@ -60,8 +66,7 @@ namespace Client.MenuesLogic
         {
             float timer = 0f;
 
-            _business.CanGetEarn = false;
-            _earnText.text = string.Empty;
+            _earnText.text = _business.Earned == 0 ? string.Empty : _business.Earned.ToString();
 
             while (timer < _business.GetEarnTime)
             {
@@ -72,8 +77,15 @@ namespace Client.MenuesLogic
                 yield return null;
             }
 
+            _business.Earned += _business.Earn;
+
             _business.CanGetEarn = true;
-            _earnText.text = _business.Earn.ToString();
+            _earnText.text = _business.Earned.ToString();
+
+            if(_business.Manager != null)
+            {
+                StartCoroutine(UpdateGetEarn());
+            }
         }
     }
 }

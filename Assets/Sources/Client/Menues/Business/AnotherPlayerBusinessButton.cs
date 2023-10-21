@@ -33,6 +33,7 @@ namespace Client.MenuesLogic
             _player = player;
             _business = business;
             _canvasRoot = canvasRoot;
+            _businessMenu = businessMenu;
             _playerRuntime = playerRuntime;
             _takeBusinessMenu = takeBusinessMenu;
 
