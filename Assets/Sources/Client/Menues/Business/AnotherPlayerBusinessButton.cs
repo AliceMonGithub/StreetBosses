@@ -1,4 +1,5 @@
 ﻿using Server.BotLogic;
+using Server.BusinessLogic;
 using Server.PlayerLogic;
 using TMPro;
 using UnityEngine;
@@ -9,42 +10,61 @@ namespace Client.MenuesLogic
 {
     internal sealed class AnotherPlayerBusinessButton : MonoBehaviour
     {
+        [SerializeField] private Transform _root;
         [SerializeField] private TMP_Text _nicknameText;
+        [SerializeField] private Button _button;
 
         [Space]
 
-        [SerializeField] private Button _button;
+        [SerializeField] private BusinessButton _businessButton;
 
         private TakeBusinessMenu _takeBusinessMenu;
         private PlayerRuntime _playerRuntime;
+        private BusinessMenu _businessMenu;
+        private Transform _canvasRoot;
+        private Player _player;
         private Bot _bot;
 
-        [Inject]
-        private void Constructor(TakeBusinessMenu takeBusinessMenu, PlayerRuntime playerRuntime)
-        {
-            _takeBusinessMenu = takeBusinessMenu;
-            _playerRuntime = playerRuntime;
-        }
+        private Business _business;
 
-        public void Init(Bot bot)
+        public void Init(Bot bot, Player player, Business business, TakeBusinessMenu takeBusinessMenu, BusinessMenu businessMenu, PlayerRuntime playerRuntime, Transform canvasRoot)
         {
             _bot = bot;
+            _player = player;
+            _business = business;
+            _canvasRoot = canvasRoot;
+            _playerRuntime = playerRuntime;
+            _takeBusinessMenu = takeBusinessMenu;
 
-            //_button.onClick.AddListener(ShowTakeBusinessMenu);
+            _button.onClick.AddListener(ShowTakeBusinessMenu);
 
             UpdateAllUI();
+            SubscribeToBusiness();
         }
 
         private void ShowTakeBusinessMenu()
         {
-            //_playerRuntime.SetAttackTarget()
+            _playerRuntime.SetAttackTarget(_business);
 
-            //_takeBusinessMenu.
+            _takeBusinessMenu.Show();
         }
 
         private void UpdateAllUI()
         {
             _nicknameText.name = _bot.Nickname;
+        }
+
+        private void SubscribeToBusiness()
+        {
+            _business.OnSetOwner += InstantiateBusinessButton;
+        }
+
+        private void InstantiateBusinessButton()
+        {
+            BusinessButton instance = Instantiate(_businessButton, _root.position, Quaternion.identity, _canvasRoot);
+            instance.Initialize(_business, _businessMenu, _player);
+
+            Destroy(gameObject);
         }
     }
 }

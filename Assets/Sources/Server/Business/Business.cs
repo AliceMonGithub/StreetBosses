@@ -9,6 +9,7 @@ namespace Server.BusinessLogic
         public const float UpgradeProgressMultiplier = 0.25f;
 
         public event Action OnUpgrade;
+        public event Action OnSetOwner;
 
         private readonly string _name;
         private Player _owner;
@@ -87,13 +88,18 @@ namespace Server.BusinessLogic
 
             foreach (Character character in _security)
             {
+                if (character == null) continue;
+
                 character.SetSecurity(null);
             }
 
             _security = new Character[3];
 
-            _manager.SetManager(null);
-            _manager = null;
+            if(_manager != null)
+            {
+                _manager.SetManager(null);
+                _manager = null;
+            }
 
             _earn = _businessData.Earn;
         }
@@ -128,6 +134,8 @@ namespace Server.BusinessLogic
             }
 
             _owner = player;
+
+            OnSetOwner?.Invoke();
         }
 
         public void SetSecurity(int index, Character character)
