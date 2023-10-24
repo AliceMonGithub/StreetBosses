@@ -12,7 +12,7 @@ public class PlayerBusinessesTests
     [SetUp]
     public void SetUp()
     {
-        _player = new();
+        _player = new("Test");
     }
 
     [Test]

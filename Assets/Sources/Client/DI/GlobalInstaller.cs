@@ -40,7 +40,7 @@ namespace DI
 
             _botRuntime = Instantiate(_botRuntimePrefab);
 
-            _player = new();
+            _player = new("Hero");
 
             _botRuntime.Init(_player);
 
