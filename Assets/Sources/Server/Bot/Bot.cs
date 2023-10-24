@@ -9,15 +9,11 @@ namespace Server.BotLogic
     {
         private BotBrain _brain;
 
-        private string _nickname;
-
         private readonly float _timeToNextStep;
         private float _stepTimer;
 
-        public Bot(string nickname, float timeToNextStep)
+        public Bot(string nickname, float timeToNextStep) : base(nickname)
         {
-            _nickname = nickname;
-            
             _timeToNextStep = timeToNextStep;
             _stepTimer = 0;
         }
@@ -26,8 +22,6 @@ namespace Server.BotLogic
         {
             _brain = brain;
         }
-
-        public string Nickname => _nickname;
 
         public void Tick()
         {
