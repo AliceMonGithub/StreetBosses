@@ -7,6 +7,7 @@ using Client.MenuesLogic;
 using DG.Tweening;
 using Zenject;
 using Client.SceneLoading;
+using Server.BusinessLogic;
 
 public sealed class BattleMenu : MonoBehaviour
 {
@@ -48,14 +49,18 @@ public sealed class BattleMenu : MonoBehaviour
 
     private SceneLoader _sceneLoader;
 
+    private UnoccupiedBusiness _unoccupiedProperties;
+
     private BattleTeamSelector _battleData;
     public List<Ability> _firstTeamAbilities = new List<Ability>(3);
 
     [Inject]
-    private void Constructor(PlayerRuntime playerRuntime, SceneLoader sceneLoader)
+    private void Constructor(PlayerRuntime playerRuntime, SceneLoader sceneLoader, UnoccupiedBusiness unoccupiedProperties)
     {
         _playerRuntime = playerRuntime;
         _sceneLoader = sceneLoader;
+
+        _unoccupiedProperties = unoccupiedProperties;
     }
 
     public void Init(Player player, BattleTeamSelector battleData)
@@ -86,6 +91,14 @@ public sealed class BattleMenu : MonoBehaviour
 
     private void CreateSecondTeam()
     {
+        if (_playerRuntime.AttackBusiness.Owner == null)
+        {
+            foreach (CharacterData character in _unoccupiedProperties.Security)
+            {
+                _battleData.AddCharacterSecondTeam(new(character));
+            }
+        }
+
         foreach (Character character in _playerRuntime.AttackBusiness.Security)
         {
             if (character == null) continue;

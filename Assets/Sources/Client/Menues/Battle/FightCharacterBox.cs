@@ -32,16 +32,12 @@ public sealed class FightCharacterBox : MonoBehaviour
     {
         if(_removeCharacter)
         {
-            print("Remove character");
-
             DestroyCharacterAtFirstTeam();
 
             _removeCharacter = false;
         }
         else
         {
-            print("Add character");
-
             if (AddCharacterToFirstTeam() == false) return;
 
             _removeCharacter = true;

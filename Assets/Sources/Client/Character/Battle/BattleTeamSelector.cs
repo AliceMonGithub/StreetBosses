@@ -37,6 +37,7 @@ namespace Server.CharacterLogic
             _battleMenu.Init(_player, this);
             _battleMenu.Boot();
         }
+
         private void Update()
         {
             if (_battleData.FirstTeamLose & _isFighting)
@@ -44,7 +45,7 @@ namespace Server.CharacterLogic
                 _battleMenu.EndFightEvent(false);
                 _isFighting = false;
             }
-            else if(_battleData._secondTeamLose & _isFighting)
+            else if(_battleData.SecondTeamLose & _isFighting)
             {
                 //_playerRuntime.AttackBusiness.Reset();
                 _player.BusinessesList.AddBusiness(_playerRuntime.AttackBusiness);
@@ -55,6 +56,7 @@ namespace Server.CharacterLogic
                 _isFighting = false;
             }
         }
+
         public void BootAll()
         {
             foreach(BattleCharacter battleCharacterFirst in _firstTeam)
@@ -74,7 +76,7 @@ namespace Server.CharacterLogic
             _firstTeamChoise.Add(character);
             BattleCharacter battleCharacter = _factory.CreateCharacterInFirstTeam(character, _battleData);
             _firstTeam.Add(battleCharacter);
-            _battleMenu.AddAbility(character.Ability);
+            //_battleMenu.AddAbility(character.Ability);
 
             return true;
         }

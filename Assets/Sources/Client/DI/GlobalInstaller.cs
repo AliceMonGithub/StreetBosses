@@ -14,6 +14,7 @@ namespace DI
 {
     internal sealed class GlobalInstaller : MonoInstaller, ICoroutineRunner
     {
+        [SerializeField] private CharacterData[] _unoccupiedSecurity;
         [SerializeField] private BusinessData[] _startBusinesses;
         [SerializeField] private CharacterData[] _startCharacters;
         [SerializeField] private BuyCharactersQuestData _buyStartQuest;
@@ -28,6 +29,7 @@ namespace DI
         private SceneLoader _sceneLoader;
 
         private BotRuntime _botRuntime;
+        private UnoccupiedBusiness _unoccupiedProperties;
 
         private Player _player;
 
@@ -39,6 +41,7 @@ namespace DI
             _sceneLoader = new(_loadCurtain);
 
             _botRuntime = Instantiate(_botRuntimePrefab);
+            _unoccupiedProperties = new(_unoccupiedSecurity);
 
             _player = new("Hero");
 
@@ -67,6 +70,7 @@ namespace DI
             Container.Bind<PlayerRuntime>().FromInstance(_playerRuntime).AsSingle();
             Container.Bind<SceneLoader>().FromInstance(_sceneLoader).AsSingle();
             Container.Bind<BotRuntime>().FromInstance(_botRuntime).AsSingle();
+            Container.Bind<UnoccupiedBusiness>().FromInstance(_unoccupiedProperties).AsSingle();
         }
 
         public Coroutine RunCoroutine(IEnumerator coroutine)

@@ -27,7 +27,7 @@ namespace Server.CharacterLogic
                 _firstTeamSpawns.Add(spawnPoint, null);
             }
 
-            _secondTeamSpawns = new(_firstTeamSpawnPoints.Count);
+            _secondTeamSpawns = new(_secondTeamSpawnPoints.Count);
 
             foreach (Transform spawnPoint in _secondTeamSpawnPoints)
             {

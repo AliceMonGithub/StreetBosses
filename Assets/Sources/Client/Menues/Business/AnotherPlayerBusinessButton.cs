@@ -62,6 +62,18 @@ namespace Client.MenuesLogic
 
         private void InstantiateBusinessButton()
         {
+            try
+            {
+                if (string.IsNullOrEmpty(this.name))
+                {
+                    return;
+                }
+            }
+            catch
+            {
+                return;
+            }
+
             BusinessButton instance = Instantiate(_businessButton, _root.position, Quaternion.identity, _canvasRoot);
             instance.Initialize(_business, _businessMenu, _player);
 

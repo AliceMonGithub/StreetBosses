@@ -63,7 +63,7 @@ namespace Server.CharacterLogic
             _ability = ability;
         }
 
-        public Character(CharacterData data, Player owner) : this(
+        public Character(CharacterData data, Player owner = null) : this(
             data.Avatar,
             data.Name,
             data.AttackDistance,

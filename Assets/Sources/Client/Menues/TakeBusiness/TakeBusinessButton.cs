@@ -98,6 +98,18 @@ namespace Client.MenuesLogic
 
         private void CreateBusinessButton(Business business)
         {
+            try
+            {
+                if(string.IsNullOrEmpty(this.name))
+                {
+                    return;
+                }
+            }
+            catch
+            {
+                return;
+            }
+
             BusinessButton button = Instantiate(_businessButtonPrefab, _root.position, Quaternion.identity, _canvasRoot);
 
             button.Initialize(business, _businessMenu, _player);

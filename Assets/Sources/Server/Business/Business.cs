@@ -4,12 +4,16 @@ using System;
 
 namespace Server.BusinessLogic
 {
+
     public sealed class Business
     {
         public const float UpgradeProgressMultiplier = 0.25f;
 
         public event Action OnUpgrade;
         public event Action OnSetOwner;
+
+        public bool CanGetEarn;
+        public int Earned;
 
         private readonly string _name;
         private Player _owner;
@@ -25,9 +29,6 @@ namespace Server.BusinessLogic
         private int _cost;
         private int _earn;
         private readonly float _getEarnTime;
-
-        public bool CanGetEarn;
-        public int Earned;
 
         public Business(
             string name,
