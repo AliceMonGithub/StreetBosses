@@ -53,18 +53,4 @@ public sealed class FightCharacterBox : MonoBehaviour
     {
         return _battleData.AddCharacterFirstTeam(_character);
     }
-
-    //public void SwitchButton(Button button)
-    //{
-    //   if(button = _buttonAddcharacter)
-    //   {
-    //        _buttonAddcharacter.gameObject.SetActive(false);
-    //        _buttonRemovecharacter.gameObject.SetActive(true);
-    //   }
-    //   else
-    //   {
-    //        _buttonAddcharacter.gameObject.SetActive(true);
-    //        _buttonRemovecharacter.gameObject.SetActive(false);
-    //   }
-    //}
 }

@@ -31,6 +31,8 @@ namespace Server.PlayerLogic
             QuestsList = new();
             NotificationList = new();
             TradesList = new();
+
+            NotificationList.SubscribeToQuestCompliting(QuestsList);
         }
 
         public bool TryBuyBusiness(Business business)

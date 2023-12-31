@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Server.QuestsLogic;
+using Server.TradeLogic;
+using System;
 using System.Collections.Generic;
 
 namespace Server.NotificationLogic
@@ -15,6 +17,16 @@ namespace Server.NotificationLogic
         }
 
         public List<Notification> Notifications => _notifications;
+
+        public void SubscribeToQuestCompliting(QuestsList questsList)
+        {
+            questsList.OnQuestCompleted += AddNotificationAboutQuestCompliting;
+        }
+
+        private void AddNotificationAboutQuestCompliting(Quest quest)
+        {
+            AddNotification(new(NotificationsPreload.QuestWasCompleted));
+        }
 
         public void AddNotification(Notification notification)
         {

@@ -47,11 +47,10 @@ namespace Server.CharacterLogic
             }
             else if(_battleData.SecondTeamLose & _isFighting)
             {
-                //_playerRuntime.AttackBusiness.Reset();
+                _playerRuntime.AttackBusiness.Reset();
                 _player.BusinessesList.AddBusiness(_playerRuntime.AttackBusiness);
                 _playerRuntime.AttackBusiness.SetOwner(_player);
 
-                //_player.BusinessesList.AddBusiness(_playerRuntime.AttackBusiness);
                 _battleMenu.EndFightEvent(true);
                 _isFighting = false;
             }
@@ -97,27 +96,5 @@ namespace Server.CharacterLogic
             _secondTeamChoise.Add(character);
             _secondTeam.Add(_factory.CreateCharacterInSecondTeam(character, _battleData));
         }
-
-        
-        //public void AddCharacterSecondTeam(Character character)
-        //{
-        //    if (_secondTeamChoise.Count < 3)
-        //    {
-        //        _secondTeamChoise.Add(character);
-        //        _secondTeam.Add(_factory.CreateCharacterInSecondTeam(character, _battleData));
-        //    }
-        //    else if (_secondTeamChoise.Count >= 3)
-        //    {
-        //        _factory.DestroyCharacter(_secondTeam[0]);
-        //        _secondTeam.RemoveAt(0);
-        //        _secondTeamChoise.RemoveAt(0);
-
-        //        _secondTeamChoise.Add(character);
-        //        //_secondTeam.Add(_factory.Create(character, _battleData, false));
-        //    }
-        //}
-
-
-
     }
 }

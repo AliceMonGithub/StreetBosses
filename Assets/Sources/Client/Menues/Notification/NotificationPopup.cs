@@ -35,6 +35,8 @@ namespace Client.MenuesLogic
 
         private void Awake()
         {
+            DontDestroyOnLoad(gameObject);
+
             _notificationToShow = new();
 
             _transform.position = _hidePoint.position;

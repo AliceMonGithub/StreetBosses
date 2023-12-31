@@ -1,5 +1,6 @@
 ﻿namespace Server.NotificationLogic
 {
+
     public sealed class Notification
     {
         private string _message;
