@@ -1,10 +1,13 @@
 ﻿using Server.BusinessLogic;
 using Server.PlayerLogic;
+using System;
 
 namespace Server.TradeLogic
 {
     public sealed class Trade
     {
+        public event Action OnDecline;
+
         private Player _from;
         private Player _to;
 
@@ -33,6 +36,15 @@ namespace Server.TradeLogic
             _to.Money.Add(_money);
 
             _business.SetOwner(_from);
+
+            _to.TradesList.RemoveTrade(this);
+        }
+
+        public void Decline()
+        {
+            _to.TradesList.RemoveTrade(this);
+
+            OnDecline?.Invoke();
         }
     }
 }

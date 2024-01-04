@@ -11,6 +11,7 @@ namespace Server.BusinessLogic
 
         public event Action OnUpgrade;
         public event Action OnSetOwner;
+        public event Action OnSetManager;
 
         public bool CanGetEarn;
         public int Earned;
@@ -106,6 +107,13 @@ namespace Server.BusinessLogic
             _earn = _businessData.Earn;
         }
 
+        public void Transfer(Player player)
+        {
+            Reset();
+
+            SetOwner(player);
+        }
+
         public void TryUpgrade()
         {
             if ((_level - 1) == 2) return;
@@ -167,7 +175,10 @@ namespace Server.BusinessLogic
             }
 
             _manager = character;
+
             character.SetManager(this);
+
+            OnSetManager?.Invoke();
         }
 
         public void RemoveManager()

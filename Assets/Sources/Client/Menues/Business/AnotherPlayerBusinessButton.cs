@@ -23,11 +23,11 @@ namespace Client.MenuesLogic
         private BusinessMenu _businessMenu;
         private Transform _canvasRoot;
         private Player _player;
-        private Bot _bot;
+        private Player _bot;
 
         private Business _business;
 
-        public void Init(Bot bot, Player player, Business business, TakeBusinessMenu takeBusinessMenu, BusinessMenu businessMenu, PlayerRuntime playerRuntime, Transform canvasRoot)
+        public void Init(Player bot, Player player, Business business, TakeBusinessMenu takeBusinessMenu, BusinessMenu businessMenu, PlayerRuntime playerRuntime, Transform canvasRoot)
         {
             _bot = bot;
             _player = player;
@@ -75,7 +75,7 @@ namespace Client.MenuesLogic
             }
 
             BusinessButton instance = Instantiate(_businessButton, _root.position, Quaternion.identity, _canvasRoot);
-            instance.Initialize(_business, _businessMenu, _player);
+            instance.Initialize(_business, _businessMenu, _player, _canvasRoot);
 
             Destroy(gameObject);
         }

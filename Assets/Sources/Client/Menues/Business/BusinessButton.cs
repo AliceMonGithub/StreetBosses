@@ -1,15 +1,18 @@
-﻿using Server.BusinessLogic;
+﻿using Server.BotLogic;
+using Server.BusinessLogic;
 using Server.PlayerLogic;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Client.MenuesLogic
 {
 
     internal sealed class BusinessButton : MonoBehaviour
     {
+        [SerializeField] private Transform _root;
         [SerializeField] private Button _button;
         [SerializeField] private Button _getEarnButton;
         [SerializeField] private Image _getEarnButtonImage;
@@ -17,15 +20,31 @@ namespace Client.MenuesLogic
 
         [Space]
 
+        [SerializeField] private AnotherPlayerBusinessButton _anotherPlayerButtonPrefab;
+
+        [Space]
+
         [SerializeField] private Transform _particleRoot;
         [SerializeField] private ParticleSystem _coinsParticle;
 
+        private TakeBusinessMenu _takeBusinessMenu;
         private BusinessMenu _businessMenu;
+        private Transform _canvasRoot;
         private Business _business;
+
+        private PlayerRuntime _playerRuntime;
         private Player _player;
 
-        public void Initialize(Business business, BusinessMenu businessMenu, Player player)
+        [Inject]
+        private void Constructor(TakeBusinessMenu takeBusinessMenu, PlayerRuntime playerRuntime)
         {
+            _takeBusinessMenu = takeBusinessMenu;
+            _playerRuntime = playerRuntime;
+        }
+
+        public void Initialize(Business business, BusinessMenu businessMenu, Player player, Transform canvasRoot)
+        {
+            _canvasRoot = canvasRoot;
             _businessMenu = businessMenu;
             _business = business;
             _player = player;
@@ -33,7 +52,15 @@ namespace Client.MenuesLogic
             _button.onClick.AddListener(ShowBusinessMenu);
             _getEarnButton.onClick.AddListener(GetEarn);
 
+            _business.OnSetManager += GetEarn;
+            _business.OnSetOwner += TryRefreshToAnotherPlayer;
+
             StartCoroutine(UpdateGetEarn());
+        }
+
+        private void OnDestroy()
+        {
+            _business.OnSetManager -= GetEarn;
         }
 
         private void ShowBusinessMenu()
@@ -55,6 +82,18 @@ namespace Client.MenuesLogic
 
             StopAllCoroutines();
             StartCoroutine(UpdateGetEarn());
+        }
+
+        private void TryRefreshToAnotherPlayer()
+        {
+            if (_business.Owner == null) return;
+
+            AnotherPlayerBusinessButton button = Instantiate(_anotherPlayerButtonPrefab, _root.position, Quaternion.identity, _canvasRoot);
+            button.Init(_business.Owner, _player, _business, _takeBusinessMenu, _businessMenu, _playerRuntime, _canvasRoot);
+
+            GetEarn();
+
+            Destroy(gameObject);
         }
 
         private ParticleSystem InstantiateCoinParticle()

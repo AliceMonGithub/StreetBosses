@@ -10,7 +10,7 @@ namespace Client.MenuesLogic
         [SerializeField] private Button _capoButton;
         [SerializeField] private Button _streetButton;
         [SerializeField] private Button _officeButton;
-        [SerializeField] private Button _tradeButton;
+        [SerializeField] private Button _tradesButton;
         [SerializeField] private Button _notificationButton;
 
         private ShopMenu _shopMenu;
@@ -18,15 +18,17 @@ namespace Client.MenuesLogic
         private StreetMenu _streetMenu;
         private OfficeMenu _officeMenu;
         private NotificationsMenu _notificationsMenu;
+        private TradesMenu _tradesMenu;
 
         [Inject]
-        private void Constructor(ShopMenu shopMenu, CapoMenu capoMenu, StreetMenu streetMenu, OfficeMenu officeMenu, NotificationsMenu notificationsMenu)
+        private void Constructor(ShopMenu shopMenu, CapoMenu capoMenu, StreetMenu streetMenu, OfficeMenu officeMenu, NotificationsMenu notificationsMenu, TradesMenu tradesMenu)
         {
             _shopMenu = shopMenu;
             _capoMenu = capoMenu;
             _streetMenu = streetMenu;
             _officeMenu = officeMenu;
             _notificationsMenu = notificationsMenu;
+            _tradesMenu = tradesMenu;
         }
 
         private void Awake()
@@ -36,6 +38,7 @@ namespace Client.MenuesLogic
             _streetButton.onClick.AddListener(_streetMenu.Show);
             _officeButton.onClick.AddListener(_officeMenu.Show);
             _notificationButton.onClick.AddListener(_notificationsMenu.Show);
+            _tradesButton.onClick.AddListener(_tradesMenu.Show);
         }
     }
 }

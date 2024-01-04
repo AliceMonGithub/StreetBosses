@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Server.BusinessLogic
 {
     public sealed class BusinessesList : IReadOnlyBusinessesList
     {
+        public event Action<Business> OnBusinessAdded;
+
         private Dictionary<string, Business> _businesses;
 
         public BusinessesList()
@@ -16,6 +19,8 @@ namespace Server.BusinessLogic
         public void AddBusiness(Business business)
         {
             _businesses.Add(business.Name, business);
+
+            OnBusinessAdded?.Invoke(business);
         }
 
         public void RemoveBusiness(Business business)

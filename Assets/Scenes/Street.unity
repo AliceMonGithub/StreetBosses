@@ -1282,6 +1282,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 843216488}
   m_CullTransparentMesh: 1
+--- !u!114 &843482316 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6709843153763275976, guid: 18225e5e9c63fd643b9d58481ca335f8, type: 3}
+  m_PrefabInstance: {fileID: 7043984456474502429}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01a1d6a9f091dc54290c0a87d34eec54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &930590779
 GameObject:
   m_ObjectHideFlags: 0
@@ -2258,7 +2269,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1554392042}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2303,6 +2314,7 @@ MonoBehaviour:
   _notificationMenu: {fileID: 7043984456474502433}
   _businessMenu: {fileID: 7043984456474502431}
   _questsMenu: {fileID: 7043984456474502432}
+  _tradesMenu: {fileID: 843482316}
   _characterUpgradeMenu: {fileID: 7043984456474502434}
 --- !u!114 &1629831029
 MonoBehaviour:

@@ -137,10 +137,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20f2330f51522924ca685be921f827a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _root: {fileID: 5263846800970383231}
+  _canvasRoot: {fileID: 0}
   _button: {fileID: 7496528917244880377}
   _getEarnButton: {fileID: 4455990184719651640}
   _getEarnButtonImage: {fileID: 6361153858864902073}
   _earnText: {fileID: 4100757327012645033}
+  _anotherPlayerButtonPrefab: {fileID: 3195247548456737510, guid: 6cfe6bace21009b498ef7055627af6e2, type: 3}
   _particleRoot: {fileID: 2634871064329632665}
   _coinsParticle: {fileID: 3653777082071630064, guid: 664d17cc323f7d84dac00b9fb41313c7, type: 3}
 --- !u!1 &1062406866451640152

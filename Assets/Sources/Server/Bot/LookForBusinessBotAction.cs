@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Server.BotLogic
 {
+
     public sealed class LookForBusinessBotAction : BotAction
     {
         private BusinessData _target;

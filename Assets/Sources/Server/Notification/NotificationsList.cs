@@ -23,9 +23,19 @@ namespace Server.NotificationLogic
             questsList.OnQuestCompleted += AddNotificationAboutQuestCompliting;
         }
 
+        public void SubscribeToTradeCreating(TradesList tradesList)
+        {
+            tradesList.OnTradeAdded += AddNotificationAboutTradeCreating;
+        }
+
         private void AddNotificationAboutQuestCompliting(Quest quest)
         {
             AddNotification(new(NotificationsPreload.QuestWasCompleted));
+        }
+
+        private void AddNotificationAboutTradeCreating(Trade trade)
+        {
+            AddNotification(new(NotificationsPreload.FormatNotificationAboutNewTrade(trade.From.Nickname, trade.Money)));
         }
 
         public void AddNotification(Notification notification)

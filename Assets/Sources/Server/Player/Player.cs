@@ -33,6 +33,7 @@ namespace Server.PlayerLogic
             TradesList = new();
 
             NotificationList.SubscribeToQuestCompliting(QuestsList);
+            NotificationList.SubscribeToTradeCreating(TradesList);
         }
 
         public bool TryBuyBusiness(Business business)

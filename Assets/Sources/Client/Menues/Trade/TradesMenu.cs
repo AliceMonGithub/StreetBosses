@@ -29,6 +29,8 @@ namespace Client.MenuesLogic
         private void Awake()
         {
             _exitButton.onClick.AddListener(Hide);
+
+            _instancies = new();
         }
 
         private void OnEnable()
@@ -40,7 +42,11 @@ namespace Client.MenuesLogic
         {
             foreach (Trade trade in _player.TradesList.Trades)
             {
+                TradeBox instance = Instantiate(_boxPrefab, _instancingRoot);
 
+                instance.Init(trade);
+
+                _instancies.Add(instance);
             }
         }
 
@@ -51,7 +57,14 @@ namespace Client.MenuesLogic
 
         private void DestroyUIBoxes()
         {
+            for (int i = 0; i < _instancies.Count; i++)
+            {
+                if (_instancies[i] == null) continue;
 
+                _instancies[i].Destroy();
+            }
+
+            _instancies.Clear();
         }
     }
 }

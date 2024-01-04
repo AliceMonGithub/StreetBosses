@@ -14,7 +14,7 @@ namespace Client.MenuesLogic
             {
                 Character character = keyPair.Value;
 
-                if(character.Security == null)
+                if(character.Security == null && character.Manager == null)
                 {
                     filtered.Add(character);
                 }
