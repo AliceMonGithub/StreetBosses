@@ -1,5 +1,6 @@
 ﻿using Server.PlayerLogic;
 using Server.TradeLogic;
+using Sources.CameraLogic;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,11 +20,13 @@ namespace Client.MenuesLogic
         private List<TradeBox> _instancies;
 
         private Player _player;
+        private CameraMovement _playerCamera;
 
         [Inject]
-        private void Constructor(Player player)
+        private void Constructor(Player player, CameraMovement playerCamera)
         {
             _player = player;
+            _playerCamera = playerCamera;
         }
 
         private void Awake()
@@ -44,10 +47,15 @@ namespace Client.MenuesLogic
             {
                 TradeBox instance = Instantiate(_boxPrefab, _instancingRoot);
 
-                instance.Init(trade);
+                instance.Init(trade, this, _player, _playerCamera);
 
                 _instancies.Add(instance);
             }
+        }
+
+        public void HideMenu()
+        {
+            Hide();
         }
 
         private void OnDisable()

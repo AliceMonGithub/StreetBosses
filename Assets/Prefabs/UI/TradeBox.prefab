@@ -739,6 +739,7 @@ MonoBehaviour:
   _tradeText: {fileID: 3128820752518661379}
   _acceptButton: {fileID: 4076389893866864506}
   _declineButton: {fileID: 3876358722018774373}
+  _showButton: {fileID: 2096600973393897695}
 --- !u!1 &5516526490774492090
 GameObject:
   m_ObjectHideFlags: 0

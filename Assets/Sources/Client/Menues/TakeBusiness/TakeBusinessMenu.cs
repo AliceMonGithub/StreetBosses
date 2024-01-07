@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Client.MenuesLogic
 {
-    internal sealed class TakeBusinessMenu : PopupMenu
+    public sealed class TakeBusinessMenu : PopupMenu
     {
         [SerializeField] private Button _exitButton;
         [SerializeField] private Button _attackButton;

@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using Server.PlayerLogic;
 using Server.TradeLogic;
+using Sources.CameraLogic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,25 +17,25 @@ namespace Client.MenuesLogic
 
         [SerializeField] private Button _acceptButton;
         [SerializeField] private Button _declineButton;
+        [SerializeField] private Button _showButton;
 
         private Player _player;
-        private Camera _playerCamera;
+        private CameraMovement _playerCamera;
 
         private Trade _trade;
+        private TradesMenu _tradeMenu;
 
-        [Inject]
-        private void Constructor(Player player, Camera playerCamera)
-        {
-            _player = player;
-            _playerCamera = playerCamera;
-        }
-
-        public void Init(Trade trade)
+        public void Init(Trade trade, TradesMenu tradeMenu, Player player, CameraMovement playerCamera)
         {
             _trade = trade;
+            _tradeMenu = tradeMenu;
+
+            _player = player;
+            _playerCamera = playerCamera;
 
             _acceptButton.onClick.AddListener(Accept);
             _declineButton.onClick.AddListener(Decline);
+            _showButton.onClick.AddListener(Show);
 
             UpdateAllUI();
         }
@@ -55,7 +56,9 @@ namespace Client.MenuesLogic
 
         private void Show()
         {
-            
+            _playerCamera.MoveToBusiness(_trade.Business);
+
+            _tradeMenu.HideMenu();
         }
 
         private void UpdateAllUI()

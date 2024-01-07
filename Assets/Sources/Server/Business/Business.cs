@@ -1,4 +1,5 @@
-﻿using Server.CharacterLogic;
+﻿using Client.MenuesLogic;
+using Server.CharacterLogic;
 using Server.PlayerLogic;
 using System;
 
@@ -19,6 +20,7 @@ namespace Server.BusinessLogic
         private readonly string _name;
         private Player _owner;
 
+        private BusinessButton _businessButton;
         private BusinessData _businessData;
         private BusinessUpgradeData[] _upgradeData;
         private int _level;
@@ -73,6 +75,7 @@ namespace Server.BusinessLogic
         public int Level => _level;
         public float UpgradeProgress => _upgradeProgress;
 
+        public BusinessButton BusinessButton => _businessButton;
         public Character[] Security => _security;
         public Character Manager => _manager;
 
@@ -179,6 +182,11 @@ namespace Server.BusinessLogic
             character.SetManager(this);
 
             OnSetManager?.Invoke();
+        }
+
+        public void SetBusinessButton(BusinessButton businessButton)
+        {
+            _businessButton = businessButton;
         }
 
         public void RemoveManager()

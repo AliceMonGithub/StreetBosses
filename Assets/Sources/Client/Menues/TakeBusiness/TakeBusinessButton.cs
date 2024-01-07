@@ -112,7 +112,7 @@ namespace Client.MenuesLogic
 
             BusinessButton button = Instantiate(_businessButtonPrefab, _root.position, Quaternion.identity, _canvasRoot);
 
-            button.Initialize(business, _businessMenu, _player, _canvasRoot);
+            button.Initialize(business, _businessMenu, _player, _playerRuntime, _takeBusinessMenu, _canvasRoot);
 
             Destroy(gameObject);
         }

@@ -36,7 +36,6 @@ public class BigBullet : FightTargetAbility, IPointerClickHandler
 
     private void OnMouseDown()
     {
-        Debug.Log("JOPA");
     }
     public void OnPointerClick(PointerEventData eventData)
     {

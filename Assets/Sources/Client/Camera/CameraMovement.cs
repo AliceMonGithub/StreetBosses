@@ -1,3 +1,6 @@
+using DG.Tweening;
+using Server.BusinessLogic;
+using System.Collections;
 using UnityEngine;
 
 namespace Sources.CameraLogic
@@ -12,6 +15,10 @@ namespace Sources.CameraLogic
 
         [Space]
 
+        [SerializeField] private float _moveToTargetSpeed;
+
+        [Space]
+
         [SerializeField] private Transform _transform;
 
         private Vector2 _smoothVector;
@@ -22,11 +29,16 @@ namespace Sources.CameraLogic
             Move();
         }
 
+        public void MoveToBusiness(Business business)
+        {
+            _transform.DOMoveX(business.BusinessButton.transform.position.x, _moveToTargetSpeed);
+        }
+
         private void Move()
         {
             float horizontal = Input.GetAxisRaw(HorizontalAxis);
             float moveDirection = horizontal * _moveSpeed;
-            Vector2 moveVector = Vector2.right * moveDirection * Time.deltaTime;
+            Vector2 moveVector = moveDirection * Time.deltaTime * Vector2.right;
 
             _smoothVector = Vector2.SmoothDamp(_smoothVector, moveVector, ref _velosity, _moveSmooth);
 

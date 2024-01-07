@@ -10,7 +10,7 @@ using Zenject;
 namespace Client.MenuesLogic
 {
 
-    internal sealed class BusinessButton : MonoBehaviour
+    public sealed class BusinessButton : MonoBehaviour
     {
         [SerializeField] private Transform _root;
         [SerializeField] private Button _button;
@@ -27,26 +27,24 @@ namespace Client.MenuesLogic
         [SerializeField] private Transform _particleRoot;
         [SerializeField] private ParticleSystem _coinsParticle;
 
-        private TakeBusinessMenu _takeBusinessMenu;
         private BusinessMenu _businessMenu;
         private Transform _canvasRoot;
         private Business _business;
 
+        private TakeBusinessMenu _takeBusinessMenu;
+
         private PlayerRuntime _playerRuntime;
         private Player _player;
 
-        [Inject]
-        private void Constructor(TakeBusinessMenu takeBusinessMenu, PlayerRuntime playerRuntime)
-        {
-            _takeBusinessMenu = takeBusinessMenu;
-            _playerRuntime = playerRuntime;
-        }
-
-        public void Initialize(Business business, BusinessMenu businessMenu, Player player, Transform canvasRoot)
+        public void Initialize(Business business, BusinessMenu businessMenu, Player player, PlayerRuntime playerRuntime, TakeBusinessMenu takeBusinessMenu, Transform canvasRoot)
         {
             _canvasRoot = canvasRoot;
             _businessMenu = businessMenu;
             _business = business;
+
+            _takeBusinessMenu = takeBusinessMenu;
+
+            _playerRuntime = playerRuntime;
             _player = player;
 
             _button.onClick.AddListener(ShowBusinessMenu);
@@ -55,12 +53,16 @@ namespace Client.MenuesLogic
             _business.OnSetManager += GetEarn;
             _business.OnSetOwner += TryRefreshToAnotherPlayer;
 
+            _business.SetBusinessButton(this);
+
             StartCoroutine(UpdateGetEarn());
         }
 
         private void OnDestroy()
         {
             _business.OnSetManager -= GetEarn;
+
+            _business.SetBusinessButton(null);
         }
 
         private void ShowBusinessMenu()
@@ -87,6 +89,8 @@ namespace Client.MenuesLogic
         private void TryRefreshToAnotherPlayer()
         {
             if (_business.Owner == null) return;
+            if (_root == null) return;
+            if (_canvasRoot == null) return;
 
             AnotherPlayerBusinessButton button = Instantiate(_anotherPlayerButtonPrefab, _root.position, Quaternion.identity, _canvasRoot);
             button.Init(_business.Owner, _player, _business, _takeBusinessMenu, _businessMenu, _playerRuntime, _canvasRoot);

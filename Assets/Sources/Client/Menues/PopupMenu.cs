@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Client.MenuesLogic
 {
-    internal class PopupMenu : MonoBehaviour
+    public class PopupMenu : MonoBehaviour
     {
         [SerializeField] private GameObject _root;
         [SerializeField] private RectTransform _transform;

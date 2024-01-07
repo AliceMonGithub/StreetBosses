@@ -1,4 +1,5 @@
 using Client.MenuesLogic;
+using Sources.CameraLogic;
 using UnityEngine;
 using Zenject;
 
@@ -19,7 +20,7 @@ namespace DI
 
         [Space]
 
-        [SerializeField] private Camera _playerCamera;
+        [SerializeField] private CameraMovement _playerCamera;
 
         public override void InstallBindings()
         {
@@ -34,7 +35,7 @@ namespace DI
             Container.Bind<TradesMenu>().FromInstance(_tradesMenu).AsSingle();
             Container.Bind<CharacterUpgradeMenu>().FromInstance(_characterUpgradeMenu).AsSingle();
 
-            Container.Bind<Camera>().FromInstance(_playerCamera).AsSingle();
+            Container.Bind<CameraMovement>().FromInstance(_playerCamera).AsSingle();
         }
     }
 }

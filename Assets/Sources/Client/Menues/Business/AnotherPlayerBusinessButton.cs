@@ -75,7 +75,7 @@ namespace Client.MenuesLogic
             }
 
             BusinessButton instance = Instantiate(_businessButton, _root.position, Quaternion.identity, _canvasRoot);
-            instance.Initialize(_business, _businessMenu, _player, _canvasRoot);
+            instance.Initialize(_business, _businessMenu, _player, _playerRuntime, _takeBusinessMenu, _canvasRoot);
 
             Destroy(gameObject);
         }

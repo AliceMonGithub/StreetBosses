@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Client.MenuesLogic
 {
-    internal sealed class BusinessMenu : PopupMenu
+    public sealed class BusinessMenu : PopupMenu
     {
         [SerializeField] private Slider _upgradeSlider;
         [SerializeField] private float _sliderDuration;

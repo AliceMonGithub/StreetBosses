@@ -2316,6 +2316,7 @@ MonoBehaviour:
   _questsMenu: {fileID: 7043984456474502432}
   _tradesMenu: {fileID: 843482316}
   _characterUpgradeMenu: {fileID: 7043984456474502434}
+  _playerCamera: {fileID: 610605429444948793}
 --- !u!114 &1629831029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2762,6 +2763,10 @@ PrefabInstance:
       propertyPath: _moveSpeed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2066131848800602166, guid: ad05d87823976ae49b387f59eebd54f9, type: 3}
+      propertyPath: _moveToTargetSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6632029910612800640, guid: ad05d87823976ae49b387f59eebd54f9, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -2771,6 +2776,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad05d87823976ae49b387f59eebd54f9, type: 3}
+--- !u!114 &610605429444948793 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2066131848800602166, guid: ad05d87823976ae49b387f59eebd54f9, type: 3}
+  m_PrefabInstance: {fileID: 610605429444948792}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd15d06a6f2dc4459e81dcad44c0e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2767512585086293626 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5792284739914579069, guid: 18225e5e9c63fd643b9d58481ca335f8, type: 3}
