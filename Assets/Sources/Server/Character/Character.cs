@@ -1,4 +1,5 @@
-﻿using Server.BusinessLogic;
+﻿using Client.AbilityLogic;
+using Server.BusinessLogic;
 using Server.PlayerLogic;
 using System;
 using UnityEngine;
@@ -40,8 +41,7 @@ namespace Server.CharacterLogic
             float attackCooldown,
             Player owner,
             CharacterUpgradeData[] upgradeData, 
-            CharacterInstance characterInstance, 
-            Ability ability)
+            CharacterInstance characterInstance)
         {
             _avatar = avatar;
             _name = name;
@@ -60,7 +60,6 @@ namespace Server.CharacterLogic
             _security = null;
 
             _characterInstance = characterInstance;
-            _ability = ability;
         }
 
         public Character(CharacterData data, Player owner = null) : this(
@@ -72,8 +71,7 @@ namespace Server.CharacterLogic
             data.AttackCooldown,
             owner,
             data.UpgradeData,
-            data.CharacterInstance,
-            data.Ability)
+            data.CharacterInstance)
         {
 
         }

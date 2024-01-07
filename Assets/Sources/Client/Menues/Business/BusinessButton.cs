@@ -87,7 +87,7 @@ namespace Client.MenuesLogic
         }
 
         private void TryRefreshToAnotherPlayer()
-        {
+         {
             if (_business.Owner == null) return;
             if (_root == null) return;
             if (_canvasRoot == null) return;

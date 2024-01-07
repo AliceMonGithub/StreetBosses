@@ -110,6 +110,24 @@ namespace Server.BusinessLogic
             _earn = _businessData.Earn;
         }
 
+        public void ResetWorkers()
+        {
+            foreach (Character character in _security)
+            {
+                if (character == null) continue;
+
+                character.SetSecurity(null);
+            }
+
+            _security = new Character[3];
+
+            if(_manager != null)
+            {
+                _manager.SetManager(null);
+                _manager = null;
+            }
+        }
+
         public void Transfer(Player player)
         {
             Reset();

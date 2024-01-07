@@ -8,163 +8,156 @@ using DG.Tweening;
 using Zenject;
 using Client.SceneLoading;
 using Server.BusinessLogic;
+using UnityEditor.Playables;
 
-public sealed class BattleMenu : MonoBehaviour
+namespace Client.MenuesLogic
 {
-    [Header("Start Fight Button")]
-    [SerializeField] private Button _startFightButton;
-    [SerializeField] private RectTransform _startFightButtonTransform;
-    [SerializeField] private CanvasGroup _startFightButtonCanvasGroup;
-    [SerializeField, Range(0, 10f)] private float _startButtonHideDuration;
-
-    [Space]
-
-    [SerializeField] private Button _exitBattleButton;
-    [SerializeField] private RectTransform _exitBattleButtonTransform;
-    [SerializeField] private CanvasGroup _exitBattleButtonCanvasGroup;
-    [SerializeField, Range(0, 10f)] private float _exitBattleButtonHideDuration;
-
-    [Header("Character Selector")]
-
-    [SerializeField] private RectTransform _characterSelector;
-    [SerializeField] private CanvasGroup _characterSelectorCanvasGroup;
-    [SerializeField, Range(0, 10f)] private float _characterSelectorHideDuration;
-
-    [Header("Ability")]
-    [SerializeField] private List<Button> _firstTeamAbilityButton = new List<Button>(3);
-
-    [Header("Victory and Lose page")]
-
-    [SerializeField] private VictoryMenu _victoryPage;
-    [SerializeField] private LoseMenu _losePage;
-
-    [Space]
-
-    [SerializeField] private FightCharacterBox _boxPrefab;
-
-    [SerializeField] private Transform _root;
-
-    private Player _player;
-    private PlayerRuntime _playerRuntime;
-
-    private SceneLoader _sceneLoader;
-
-    private UnoccupiedBusiness _unoccupiedProperties;
-
-    private BattleTeamSelector _battleData;
-    public List<Ability> _firstTeamAbilities = new List<Ability>(3);
-
-    [Inject]
-    private void Constructor(PlayerRuntime playerRuntime, SceneLoader sceneLoader, UnoccupiedBusiness unoccupiedProperties)
+    public sealed class BattleMenu : MonoBehaviour
     {
-        _playerRuntime = playerRuntime;
-        _sceneLoader = sceneLoader;
+        [Header("Start Fight Button")]
+        [SerializeField] private Button _startFightButton;
+        [SerializeField] private RectTransform _startFightButtonTransform;
+        [SerializeField] private CanvasGroup _startFightButtonCanvasGroup;
+        [SerializeField, Range(0, 10f)] private float _startButtonHideDuration;
 
-        _unoccupiedProperties = unoccupiedProperties;
-    }
+        [Space]
 
-    public void Init(Player player, BattleTeamSelector battleData)
-    {
-        _player = player;
-        _battleData = battleData;
+        [SerializeField] private Button _exitBattleButton;
+        [SerializeField] private RectTransform _exitBattleButtonTransform;
+        [SerializeField] private CanvasGroup _exitBattleButtonCanvasGroup;
+        [SerializeField, Range(0, 10f)] private float _exitBattleButtonHideDuration;
 
-        _startFightButton.onClick.AddListener(StartFight);
-        _exitBattleButton.onClick.AddListener(ExitBattle);
-    }
+        [Header("Character Selector")]
 
-    public void Boot()
-    {
-        CreateBoxes();
-        CreateSecondTeam();
-    }
+        [SerializeField] private RectTransform _characterSelector;
+        [SerializeField] private CanvasGroup _characterSelectorCanvasGroup;
+        [SerializeField, Range(0, 10f)] private float _characterSelectorHideDuration;
 
-    private void CreateBoxes()
-    {
-        foreach (var characterPair in _player.CharactersList.Characters)
+        [Header("Ability")]
+        [SerializeField] private AbilityIcons _abilityIcons;
+
+        [Header("Victory and Lose page")]
+
+        [SerializeField] private VictoryMenu _victoryPage;
+        [SerializeField] private LoseMenu _losePage;
+
+        [Space]
+
+        [SerializeField] private FightCharacterBox _boxPrefab;
+
+        [SerializeField] private Transform _root;
+
+        private Player _player;
+        private PlayerRuntime _playerRuntime;
+
+        private SceneLoader _sceneLoader;
+
+        private UnoccupiedBusiness _unoccupiedProperties;
+
+        private BattleTeamSelector _battleData;
+
+        [Inject]
+        private void Constructor(PlayerRuntime playerRuntime, SceneLoader sceneLoader, UnoccupiedBusiness unoccupiedProperties)
         {
-            Character character = characterPair.Value;
+            _playerRuntime = playerRuntime;
+            _sceneLoader = sceneLoader;
 
-            FightCharacterBox instance = Instantiate(_boxPrefab, _root);
-            instance.Init(character, _battleData);
+            _unoccupiedProperties = unoccupiedProperties;
         }
-    }
 
-    private void CreateSecondTeam()
-    {
-        if (_playerRuntime.AttackBusiness.Owner == null)
+        public void Init(Player player, BattleTeamSelector battleData)
         {
-            foreach (CharacterData character in _unoccupiedProperties.Security)
+            _player = player;
+            _battleData = battleData;
+
+            _startFightButton.onClick.AddListener(StartFight);
+            _exitBattleButton.onClick.AddListener(ExitBattle);
+        }
+
+        public void Boot()
+        {
+            CreateBoxes();
+            CreateSecondTeam();
+        }
+
+        private void CreateBoxes()
+        {
+            foreach (var characterPair in _player.CharactersList.Characters)
             {
-                _battleData.AddCharacterSecondTeam(new(character));
+                Character character = characterPair.Value;
+
+                FightCharacterBox instance = Instantiate(_boxPrefab, _root);
+                instance.Init(character, _battleData);
             }
         }
 
-        foreach (Character character in _playerRuntime.AttackBusiness.Security)
+        private void CreateSecondTeam()
         {
-            if (character == null) continue;
+            if (_playerRuntime.AttackBusiness.Owner == null)
+            {
+                foreach (CharacterData character in _unoccupiedProperties.Security)
+                {
+                    _battleData.AddCharacterSecondTeam(new(character));
+                }
+            }
 
-            _battleData.AddCharacterSecondTeam(character);
+            foreach (Character character in _playerRuntime.AttackBusiness.Security)
+            {
+                if (character == null) continue;
+
+                _battleData.AddCharacterSecondTeam(character);
+            }
         }
-    }
 
-    public void StartFight()
-    {
-        HideCharacterSelector();
-        HideFightBattleButton();
-        HideExitBattleButton();
-
-        _battleData.BootAll();
-    }
-
-    public void EndFightEvent(bool victory)
-    {
-        if (victory)
+        public void StartFight()
         {
-            _victoryPage.Show();
+            HideCharacterSelector();
+            HideFightBattleButton();
+            HideExitBattleButton();
+
+            _abilityIcons.Init(_player);
+            _battleData.BootAll();
         }
-        else
+
+        public void EndFightEvent(bool victory)
         {
-            _losePage.Show();
+            if (victory)
+            {
+                _victoryPage.Show();
+            }
+            else
+            {
+                _losePage.Show();
+            }
         }
-    }
 
-    private void HideCharacterSelector()
-    {
-        _characterSelectorCanvasGroup.alpha = 1;
-
-        _characterSelectorCanvasGroup.DOFade(0, _characterSelectorHideDuration);
-        _characterSelector.DOScale(Vector3.zero, _characterSelectorHideDuration);
-    }
-
-    private void HideFightBattleButton()
-    {
-        _startFightButtonCanvasGroup.alpha = 1;
-
-        _startFightButtonCanvasGroup.DOFade(0, _startButtonHideDuration);
-        _startFightButtonTransform.DOScale(Vector3.zero, _startButtonHideDuration);
-    }
-
-    private void HideExitBattleButton()
-    {
-        _exitBattleButtonCanvasGroup.alpha = 1;
-
-        _exitBattleButtonCanvasGroup.DOFade(0, _exitBattleButtonHideDuration);
-        _exitBattleButtonTransform.DOScale(Vector3.zero, _exitBattleButtonHideDuration);
-    }
-
-    private void ExitBattle()
-    {
-        _sceneLoader.LoadScene(ScenesNames.StreetSceneName);
-    }
-
-    public void AddAbility(Ability ability)
-    {
-        _firstTeamAbilities.Add(ability);
-
-        for(int i = 0; i < _firstTeamAbilities.Count; i++)
+        private void HideCharacterSelector()
         {
-            _firstTeamAbilityButton[i].onClick.RemoveAllListeners();
-            _firstTeamAbilityButton[i].onClick.AddListener(_firstTeamAbilities[i].UseAbility);
+            _characterSelectorCanvasGroup.alpha = 1;
+
+            _characterSelectorCanvasGroup.DOFade(0, _characterSelectorHideDuration);
+            _characterSelector.DOScale(Vector3.zero, _characterSelectorHideDuration);
+        }
+
+        private void HideFightBattleButton()
+        {
+            _startFightButtonCanvasGroup.alpha = 1;
+
+            _startFightButtonCanvasGroup.DOFade(0, _startButtonHideDuration);
+            _startFightButtonTransform.DOScale(Vector3.zero, _startButtonHideDuration);
+        }
+
+        private void HideExitBattleButton()
+        {
+            _exitBattleButtonCanvasGroup.alpha = 1;
+
+            _exitBattleButtonCanvasGroup.DOFade(0, _exitBattleButtonHideDuration);
+            _exitBattleButtonTransform.DOScale(Vector3.zero, _exitBattleButtonHideDuration);
+        }
+
+        private void ExitBattle()
+        {
+            _sceneLoader.LoadScene(ScenesNames.StreetSceneName);
         }
     }
 }

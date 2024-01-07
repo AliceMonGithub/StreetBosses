@@ -3,54 +3,57 @@ using Server.CharacterLogic;
 using UnityEngine.UI;
 using TMPro;
 
-public sealed class FightCharacterBox : MonoBehaviour
+namespace Client.MenuesLogic
 {
-    [SerializeField] TMP_Text _nameText;
-    [SerializeField] Image _avatar;
-
-    [Space]
-
-    [SerializeField] Button _button;
-
-    public Character _character;
-    private BattleTeamSelector _battleData;
-
-    private bool _removeCharacter;
-
-    public void Init(Character character, BattleTeamSelector battleData)
+    public sealed class FightCharacterBox : MonoBehaviour
     {
-        _battleData = battleData; 
-        _character = character;
+        [SerializeField] TMP_Text _nameText;
+        [SerializeField] Image _avatar;
 
-        _button.onClick.AddListener(OnClick);
+        [Space]
 
-        _nameText.text = character.Name;
-        _avatar.sprite = character.Avatar;
-    }
+        [SerializeField] Button _button;
 
-    private void OnClick()
-    {
-        if(_removeCharacter)
+        public Character _character;
+        private BattleTeamSelector _battleData;
+
+        private bool _removeCharacter;
+
+        public void Init(Character character, BattleTeamSelector battleData)
         {
-            DestroyCharacterAtFirstTeam();
+            _battleData = battleData;
+            _character = character;
 
-            _removeCharacter = false;
+            _button.onClick.AddListener(OnClick);
+
+            _nameText.text = character.Name;
+            _avatar.sprite = character.Avatar;
         }
-        else
+
+        private void OnClick()
         {
-            if (AddCharacterToFirstTeam() == false) return;
+            if (_removeCharacter)
+            {
+                DestroyCharacterAtFirstTeam();
 
-            _removeCharacter = true;
+                _removeCharacter = false;
+            }
+            else
+            {
+                if (AddCharacterToFirstTeam() == false) return;
+
+                _removeCharacter = true;
+            }
         }
-    }
 
-    private void DestroyCharacterAtFirstTeam()
-    {
-        _battleData.RemoveCharacterFirstTeam(_character);
-    }
+        private void DestroyCharacterAtFirstTeam()
+        {
+            _battleData.RemoveCharacterFirstTeam(_character);
+        }
 
-    private bool AddCharacterToFirstTeam()
-    {
-        return _battleData.AddCharacterFirstTeam(_character);
+        private bool AddCharacterToFirstTeam()
+        {
+            return _battleData.AddCharacterFirstTeam(_character);
+        }
     }
 }

@@ -1,3 +1,4 @@
+using Client.AbilityLogic;
 using Server.CharacterLogic;
 using System.Collections;
 using UnityEngine;
@@ -27,7 +28,6 @@ public sealed class BattleCharacter : MonoBehaviour
     public void Init(Character character, BattleData battleData, bool isFirstTeam, CharacterInstance instance, Ability ability)
     {
         _ability = ability;
-        _ability._inFirstTeam = isFirstTeam;
         _characterInstance = instance;
         _attackDistance = character.AttackDistance;
         _alive = true;
@@ -79,7 +79,7 @@ public sealed class BattleCharacter : MonoBehaviour
     private IEnumerator Attack(BattleCharacter target)
     {
 
-       if (!_attacking & target.AliveCheck() & _alive & !_ability.Active)
+       if (!_attacking & target.AliveCheck() & _alive)// & !_ability.Active)
        {
             _characterInstance.Animator.SetBool("Attacking", true);
             _attacking = true;
@@ -87,7 +87,7 @@ public sealed class BattleCharacter : MonoBehaviour
             yield return new WaitForSeconds(_attackCooldown);
             _attacking = false;
        }
-       else if(!_attacking & !target.AliveCheck() & _alive & !_ability.Active)
+       else if(!_attacking & !target.AliveCheck() & _alive)// !_ability.Active)
        {
             _characterInstance.Animator.SetBool("Attacking", false);
             GoToNearTarget();

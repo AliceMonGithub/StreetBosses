@@ -35,6 +35,7 @@ namespace Server.TradeLogic
 
             _to.Money.Add(_money);
 
+            _business.ResetWorkers();
             _business.SetOwner(_from);
 
             _to.TradesList.RemoveTrade(this);

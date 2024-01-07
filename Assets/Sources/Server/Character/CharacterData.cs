@@ -20,6 +20,8 @@ namespace Server.CharacterLogic
 
         [Space]
 
+        [Space]
+
         [SerializeField] private CharacterUpgradeData[] _upgradeData;
 
         [Space]
@@ -28,7 +30,6 @@ namespace Server.CharacterLogic
 
         [Space]
 
-        [SerializeField] private Ability _ability;
         [SerializeField] private CharacterInstance _instance;
 
         public Sprite Avatar => _avatar;
@@ -44,6 +45,5 @@ namespace Server.CharacterLogic
         public CharacterUpgradeData[] UpgradeData => _upgradeData;
 
         public CharacterInstance CharacterInstance => _instance;
-        public Ability Ability => _ability;
     }
 }

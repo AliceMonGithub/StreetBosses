@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Client.AbilityLogic;
+using System;
 using System.Collections.Generic;
 
 namespace Server.CharacterLogic
@@ -21,6 +22,18 @@ namespace Server.CharacterLogic
             _characters.Add(character.Name, character);
 
             OnCharacterAdded?.Invoke(character);
+        }
+
+        public List<Ability> GetAbilities()
+        {
+            List<Ability> abilities = new();
+
+            foreach (Character character in _characters.Values)
+            {
+                abilities.Add(character.Ability);
+            }
+
+            return abilities;
         }
     }
 }
