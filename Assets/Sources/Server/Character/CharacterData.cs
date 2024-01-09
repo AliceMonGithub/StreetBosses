@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Client.AbilityLogic;
+using UnityEngine;
 
 namespace Server.CharacterLogic
 {
@@ -26,6 +27,10 @@ namespace Server.CharacterLogic
 
         [Space]
 
+        [SerializeField] private AbilityData _ability;
+
+        [Space]
+
         [SerializeField] private int _cost;
 
         [Space]
@@ -45,5 +50,6 @@ namespace Server.CharacterLogic
         public CharacterUpgradeData[] UpgradeData => _upgradeData;
 
         public CharacterInstance CharacterInstance => _instance;
+        public Ability Ability => new(_ability);
     }
 }

@@ -25,6 +25,6 @@ MonoBehaviour:
   - _cost: 3700
     _health: 115
     _damage: 20
+  _ability: {fileID: 11400000, guid: 16631b3c243b1b64e8e0a9ff09aa6063, type: 2}
   _cost: 500
-  _ability: {fileID: -2015917095406565068, guid: ebd0a1528da9617418b0375a5d708ec2, type: 3}
   _instance: {fileID: 8165168058095280366, guid: ebd0a1528da9617418b0375a5d708ec2, type: 3}

@@ -19,7 +19,7 @@ namespace Client.MenuesLogic
 
         private void Render()
         {
-            //_abilityImage.sprite = _ability.Image;
+            _abilityImage.sprite = _ability.Image;
         }
     }
 }

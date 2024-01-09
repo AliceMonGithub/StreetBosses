@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Client.AbilityLogic
 {
-    public class BigBulletAbility : FightAbility
+    public class BigBulletAbility : Ability
     {
-        public BigBulletAbility(Character target, Sprite image) : base(target, image)
+        public BigBulletAbility(Sprite image) : base(image)
         {
         }
 
-        public override void Use()
+        public override void Use(Character target)
         {
 
         }

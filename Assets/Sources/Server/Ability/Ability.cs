@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using Server.CharacterLogic;
+using UnityEngine;
 
 namespace Client.AbilityLogic
 {
-    public abstract class Ability
+    public class Ability
     {
         public readonly Sprite Image;
 
@@ -11,6 +12,14 @@ namespace Client.AbilityLogic
             Image = image;
         }
 
-        public abstract void Use();
+        public Ability(AbilityData abilityData)
+        {
+            Image = abilityData.Image;
+        }
+
+        public virtual void Use(Character target)
+        {
+            
+        }
     }
 }
